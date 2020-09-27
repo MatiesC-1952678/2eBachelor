@@ -1,6 +1,8 @@
 (define Prependl
   (lambda (x y)
     (cond
-      ((cons x y))
+      ((null? x) y)
+      (else (cons (car x) (Prependl (cdr x) y)))
       )))
-      
+
+ (Prependl '(a b c) '(d e f))
