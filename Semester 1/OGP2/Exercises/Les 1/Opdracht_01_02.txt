@@ -1,7 +1,0 @@
-Opdracht_01_02
-Wat is een programmeerparadigma?
-Stijl van programmeren die invloed heeft op de manier waarop de uitvoering van de code gebeurt en die getypeerd wordt door de elementen die in de programmeertaal gebruikt worden (wel/geen variabelen, functies, objecten,...)
-
-Dit is de manier waarop een programmeertaal kan of moet worden neergeschreven en beschrijft de achterliggende denkwijze en structuur. Deze paradigma's bestaan omdat andere programmeer-wijzes handiger zijn bij sommige problemen.
-
-Claesen Maties -  22/09/2020

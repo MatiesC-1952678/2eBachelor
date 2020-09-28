@@ -1,7 +1,0 @@
-Opdracht_01_01
-Wat is een programmeertaal? 
-Omschrijf wat een programmeertaal is aan de hand van je huidige kennis!
-
-Een programmeertaal is een taal waarmee je algoritmes en functies hun werking beschrijft om hardware- en softwarematig een computer te leiden m.b.v. variabelen en objecten. Dit soort taal wordt gebruikt om een input, gegeven aan een computer, om te zetten in een gevraagde output. Dit is ook een taal want deze wordt uitgedrukt a.d.h.v. symbolen, woorden en punctuatie.
-
-Claesen Maties -  22/09/2020
