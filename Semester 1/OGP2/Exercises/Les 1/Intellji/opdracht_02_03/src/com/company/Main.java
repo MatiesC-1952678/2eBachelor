@@ -51,6 +51,14 @@ class Matrix {
             }
         }
     }
+
+    public void multiply(Matrix secondMatrix) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                matrix[i][j] *= secondMatrix.get(i, j);
+            }
+        }
+    }
 }
 
 public class Main {
@@ -62,6 +70,9 @@ public class Main {
         Matrix secMatrix = new Matrix();
         secMatrix.add(2);
         myMatrix.add(secMatrix);
+        myMatrix.print();
+        secMatrix.print();
+        myMatrix.multiply(secMatrix);
         myMatrix.print();
     }
 }
