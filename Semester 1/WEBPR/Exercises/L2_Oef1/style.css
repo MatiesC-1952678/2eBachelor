@@ -1,0 +1,26 @@
+ol
+{
+  float: left;
+  list-style-type: lower-roman;
+}
+
+ol li ol
+{
+  list-style-type: upper-alpha;
+}
+
+#rock
+{
+  background-color: red;
+}
+#elek
+{
+  background-color: black;
+  color: white;
+}
+img
+{
+  float: left;
+  max-width: 400px;
+  padding-left: 100px;
+}

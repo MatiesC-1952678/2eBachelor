@@ -1,0 +1,12 @@
+ul
+{
+  padding-left: 300px;
+}
+.End
+{
+  list-style-image: url('endgame.jpg');
+}
+.War
+{
+  list-style-image: url('infinitywar.jpg');
+}

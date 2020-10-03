@@ -1,0 +1,145 @@
+* {
+  font: 100% Verdana, Arial, Helvetica, sans-serif;
+}
+
+/* Header */
+.LogoAll {
+  margin-top: -10px;
+  margin-bottom: 100px;
+  margin-left: 100px;
+  margin-right: 100px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  -webkit-box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
+  -moz-box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
+  box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
+  min-height: 130px;
+}
+
+.LogoAll img {
+  float: left;
+  width: 100px;
+  height: 100px;
+  padding-left: 20px;
+  padding-top: 20px;
+}
+
+.LogoTitle {
+  float: left;
+  margin: 30px;
+  padding-top: 60px;
+  font-family: "futura bold", sans-serif;
+}
+
+.HeaderNav {
+  float: right;
+}
+
+#Nav-ul {
+  width: 300px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+	text-transform: lowercase;
+}
+#Nav-li {
+   float:left;
+}
+#Nav-a {
+    display: block;
+
+}
+#icon {
+  animation-name: hoverNavButtonSmall;
+  animation-duration: 0.3s;
+  border-radius: 30px;
+  -webkit-box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
+  -moz-box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
+  box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
+  padding: 5px;
+  margin: 10px;
+  width: 30px;
+  height: 30px;
+}
+@keyframes hoverNavButtonBig {
+  from {width: 30px; height: 30px;}
+  to {width: 35px; height: 35px;}
+}
+@keyframes hoverNavButtonSmall {
+  from {width: 35px; height: 35px;}
+  to {width: 30px; height: 30px;}
+}
+#Nav-a :hover {
+  animation-name: hoverNavButtonBig;
+  animation-duration: 0.3s;
+  width: 35px;
+  height: 35px;
+}
+
+/* Main Content */
+
+/*Searchbar*/
+#Searchbar {
+  max-width: 1000px;
+  margin: auto;
+  margin-top: -50px;
+  -webkit-box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
+  -moz-box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
+  box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
+  border-radius: 30px;
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: lightblue;
+}
+
+input {
+  width:100%;
+  height: 20px;
+  display:block;
+  max-width: 1000px;
+  border-radius: 15px;
+}
+#SearchIcon{
+  border-radius: 30px;
+  -webkit-box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
+  -moz-box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
+  box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
+  padding: 5px;
+  margin: 10px;
+  width: 30px;
+  height: 30px;
+  float: left;
+  background-color: white;
+}
+
+/* RoomList */
+#RoomList {
+  overflow: auto;
+  max-height: 500px;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#Room {
+  margin: 30px;
+  min-height: 130px;
+  min-width: 400px;
+  border-radius: 15px;
+  -webkit-box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
+  -moz-box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
+  box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
+  float: left;
+}
+
+#Room-Title {
+  margin-left: 0px;
+  margin-top: 0px;
+  margin-right: 0px;
+  padding: 10px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  background-color: lightblue;
+}

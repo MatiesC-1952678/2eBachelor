@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
-  <title>Splitsmis - Elke straathoek een stukje kermis.</title>
+  <title>Chase The Sun - we will bring you to it</title>
   <meta charset="utf-8">
-  <meta name="description" content="Een sociale website met al de laatste kermisnieuwtjes.">
-  <meta name="keywords" content="Kermis,Zone,Gemeente,Reserveer">
+  <meta name="description" content="A platform for hotels and customers to easily meet">
+  <meta name="keywords" content="Room,Country,Hotel,Book">
   <meta name="author" content="Maties Claesen">
+  <link rel="stylesheet" href="css/style.css">
 </head>
+
+<!-- Kermis == Room, Gemeente == Hotel, Zone == Country -->
 
 <body>
   <!-- Page Container -->
@@ -15,48 +18,122 @@
     <!-- Header -->
     <header>
       <!-- Logo -->
-      <div id="LogoAll">
-      <div id="LogoSymbol"> LogoSymbol </div>
-      <p>Splitsmis</p>
+      <div class="LogoAll">
+        <img src="resources/ChaseTheSunLogo(0.1).png" alt="The Chase The Sun Logo">
+        <p class="LogoTitle">Chase The Sun</p>
+        <!-- Navigation -->
+        <nav class="HeaderNav">
+          <ul id="Nav-ul">
+            <li id="Nav-li">
+              <a id="Nav-a" href="accessibility.html">
+                <img id="icon" src="resources/cog.svg" alt="accessibility">
+              </a>
+            </li>
+            <li id="Nav-li">
+              <a id="Nav-a" href="addRoom.html">
+                <img id="icon" src="resources/plus.svg" alt="Add a room">
+              </a>
+              <a id="Nav-a" href="notifications.html">
+                <img id="icon" src="resources/invention.svg" alt="Notifications">
+              </a>
+            </li>
+            <li id="Nav-li">
+              <a id="Nav-a" href="login.html">
+                <img id="icon" src="resources/user.svg" alt="Login">
+              </a>
+              <a id="Nav-a" href="account.html">
+                <img id="icon" src="resources/user.svg" alt="Login">
+              </a>
+            </li>
+          </ul>
+        </nav>
       </div>
-      <!-- Navigation -->
-      <nav>
-        Navigation Menu goes here
-        <ul>
-          <li><a href="accessibility.html">Accessibility</a></li>
-          <li><a href="addKermis.html">Add Kermis</a> OF <a href="notifications.html">Notifications</a></li>
-          <li><a href="login.html"> Login </a> OF <a href="account.html"> Gebruiker/Gemeente Account</a></li>
-        </ul>
-      </nav>
     </header>
 
     <!-- Main Content -->
-    <div>
+    <div class="MainContent">
       <!-- Searchbar -->
       <section id="Searchbar">
-        Searchbar goes here
-        <ul>
-          <li>Searchbar</li>
-          <li>Zone</li>
-          <li>Period</li>
-        </ul>
+          <input type="text" placeholder="   Search..">
+          <!-- <img id="SearchIcon" src="resources/plus.svg" alt="plus placeholder">
+          <img id="SearchIcon" src="resources/invention.svg" alt="invention placeholder"> --->
       </section>
 
-      <!-- KermisLijst -->
-      <section id="KermisLijst">
-        KermisLijst goes here
+      <!-- RoomList -->
+      <div id="RoomList">
         <!-- Some examples of the items you could see in this list -->
-        <div id="Kermis">
-          An example of a made kermis
+        <article id="Room">
+          <h1 id="Room-Title">Room in Greece</h1>
           <ul>
             <li>Name</li>
-            <li>Zone</li>
-            <li>Gemeente</li>
-            <li><a href="reserveer.html">ReservationButton</a></li>
+            <li>Country</li>
+            <li>Hotel</li>
+            <li><a href="booking.html">ReservationButton</a></li>
             <li>...</li>
           </ul>
-        </div>
-      </section>
+        </article>
+        <article id="Room">
+          <h1 id="Room-Title">Room in Greece</h1>
+          <ul>
+            <li>Name</li>
+            <li>Country</li>
+            <li>Hotel</li>
+            <li><a href="booking.html">ReservationButton</a></li>
+            <li>...</li>
+          </ul>
+        </article>
+        <article id="Room">
+          <h1 id="Room-Title">Room in Greece</h1>
+          <ul>
+            <li>Name</li>
+            <li>Country</li>
+            <li>Hotel</li>
+            <li><a href="booking.html">ReservationButton</a></li>
+            <li>...</li>
+          </ul>
+        </article>
+        <article id="Room">
+          <h1 id="Room-Title">Room in Greece</h1>
+          <ul>
+            <li>Name</li>
+            <li>Country</li>
+            <li>Hotel</li>
+            <li><a href="booking.html">ReservationButton</a></li>
+            <li>...</li>
+          </ul>
+        </article>
+        <article id="Room">
+          <h1 id="Room-Title">Room in Greece</h1>
+          <ul>
+            <li>Name</li>
+            <li>Country</li>
+            <li>Hotel</li>
+            <li><a href="booking.html">ReservationButton</a></li>
+            <li>...</li>
+          </ul>
+        </article>
+        <article id="Room">
+          <h1 id="Room-Title">Room in Greece</h1>
+          <ul>
+            <li>Name</li>
+            <li>Country</li>
+            <li>Hotel</li>
+            <li><a href="booking.html">ReservationButton</a></li>
+            <li>...</li>
+          </ul>
+        </article>
+        <article id="Room">
+          <h1 id="Room-Title">Room in Greece</h1>
+          <ul>
+            <li>Name</li>
+            <li>Country</li>
+            <li>Hotel</li>
+            <li><a href="booking.html">ReservationButton</a></li>
+            <li>...</li>
+          </ul>
+        </article>
+
+      </div>
     </div>
 
     <!-- Footer -->
