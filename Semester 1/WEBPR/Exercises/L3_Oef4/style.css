@@ -1,0 +1,20 @@
+#alternating {
+
+}
+
+#left {
+  float: right;
+}
+#right {
+  float: left;
+}
+/*
+@keyframes leftToRight {
+  from {margin-right: 500px;}
+  to {margin-left: 500px;}
+}
+@keyframes rightToLeft {
+  from {margin-left: 500px;}
+  to {margin-right: 500px;}
+}
+*/

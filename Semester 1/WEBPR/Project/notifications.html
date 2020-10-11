@@ -6,7 +6,8 @@
   <meta name="description" content="A platform for hotels and customers to easily meet">
   <meta name="keywords" content="Room,Country,Hotel,Book">
   <meta name="author" content="Maties Claesen">
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="text/javascript" src=""></script>
 </head>
 
 <body>
@@ -16,21 +17,37 @@
     <!-- Header -->
     <header>
       <!-- Logo -->
-      <div id="LogoAll">
-      <a href="home.html">
-        <div id="LogoSymbol"> LogoSymbol </div>
-        <p>Chase The Sun</p>
-      </a>
+      <div class="LogoAll">
+        <a href="home.html">
+          <img src="resources/ChaseTheSunLogo(0.2).png" alt="The Chase The Sun Logo">
+        </a>
+        <p class="LogoTitle"></p>
+        <nav class="HeaderNav">
+          <ul id="Nav-ul">
+            <li id="Nav-li">
+              <a id="Nav-a" href="accessibility.html">
+                <img id="icon" src="resources/cog.svg" alt="accessibility">
+              </a>
+            </li>
+            <li id="Nav-li">
+              <a id="Nav-a" href="addRoom.html">
+                <img id="icon" src="resources/plus.svg" alt="Add a room">
+              </a>
+              <a id="Nav-a" href="notifications.html">
+                <img id="icon" src="resources/invention.svg" alt="Notifications">
+              </a>
+            </li>
+            <li id="Nav-li">
+              <a id="Nav-a" href="login.html">
+                <img id="icon" src="resources/user.svg" alt="Login">
+              </a>
+              <a id="Nav-a" href="account.html">
+                <img id="icon" src="resources/user.svg" alt="Login">
+              </a>
+            </li>
+          </ul>
+        </nav>
       </div>
-      <!-- Navigation -->
-      <nav>
-        Navigation Menu goes here
-        <ul>
-          <li><a href="accessibility.html">Accessibility</a></li>
-          <li><a href="addRoom.html">Add a room</a> OF <a href="notifications.html">Notifications</a></li>
-          <li><a href="login.html"> Login </a> OF <a href="account.html"> Customer/Hotel Account</a></li>
-        </ul>
-      </nav>
     </header>
 
     <!-- Notifications -->
@@ -60,9 +77,8 @@
 
     <!-- Footer -->
     <footer>
-      Footer goes here
       <ul>
-        <li>Copyrigth</li>
+        <li>Copyrigth © 2020</li>
         <li><a href="#top">Back To Top</a></li>
       </ul>
     </footer>

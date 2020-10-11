@@ -1,0 +1,48 @@
+img {
+  max-width: 100px;
+}
+
+#Geike1 {
+  position: relative;
+  z-index: 0;
+}
+#Geike2 {
+  position: relative;
+  z-index: 1;
+  margin-top: -300px;
+  margin-left: 50px;
+}
+#Geike3 {
+  position: relative;
+  z-index: 2;
+  margin-top: -300px;
+  margin-left: 100px;
+}
+#Geike4 {
+  position: relative;
+  z-index: 3;
+  margin-top: -300px;
+  margin-left: 150px;
+}
+#Geike1t {
+  position: relative;
+  z-index: 5;
+}
+#Geike2t {
+  position: relative;
+  z-index: 5;
+  margin-top: -300px;
+  margin-left: 50px;
+}
+#Geike3t {
+  position: relative;
+  z-index: 5;
+  margin-top: -300px;
+  margin-left: 100px;
+}
+#Geike4t {
+  position: relative;
+  z-index: 5;
+  margin-top: -300px;
+  margin-left: 150px;
+}

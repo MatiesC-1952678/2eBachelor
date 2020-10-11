@@ -1,0 +1,31 @@
+/* layout */
+.loginPage {
+  max-width: 1000px;
+  margin: auto;
+}
+#loginButton {
+  max-width: 100px;
+  margin: auto;
+  height: 30px;
+}
+
+
+/* Logic for showing and hiding options while logging in */
+/* username hidden */
+#usernameH {
+  padding-top: 50px;
+  opacity: 0;
+}
+/* username shown */
+#usernameS {
+  padding-top: 50px;
+}
+/* username with wrong input */
+#usernameW {
+  padding-top: 50px;
+  border-style: dotted;
+  padding: 10px;
+  border-radius: 15px;
+  border-width: 2px;
+  border-color: red;
+}

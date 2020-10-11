@@ -18,16 +18,16 @@
 
 .LogoAll img {
   float: left;
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: auto;
   padding-left: 20px;
   padding-top: 20px;
 }
 
 .LogoTitle {
   float: left;
-  margin: 30px;
-  padding-top: 60px;
+  margin: 50px;
+  padding-top: 20px;
   font-family: "futura bold", sans-serif;
 }
 
@@ -117,16 +117,20 @@ input {
 /* RoomList */
 #RoomList {
   overflow: auto;
-  max-height: 500px;
+  max-height: 600px;
   max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
 }
 
 #Room {
-  margin: 30px;
-  min-height: 130px;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  min-height: 20px;
   min-width: 400px;
+  max-width: 500px;
   border-radius: 15px;
   -webkit-box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
   -moz-box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
@@ -141,5 +145,17 @@ input {
   padding: 10px;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
+  background-color: lightblue;
+}
+
+/* Footer */
+footer {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  margin-left: -10px;
+  margin-right: -10px;
+  margin-bottom: -100px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   background-color: lightblue;
 }
