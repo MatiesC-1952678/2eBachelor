@@ -1,0 +1,24 @@
+#Booking {
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  min-height: 20px;
+  min-width: 400px;
+  max-width: 500px;
+  border-radius: 15px;
+  -webkit-box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
+  -moz-box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
+  box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
+  float: left;
+}
+
+#Booking-Title {
+  margin-left: 0px;
+  margin-top: 0px;
+  margin-right: 0px;
+  padding: 10px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  background-color: orange;
+}

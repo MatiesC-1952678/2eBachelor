@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Chase The Sun - we will bring you to it</title>
+  <title>Suite Dreams - Login</title>
   <meta charset="utf-8">
   <meta name="description" content="A platform for hotels and customers to easily meet">
   <meta name="keywords" content="Room,Country,Hotel,Book">
@@ -54,33 +54,43 @@
 
     <!-- Login -->
     <div>
-      <section>
-        <form class="loginPage" method="post">
+      <form action="" method="post">
+        <input type="submit" name="" value="createTable">
+      </form>
+      <form class="loginPage" method="post">
           <!--- user or hotel choice --->
           <input type="radio" id="customer" name="typeOfUser" value="customer" onclick="showElements()">
-          <label for="customer">
-            customer
-          </label> <br>
+          <label for="customer">Customer</label>
           <input type="radio" id="hotel" name="typeOfUser" value="hotel" onclick="showElements()">
-          <label for="hotel">
-            hotel
-          </label> <br>
+          <label for="hotel">Hotel</label>
         <!--- user login --->
-        <div id="usernameH">
-          <p>Your username must be more than 5 characters long and must not be taken.</p>
-          <p>Your email must be valid.</p>
-          <label for="Username">Username:</label>
-          <input id="usernameField" type="text" name="username" value="">
-          <label for="Email">E-mail:</label>
-          <input id="emailField" type="Email" name="email" value="">
-          <input id="loginButton" type="button" name="login" value="login" onclick="checkInput()"> <br>
+        <div id="userH">
+          <p>Your username (must be in between 5 and 30 characters long and must not be taken):</p>
+          <label for="username">Username:</label>
+          <input id="username" type="text" name="username" value="" onblur="checkUser()">
+          <p>Your email (must be valid and less than 50 characters):</p>
+          <label for="userEmail">E-mail:</label>
+          <input id="userEmail" type="email" name="userEmail" value="" onblur="checkUser()">
+          <input id="loginButton" type="submit" name="" value="register" onmouseover="checkUser()"> <br>
         </div>
         <!--- hotel login --->
         <div id="hotelH">
-          <input type="image" name="" value="">
+          <p>Your profile picture (must be 200x200px max):</p>
+          <label for="hotelProfilePic">Profile Picture:</label>
+          <input type="file" id="HotelProfilePic" name="HotelProfilePic" accept="image/*">
+          <label for="hotelName">The name of your hotel:</label>
+          <input type="text" id="hotelName" name="hotelName" value="" onblur="checkName()">
+          <label for="hotelDescription">Description of your hotel:</label>
+          <input type="text" id="hotelDescription" name="hotelDescription" value="" onblur="checkDescription()">
+          <label for="hotelEmail">Your email (must be valid and less than 50 characters):</label>
+          <input type="email" id="hotelEmail" name="hotelEmail" value="" onblur="checkEmail()">
+          <label for="hotelPhone">Your hotel's phonenumber (numbers only):</label>
+          <input type="phonenumber" id="hotelPhone" name="hotelPhone" value="" onblur="checkPhone()">
+          <input id="loginButton" type="submit" name="" value="register">
+          <!--- could make it so that the login button doesn't work when not all the fields are entered -> less stress on server --->
         </div>
-        </form>
-      </section>
+      </form>
+
 
     <!-- Footer -->
     <footer>

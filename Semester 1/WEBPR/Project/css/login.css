@@ -11,21 +11,44 @@
 
 
 /* Logic for showing and hiding options while logging in */
-/* username hidden */
-#usernameH {
+/* user hidden */
+#userH {
   padding-top: 50px;
   opacity: 0;
+  display: none;
 }
-/* username shown */
-#usernameS {
+/* user shown */
+#userS {
   padding-top: 50px;
 }
-/* username with wrong input */
-#usernameW {
+/* user with wrong input */
+#userW {
   padding-top: 50px;
   border-style: dotted;
-  padding: 10px;
   border-radius: 15px;
   border-width: 2px;
   border-color: red;
+  color: red;
+}
+
+/* hotel hidden */
+#hotelH {
+  padding-top: 50px;
+  opacity: 0;
+  display: none;
+}
+
+/* hotel hidden */
+#hotelS {
+  padding-top: 50px;
+}
+
+/* hotel with wrong input */
+#hotelW {
+  padding-top: 50px;
+  border-style: dotted;
+  border-radius: 15px;
+  border-width: 2px;
+  border-color: red;
+  color: red;
 }
