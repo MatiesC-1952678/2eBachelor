@@ -1,0 +1,54 @@
+/* layout */
+.loginPage {
+  max-width: 1000px;
+  margin: auto;
+}
+#loginButton {
+  max-width: 100px;
+  margin: auto;
+  height: 30px;
+}
+
+
+/* Logic for showing and hiding options while logging in */
+/* user hidden */
+#userH {
+  padding-top: 50px;
+  opacity: 0;
+  display: none;
+}
+/* user shown */
+#userS {
+  padding-top: 50px;
+}
+/* user with wrong input */
+#userW {
+  padding-top: 50px;
+  border-style: dotted;
+  border-radius: 15px;
+  border-width: 2px;
+  border-color: red;
+  color: red;
+}
+
+/* enterprise hidden */
+#enterpriseH {
+  padding-top: 50px;
+  opacity: 0;
+  display: none;
+}
+
+/* enterprise hidden */
+#enterpriseS {
+  padding-top: 50px;
+}
+
+/* enterprise with wrong input */
+#enterpriseW {
+  padding-top: 50px;
+  border-style: dotted;
+  border-radius: 15px;
+  border-width: 2px;
+  border-color: red;
+  color: red;
+}

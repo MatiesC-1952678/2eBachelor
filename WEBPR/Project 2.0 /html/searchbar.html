@@ -1,0 +1,42 @@
+
+<!-- Searchbar -->
+<form id="Searchbar" action="home.php" method="post">
+  <div class="element" id="searchS">
+    <label for="searchbar">Searchbar</label>
+    <input id="searchbar" type="text" placeholder=" Search for ..." name="search">
+  </div>
+  <div class="element" id="datepickerH">
+    <label for="datepicker">Datepicker</label>
+    <input id="datepicker" type="date" placeholder="" name="date">
+  </div>
+  <div class="element">
+    <label for="RoomRadio">Room</label>
+    <input id="RoomRadio" class="type" type="radio" value="Room" name="type" onclick="switchElements()">
+  </div>
+  <div class="element">
+    <label for="HotelRadio">Hotel</label>
+    <input id="HotelRadio" class="type" type="radio" value="Hotel" name="type" onclick="switchElements()">
+  </div>
+  <div class="element">
+    <label for="UserRadio">User</label>
+    <input id="UserRadio" class="type" type="radio" value="User" name="type" onclick="switchElements()">
+  </div>
+  <div class="element">
+    <label for="EnterpriseRadio">Enterprise</label>
+    <input id="EnterpriseRadio" class="type" type="radio" value="Enterprise" name="type" onclick="switchElements()">
+  </div>
+  <div class="element">
+    <label for="DateRadio">Date Hotel</label>
+    <input id="DateRadio" class="type" type="radio" value="Date" name="type" onclick="switchElements()">
+  </div>
+  <div class="element">
+    <label for="DateRoomRadio">Date Room</label>
+    <input id="DateRoomRadio" class="type" type="radio" value="DateRoom" name="type" onclick="switchElements()">
+  </div>
+  <!-- <img id="SearchIcon" src="resources/plus.svg" alt="plus placeholder">
+  <img id="SearchIcon" src="resources/invention.svg" alt="invention placeholder"> --->
+  <div class ="element">
+    <input id="submit" type="submit" name="submit" value="Search">
+  </div>
+  <a href="home.php">show all (recents)</a>
+</form>
