@@ -84,35 +84,18 @@ function checkEditRoom() {
   var b = false;
   var c = false;
   var d = false;
-  var e = false;
-  var f = false;
-  var g = false;
-  var j = false;
 
   if (document.getElementById('roomName').value != "")
     b = checkMinMax('roomName',5,30,'uploadRoomFormS','uploadRoomFormW','You room name has to be between 5 and 30 characters.');
   if (document.getElementById('roomDescription').value != "")
     c = checkMinMax('roomDescription', 0, 200, 'uploadRoomFormS','uploadRoomFormW','Your description is longer than 200 characters.');
   if (document.getElementById('cost').value != "")
-    d = checkMinMax('cost',0,9999999999,'uploadRoomFormS','uploadRoomFormW','Your cost must be above 0');
-  if (document.getElementById('startdate').value != "")
-    e = checkDatePattern('startdate','uploadRoomFormS','uploadRoomFormW','Your start date is formatted incorrectly');
-  if (document.getElementById('enddate').value != "")
-    f = checkDatePattern('enddate','uploadRoomFormS','uploadRoomFormW','Your end date is formatted incorrectly');
-  if (document.getElementById('startdate').value != "" && document.getElementById('enddate').value != "") {
-    g = checkIdBeforeId('startdate','enddate','uploadRoomFormS','uploadRoomFormW','Your start date is not before your end date.');
-  }
-  if (document.getElementById('timeslotmax').value != "")
-    j = checkMinMax('timeslotmax',0,9999999999,'uploadRoomFormS','uploadRoomFormW','Your timeslot that you gave is below 0 days.');
+    d = checkMinMax('cost',0,9999999999,'uploadRoomFormS','uploadRoomFormW','Your cost must be above 0', false);
 
-  if (!(a || b || c || d || e || f || g || j)) {
-    changeId('uploadHotelFormW', 'uploadHotelFormS');
-    document.getElementsByClassName('radioHotel')[0].setCustomValidity("");
+  if (!(b || c || d)) {
+    changeId('uploadRoomFormW', 'uploadRoomFormS');
     document.getElementById('roomName').setCustomValidity("");
     document.getElementById('roomDescription').setCustomValidity("");
-    document.getElementById('startdate').setCustomValidity("");
-    document.getElementById('enddate').setCustomValidity("");
-    document.getElementById('timeslotmax').setCustomValidity("");
   }
   
 }

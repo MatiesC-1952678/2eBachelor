@@ -12,3 +12,8 @@
     <input type="number" id="cost" name="cost" min="0" max="9999999999" value="100" onblur="checkEditRoom()">
     <input type="submit" name="submit" value="Upload Room" onmouseover="checkEditRoom()">
 </form>
+<p> 
+    If you want to change you starting date, ending date or timeslot you have to delete your room resulting in all your bookings being cancelled. 
+    The reason being that previous bookings can not overlap with your new dates and timeslot. Write down your room details before deleting!
+</p>
+<script type="text/javascript" src="javascript/management.js"></script>
