@@ -37,7 +37,6 @@
     <!-- Main Content -->
     <div class="MainContent">
         <?php
-            require 'php/reusables.php';
             switch ($type) {
                 case "hotel":
                     echo '<div id="List">';

@@ -39,7 +39,8 @@
       }
       if ($password != $row[2]) {
         //incorrect password
-        echo "<p>password incorrect</p>";
+        echo '<p>password incorrect</p><a href="../login.php">Go back</a>';
+        die();
       } else {
         //log in
         echo "<p>loging user: $username and $email</p>";

@@ -11,8 +11,12 @@
     box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
 }
 
+#formS {
+    padding: 1%;
+}
+
 #formW {
-    padding-top: 50px;
+    padding: 1%;
     border-style: dotted;
     border-radius: 15px;
     border-width: 2px;

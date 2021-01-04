@@ -1,4 +1,3 @@
-
 var search = document.getElementById("searchbar");
 search.addEventListener("input", xmlRequest, false);
 

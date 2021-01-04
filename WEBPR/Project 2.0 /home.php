@@ -1,5 +1,6 @@
 <?php
   session_start();
+  require "php/reusables.php";
   ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +32,6 @@
       <div id="List">
         <!-- Some examples of the items you could see in this list -->
         <?php 
-          include("php/reusables.php");
           switch ($_POST["type"]) {
             case ("Room"):
               showSearch("SELECT * FROM hotels,rooms WHERE rooms.belongstohotel = hotels.name AND LOWER(rooms.name) LIKE :search;", $_POST["search"]);

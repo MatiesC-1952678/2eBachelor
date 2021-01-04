@@ -160,6 +160,8 @@
     function echoBooking($bookedby, $startdate, $enddate) {
         echo    '<article id="Room">
                 <h1 id="Room-Title">'.$bookedby.'</h1>
+                <a href="profile.php?name='.urlencode($bookedby).'&type=user">Go to profile</a>
+                <a href="message.php?user='.urlencode($bookedby).'">Send a message</a>
                 <p> Unavailable: '.$startdate.' - '.$enddate.' </p>
                 </article>';
     }
@@ -323,6 +325,14 @@
             echoHotel("RoomNonFloat", "Room-Title", $row[1], $row[0], $row[2], $row[3], $row[4], $row[5], $row[6], $row[7]);
             echo '<p>Room:</p>';
             echoRoom("RoomNonFloat", "Room-Title", $row[9], $row[0], $row[1], $row[11], $row[10], $row[12], $row[13], $row[14], false);
+            
+            $startDate = $row[12];
+            $endDate = $row[13];
+            if (!isset($startDate)) {
+                $startDate = $row[3];
+                $endDate = $row[4];
+            }
+            return $row[14]." ".$startDate." ".$endDate;
         } catch (PDOException $e) {
             print "Error! " . $e->getMessage() . "\n";
             die();

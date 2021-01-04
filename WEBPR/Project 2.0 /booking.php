@@ -15,7 +15,7 @@
   <meta name="keywords" content="Room,Country,Hotel,Book">
   <meta name="author" content="Maties Claesen">
   <link rel="stylesheet" href="css/style.css">
-  <script type="text/javascript" src=""></script>
+  <link rel="stylesheet" href="css/error.css">
 </head>
 
 <body>
@@ -26,23 +26,31 @@
 
     <!-- Main Content -->
     <?php
-      showSingleRoomAndHotel($room, $hotel);
+      $results = showSingleRoomAndHotel($room, $hotel);
+      $array = explode(" ", $results);
+      if ($array[0] == "")
+        $timeslot = "null";
+      else 
+        $timeslot = $array[0];
+      $startDate = $array[1];
+      $endDate = $array[2];
     ?>
     <div id="List">
       <p> All the other bookings for this room (meaning you can't book on these time periods)</p>
       <?php showBookings("SELECT * FROM bookings WHERE roomname = :room AND hotelname = :hotel", $room, $hotel) ?>
     </div>
-    <form action="uploads/uploadBooking.php" method="post">
+    <p> Make sure you don't book over someone else's booking because this will result in an error when making the booking! </p>
+    <form action="uploads/uploadBooking.php" method="post" id="formS">
       <input type="hidden" name="roomName" value="<?php echo $_GET["roomName"]?>">
       <input type="hidden" name="hotelName" value="<?php echo $_GET["hotelName"]?>">
       <label for="startDate">The date you want to start booking your room</label>
-      <input type="date" id="startDate" name="startDate" value="">
+      <input type="date" id="startDate" name="startDate" value="" onblur="checkBooking(<?php echo $timeslot.',\''.$startDate.'\',\''.$endDate.'\''?>)">
       <label for="endDate">The date you want to stop booking your room</label>
-      <input type="date" id="endDate" name="endDate" value="">
+      <input type="date" id="endDate" name="endDate" value="" onblur="checkBooking(<?php echo $timeslot.',\''.$startDate.'\',\''.$endDate.'\''?>)">
       <input type="submit" name="submit" value="Reserve Room">
     </form>
     <?php include("php/footer.php") ?>
-
   </div>
+  <script type="text/javascript" src="javascript/booking.js"></script>
 </body>
 </html>

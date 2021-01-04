@@ -26,7 +26,6 @@
       <!-- List -->
       <div id="List">
         <?php 
-        include("php/reusables.php");
         if ($_POST["search"] == "") {
             showUsers("SELECT * FROM users", "", "Room", "Room-Title");      
         } else {

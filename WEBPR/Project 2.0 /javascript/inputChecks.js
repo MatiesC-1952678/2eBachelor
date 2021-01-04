@@ -12,16 +12,16 @@
  * @param {*} after the id that needs to be changed into (before -> after)
  */
 function checkMinMax(id, min, max, before, after, error, islength = true) {
-    var check = document.getElementById(id).value;
-    if (islength) 
-        check = check.length
-    if (check < min || check > max) {
-      changeId(before, after);
-      document.getElementById(id).setCustomValidity(error);
-    } else {
-      changeId(after, before);
-      document.getElementById(id).setCustomValidity("");
-    }
+  var check = document.getElementById(id).value;
+  if (islength) 
+      check = check.length
+  if (check < min || check > max) {
+    changeId(before, after);
+    document.getElementById(id).setCustomValidity(error);
+  } else {
+    changeId(after, before);
+    document.getElementById(id).setCustomValidity("");
+  }
 }
 
 /**

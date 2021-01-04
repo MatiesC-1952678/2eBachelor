@@ -2,7 +2,7 @@
   session_start();
   require 'php/globals.php';
   require 'php/reusables.php';
-  checkSession($_SESSION["name"], "enterprise", false);
+  checkSession($_SESSION["name"], "enterprise", true);
 ?>
 <!DOCTYPE html>
 <html lang="en">
