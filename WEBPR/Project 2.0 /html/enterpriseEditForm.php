@@ -13,4 +13,4 @@
     <input id="enterprisePassword" type="text" name="enterprisePassword" value="" onblur="checkEditEnterprise()">
     <input id="loginButton" type="submit" name="" value="register/login" onmouseover="checkEditEnterprise()">
 </form>
-<link rel="stylesheet" href="css/login.css">
+<script type="text/javascript" src="javascript/login.js"></script>

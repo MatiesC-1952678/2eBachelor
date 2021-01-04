@@ -3,16 +3,21 @@
     require 'globals.php';
 
     //universal because this can be used anywhere (not dependent on enterprise)
-    function showRadioCountries() {
+    function showRadioCountries(bool $nonEdit = true) {
         try {
             $conn = new PDO( "pgsql:host=" . DB_HOST . ";port=5432;dbname=" . DB_NAME , DB_USER, DB_PASSWORD);
             $sth = $conn->prepare("SELECT * FROM countries");
             $sth->execute();
             echo '<p>All the available countries</p><ul>';
+            if ($nonEdit)
+                $func = "checkAllHotel()";
+            else
+                $func = "checkEditHotel()";
             while ($row = $sth->fetch( PDO::FETCH_NUM ) ) {
             echo '<label for="'.$row[0].'">'.$row[0].'</label>
-                    <input type="radio" id="'.$row[0].'" name="hotelCountry" value="'.$row[0].'">';
+                    <input type="radio" class="radioCountry" id="'.$row[0].'" name="hotelCountry" value="'.$row[0].'" onclick="'.$func.'">';
             }
+            echo "</ul>";
         } catch (PDOException $e) {
             print "Error! " . $e->getMessage() . "\n";
             die();
@@ -20,17 +25,22 @@
     }
 
     //universal because this in multiple locations but needs an enterprise parameter
-    function showRadioHotels($enterprise) {
+    function showRadioHotels($enterprise, bool $nonEdit = true) {
         try {
             $conn = new PDO( "pgsql:host=" . DB_HOST . ";port=5432;dbname=" . DB_NAME , DB_USER, DB_PASSWORD);
             $sth = $conn->prepare("SELECT * FROM hotels WHERE hotels.belongstoenterprise = :enterprise");
             $sth->bindParam(':enterprise', $enterprise, PDO::PARAM_STR, strlen($enterprise));
             $sth->execute();
+            if ($nonEdit)
+                $func = "checkAllRoom()";
+            else
+                $func = "checkEditRoom()";
             echo '<p>All the available hotels</p><ul>';
             while ($row = $sth->fetch( PDO::FETCH_NUM ) ) {
             echo '<label for="'.$row[1].'">'.$row[1].'</label>
-                    <input type="radio" id="'.$row[1].'" name="hotelName" value="'.$row[1].'">';
+                    <input type="radio" class="radioHotel" id="'.$row[1].'" name="hotelName" value="'.$row[1].'" onclick="'.$func.'">';
             }
+            echo "</ul>";
         } catch (PDOException $e) {
             print "Error! " . $e->getMessage() . "\n";
             die();

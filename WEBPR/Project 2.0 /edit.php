@@ -25,7 +25,8 @@
   <meta name="keywords" content="Room,Country,Hotel,Book">
   <meta name="author" content="Maties Claesen">
   <link rel="stylesheet" href="css/style.css">
-  <script type="text/javascript" src="javascript/login.js"></script>
+  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="css/management.css">
 </head>
 
 <body>

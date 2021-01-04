@@ -1,0 +1,25 @@
+#uploadHotelFormS {
+    padding: 1%;
+}
+
+#uploadHotelFormW {
+    padding: 1%;
+    border-style: dotted;
+    border-radius: 15px;
+    border-width: 2px;
+    border-color: red;
+    color: red;
+}
+
+#uploadRoomFormS {
+    padding: 1%;
+}
+
+#uploadRoomFormW {
+    padding: 1%;
+    border-style: dotted;
+    border-radius: 15px;
+    border-width: 2px;
+    border-color: red;
+    color: red;
+}
