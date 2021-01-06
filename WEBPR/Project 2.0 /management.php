@@ -12,6 +12,7 @@
   <meta name="description" content="A platform for hotels and customers to easily meet">
   <meta name="keywords" content="Enterprise,Country,Hotel,hotels,Book">
   <meta name="author" content="Maties Claesen">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/management.css">
 </head>
@@ -30,7 +31,7 @@
         ?>
       </div>
 
-      <div class="boxed"><p>Here you can add a new hotel (linked to this hotel)</p>
+      <div class="boxed form"><p>Here you can add a new hotel (linked to this hotel)</p>
         <form id="uploadHotelFormS" action="uploads/uploadHotel.php" method="post" enctype="multipart/form-data">
             <label for="hotelName">The name of your hotel:</label>
             <input type="text" id="hotelName" name="hotelName" value="" onblur="checkAllHotel()">
@@ -38,20 +39,20 @@
             <input type="text" id="hotelDescription" name="hotelDescription" value="" onblur="checkAllHotel()">
             <p> your start and end time of the availability of your hotel:</p>
             <label for="startDate">starting date</label>
-            <input type="date" name="startDate" id="startDate" onblur="checkAllHotel()">
+            <input type="date" name="startDate" id="startDate" onblur="checkAllHotel()" placeholder="YYYY-MM-DD" ><!-- placeholder for safari -->
             <label for="endDate">ending date</label>
-            <input type="date" name="endDate" id="endDate" onblur="checkAllHotel()">
+            <input type="date" name="endDate" id="endDate" onblur="checkAllHotel()" placeholder="YYYY-MM-DD" ><!-- placeholder for safari -->
             <p> the openinghours of your hotel/hotel </p>
             <label for="startTime">the hour when the hotel opens</label>
-            <input type="time" name="startTime" id="startTime" onblur="checkAllHotel()">
+            <input type="time" name="startTime" id="startTime" onblur="checkAllHotel()"placeholder="hh:mm" ><!-- placeholder for safari -->
             <label for="endTime">the hour when the hotel closes</label>
-            <input type="time" name="endTime" id="endTime" onblur="checkAllHotel()">
+            <input type="time" name="endTime" id="endTime" onblur="checkAllHotel()"placeholder="hh:mm" ><!-- placeholder for safari -->
             <?php
                 showRadioCountries();
             ?>
             <label>Select an image that you want upload (you can add multiple in a row): (jpeg)</label>
             <input type="file" name="imageToUpload" accept="image/jpeg">
-            <input type="submit" name="submit" value="Upload hotel">
+            <input type="submit" name="submit" value="Upload hotel" onmouseover="checkAllHotel()">
         </form>
     </div>
 
@@ -61,7 +62,7 @@
         showRooms("SELECT * FROM hotels,rooms WHERE hotels.belongstoenterprise = :name AND rooms.belongstohotel = hotels.name", $_SESSION["name"], "Booking", "Booking-Title", false, false, true);
       ?>
     </div>
-    <div class="boxed"><p>Here you can add a new room (linked to this room)</p>
+    <div class="boxed form"><p>Here you can add a new room (linked to this room)</p>
         <form id="uploadRoomFormS" action="uploads/uploadRoom.php" method="post" enctype="multipart/form-data">
             <?php
                 showRadioHotels($_SESSION["name"]);
@@ -74,9 +75,9 @@
             <input type="number" id="cost" name="cost" min="0" max="9999999999" value="100" onblur="checkAllRoom()">
             
             <label for="startdate"> start date (make sure that your start and end date are both in between the available time of the hotel you are selecting or you will get an error while uploading):</label>
-            <input id="startdate" type="date" name="startdate" onblur="checkAllRoom()">
+            <input id="startdate" type="date" name="startdate" onblur="checkAllRoom()" placeholder="YYYY-MM-DD" ><!-- placeholder for safari -->
             <label for="enddate"> end date:</label>
-            <input id="enddate" type="date" name="enddate" onblur="checkAllRoom()">
+            <input id="enddate" type="date" name="enddate" onblur="checkAllRoom()" placeholder="YYYY-MM-DD" ><!-- placeholder for safari -->
             <label for="timeslotmax">the max timeslot length</label>
             <input id="timeslotmax" name="timeslotmax" type="number" min="1" max="9999999999" value="5" onblur="checkAllRoom()">
 
@@ -86,25 +87,26 @@
         </form>
     </div>
 
-    <div class="boxed">
+    <div id="List">
+      <p>All user bookings</p>
+        <?php
+          showBookings("SELECT * FROM bookings,hotels WHERE hotels.belongstoenterprise = :room AND hotels.name = bookings.hotelname", $_SESSION["name"], "");
+        ?>
+    </div>
+
+    <div class="boxed form">
         <p>Here you can add a new country</p>
-        <form id="UploadCountryFormS" action="uploads/uploadCountry.php" method="post" enctype="multipart/form-data">
+        <form id="uploadCountryFormS" action="uploads/uploadCountry.php" method="post" enctype="multipart/form-data">
             <label for="countryName">The name of your country:</label>
-            <input type="text" id="countryName" name="countryName" value="">
+            <input type="text" id="countryName" name="countryName" value="" onblur="checkCountry()">
             <label for="countryDescription">Description of your country (max 200 characters):</label>
-            <input type="text" id="countryDescription" name="countryDescription" value="">
+            <input type="text" id="countryDescription" name="countryDescription" value="" onblur="checkCountry()">
             <label>Select an image that you want upload (you can add multiple in a row): (jpg, jpeg, png)</label>
-            <input type="file" name="imageToUpload" accept="image/jpeg,image/jpg,image/png">
-            <input type="submit" name="submit" value="Upload Country">
+            <input type="file" name="imageToUpload" accept="image/jpeg,image/jpg,image/png" onblur="checkCountry()">
+            <input type="submit" name="submit" value="Upload Country" onblur="checkCountry()">
         </form>
     </div>
 
-    <div id="Booking-Title">
-    <p>All user bookings</p>
-      <?php
-        //TODO: ADD ALL BOOKINGS
-      ?>
-    </div>
     <?php include("php/footer.php") ?>
 
   </div>

@@ -7,15 +7,16 @@
         try {
             $conn = new PDO( "pgsql:host=" . DB_HOST . ";port=5432;dbname=" . DB_NAME , DB_USER, DB_PASSWORD);
             $sth = $conn->prepare("SELECT * FROM countries");
-            $sth->execute();
-            echo '<p>All the available countries</p><ul>';
+            if (!$sth->execute())
+                throw new PDOException('An error occurred');
+            echo '<p>All the available countries</p><ul class="radioList">';
             if ($nonEdit)
                 $func = "checkAllHotel()";
             else
                 $func = "checkEditHotel()";
             while ($row = $sth->fetch( PDO::FETCH_NUM ) ) {
-            echo '<label for="'.$row[0].'">'.$row[0].'</label>
-                    <input type="radio" class="radioCountry" id="'.$row[0].'" name="hotelCountry" value="'.$row[0].'" onclick="'.$func.'">';
+            echo '<label for="'.$row[0].'">'.$row[0].'</label class="radioElements">
+                    <input type="radio" class="radioCountry" id="'.$row[0].'" name="hotelCountry" value="'.$row[0].'" onclick="'.$func.'" class="radioElements">';
             }
             echo "</ul>";
         } catch (PDOException $e) {
@@ -30,7 +31,8 @@
             $conn = new PDO( "pgsql:host=" . DB_HOST . ";port=5432;dbname=" . DB_NAME , DB_USER, DB_PASSWORD);
             $sth = $conn->prepare("SELECT * FROM hotels WHERE hotels.belongstoenterprise = :enterprise");
             $sth->bindParam(':enterprise', $enterprise, PDO::PARAM_STR, strlen($enterprise));
-            $sth->execute();
+            if (!$sth->execute())
+                throw new PDOException('An error occurred');
             if ($nonEdit)
                 $func = "checkAllRoom()";
             else
@@ -56,7 +58,8 @@
                 $sth->bindParam(':name', $user, PDO::PARAM_STR, strlen($user));
                 $sth->bindParam(':room', $roomName, PDO::PARAM_STR, strlen($roomName));
                 $sth->bindParam(':hotel', $hotelName, PDO::PARAM_STR, strlen($hotelName));
-                $sth->execute();
+                if (!$sth->execute())
+                    throw new PDOException('An error occurred');
                 $row = $sth->fetch(PDO::FETCH_NUM);
                 if (empty($row))
                     echo '<a href="uploads/uploadLike.php?room='.urlencode($roomName).'&hotel='.urlencode($hotelName).'&status=uninterested">uninterested</a>';
@@ -167,11 +170,12 @@
                 </article>';
     }
 
-    function echoBooking($bookedby, $startdate, $enddate) {
+    function echoBooking($bookedby, $startdate, $enddate, $room, $hotel) {
         echo    '<article id="Room">
                 <h1 id="Room-Title">'.$bookedby.'</h1>
                 <a href="profile.php?name='.urlencode($bookedby).'&type=user">Go to profile</a>
                 <a href="message.php?user='.urlencode($bookedby).'">Send a message</a>
+                <p> Hotel: '.$hotel.' -  Room: '.$room.'</p>
                 <p> Unavailable: '.$startdate.' - '.$enddate.' </p>
                 </article>';
     }
@@ -185,7 +189,8 @@
             $conn = new PDO( "pgsql:host=" . DB_HOST . ";port=5432;dbname=" . DB_NAME , DB_USER, DB_PASSWORD);
             $sth = $conn->prepare($sql);
             $sth->bindParam(':enterprise', $enterpriseName, PDO::PARAM_STR, strlen($enterpriseName));
-            $sth->execute();
+            if (!$sth->execute())
+                throw new PDOException('An error occurred');
             while ($row = $sth->fetch( PDO::FETCH_NUM ) ) {
                 echoHotel($boxId, $titleId, $row[1], $row[0], $row[2], $row[3], $row[4], $row[5], $row[6], $row[7], $editable);
             }
@@ -201,7 +206,8 @@
             $sth = $conn->prepare($sql);
             $sth->bindParam(':name', $name, PDO::PARAM_STR, strlen($name));
             $sth->bindParam(':hotel', $hotel, PDO::PARAM_STR, strlen($hotel));
-            $sth->execute();
+            if (!$sth->execute())
+                throw new PDOException('An error occurred');
             while ($row = $sth->fetch( PDO::FETCH_ASSOC ) ) {
                 echoRoom($boxId, $titleId, $row["name"], $row["belongstoenterprise"], $row["belongstohotel"], $row["cost"], $row["description"], $row["startdate"], $row["enddate"], $row["timeslotmax"], $canBeBooked, $editable);
                 if ($isBooked)
@@ -221,7 +227,8 @@
             if (strpos($sql, "LIKE") > 0 )
                 $search = '%'.strtolower($search).'%';
             $sth->bindParam(':search', $search, PDO::PARAM_STR, strlen($search));
-            $sth->execute();
+            if (!$sth->execute())
+                throw new PDOException('An error occurred');
             while ($row = $sth->fetch( PDO::FETCH_NUM ) ) {
                 if ($isUser)
                     echoUser($boxId, $titleId, $row[0], $row[1], $row[2], $editable);
@@ -241,9 +248,10 @@
             $sth = $conn->prepare($sql);
             $sth->bindParam(':room', $room, PDO::PARAM_STR, strlen($room));
             $sth->bindParam(':hotel', $hotel, PDO::PARAM_STR, strlen($hotel));
-            $sth->execute();
+            if (!$sth->execute())
+                throw new PDOException('An error occurred');
             while ($row = $sth->fetch( PDO::FETCH_ASSOC ) ) {
-                echoBooking($row["bookedby"], $row["startd"], $row["endd"]);
+                echoBooking($row["bookedby"], $row["startd"], $row["endd"], $row["roomname"], $row["hotelname"]);
             }
         } catch (PDOException $e) {
             print "Error! " . $e->getMessage() . "\n";
@@ -259,7 +267,8 @@
             if (strpos($sql, "LIKE") > 0 )
                 $search = '%'.strtolower($search).'%';
             $sth->bindParam(':search', $search, PDO::PARAM_STR, strlen($search));
-            $sth->execute();
+            if (!$sth->execute())
+                throw new PDOException('An error occurred');
             while ($row = $sth->fetch( PDO::FETCH_ASSOC ) ) {
                 if ($isRoom)
                     echoRoom("Room", "Room-Title", $row["name"], $row["belongstoenterprise"], $row["belongstohotel"], $row["cost"], $row["description"], $row["startdate"], $row["enddate"], $row["timeslotmax"], true);
@@ -292,10 +301,10 @@
         try {
             $conn = new PDO( "pgsql:host=" . DB_HOST . ";port=5432;dbname=" . DB_NAME , DB_USER, DB_PASSWORD);
             $sth = $conn->prepare($sql);
-            $sth->bindParam(':userone', $one, PDO::PARAM_STR);
-            $sth->bindParam(':useroneone', $one, PDO::PARAM_STR);
-            $sth->bindParam(':usertwo', $two, PDO::PARAM_STR);
-            $sth->bindParam(':usertwotwo', $two, PDO::PARAM_STR);
+            $sth->bindParam(':userone', $one, PDO::PARAM_STR, strlen($one));
+            $sth->bindParam(':useroneone', $one, PDO::PARAM_STR, strlen($one));
+            $sth->bindParam(':usertwo', $two, PDO::PARAM_STR, strlen($two));
+            $sth->bindParam(':usertwotwo', $two, PDO::PARAM_STR, strlen($two));
             if (!$sth->execute()) 
                 echo 'error fetching messages';
             while ($row = $sth->fetch(PDO::FETCH_NUM)) {
@@ -311,7 +320,7 @@
         try {
             $conn = new PDO("pgsql:host=" . DB_HOST . ";port=5432;dbname=" . DB_NAME , DB_USER, DB_PASSWORD);
             $sth = $conn->prepare($sql);
-            $sth->bindParam(':date', $date, PDO::PARAM_STR);
+            $sth->bindParam(':date', $date, PDO::PARAM_STR, strlen($date));
             if (!$sth->execute())
                 echo '<p> error getting data </p>';
             while ($row = $sth->fetch(PDO::FETCH_ASSOC)) {
@@ -329,7 +338,8 @@
             $sth = $conn->prepare("SELECT * FROM hotels,rooms WHERE rooms.belongstohotel = hotels.name AND rooms.name = :room AND hotels.name = :hotel");
             $sth->bindParam(':room', $roomName, PDO::PARAM_STR, strlen($roomName));
             $sth->bindParam(':hotel', $hotelName, PDO::PARAM_STR, strlen($hotelName));
-            $sth->execute();
+            if (!$sth->execute())
+                throw new PDOException('An error occurred');
             $row = $sth->fetch( PDO::FETCH_NUM );
             echo '<p>Hotel:</p>';
             echoHotel("RoomNonFloat", "Room-Title", $row[1], $row[0], $row[2], $row[3], $row[4], $row[5], $row[6], $row[7]);

@@ -4,7 +4,7 @@
   require 'php/reusables.php';
   $type = $_GET["type"];
   $name = $_GET["name"];
-  if ($type == "" || $name == "") {
+  if (!isset($type) || !isset($name)) {
     echoError();
     die();
   }
@@ -60,6 +60,13 @@
           }
         ?>
       </div>
+
+      <div id="List">
+      <p>All user bookings</p>
+        <?php
+          showBookings("SELECT * FROM bookings,hotels WHERE hotels.belongstoenterprise = :room AND hotels.name = bookings.hotelname", $name, "");
+        ?>
+    </div>
 
     <?php include("php/footer.php"); ?>
     </div>

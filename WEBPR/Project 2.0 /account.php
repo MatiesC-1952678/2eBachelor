@@ -64,6 +64,13 @@
         <input type="submit" name="submit" value="Upload Image">
       </form>
 
+      <div id="List">
+      <p>All user bookings</p>
+        <?php
+          showBookings("SELECT * FROM bookings,hotels WHERE hotels.belongstoenterprise = :room AND hotels.name = bookings.hotelname", $_SESSION["name"], "");
+        ?>
+    </div>
+
     <?php include("php/footer.php"); ?>
 
   </div>

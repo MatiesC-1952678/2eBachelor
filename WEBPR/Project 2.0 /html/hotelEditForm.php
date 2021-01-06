@@ -8,14 +8,14 @@
     <input type="text" id="hotelDescription" name="hotelDescription" value="" onblur="checkEditHotel()">
     <p> your start and end time of the availability of your hotel:</p>
     <label for="startDate">starting date</label>
-    <input type="date" name="startDate" id="startDate" onblur="checkEditHotel()">
+    <input type="date" name="startDate" id="startDate" onblur="checkEditHotel()" placeholder="YYYY-MM-DD" ><!-- placeholder for safari -->
     <label for="endDate">ending date</label>
-    <input type="date" name="endDate" id="endDate" onblur="checkEditHotel()">
+    <input type="date" name="endDate" id="endDate" onblur="checkEditHotel()" placeholder="YYYY-MM-DD" ><!-- placeholder for safari -->
     <p> the openinghours of your hotel/hotel </p>
     <label for="startTime">the hour when the hotel opens</label>
-    <input type="time" name="startTime" id="startTime" onblur="checkEditHotel()">
+    <input type="time" name="startTime" id="startTime" onblur="checkEditHotel()" placeholder="hh:mm" ><!-- placeholder for safari -->
     <label for="endTime">the hour when the hotel closes</label>
-    <input type="time" name="endTime" id="endTime" onblur="checkEditHotel()">
+    <input type="time" name="endTime" id="endTime" onblur="checkEditHotel()" placeholder="hh:mm" ><!-- placeholder for safari -->
     <?php
         showRadioCountries(false);
     ?>

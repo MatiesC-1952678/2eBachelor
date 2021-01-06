@@ -1,3 +1,6 @@
+/**
+ * checks all the fields of the new hotel form
+ */
 function checkAllHotel() {
     var a = checkMinMax('hotelName', 5, 30, 'uploadHotelFormS', 'uploadHotelFormW', 'Your hotel name is not between 5 and 30 characters.');
     var b = checkMinMax('hotelDescription', 0, 200, 'uploadHotelFormS', 'uploadHotelFormW', 'Your description is longer than 200 characters.');
@@ -21,6 +24,9 @@ function checkAllHotel() {
     }
 }
 
+/**
+ * checks all the fields of the update hotel form
+ */
 function checkEditHotel() {
     var a = false;
     var b = false;
@@ -59,6 +65,9 @@ function checkEditHotel() {
     }
 }
 
+/**
+ * check all the fields of the upload new room form
+ */
 function checkAllRoom() {
     var a = checkRadioChecked('radioHotel','uploadRoomFormS',"uploadRoomFormW",'You need to have a hotel checked');
     var b = checkMinMax('roomName',5,30,'uploadRoomFormS','uploadRoomFormW','You room name has to be between 5 and 30 characters.');
@@ -80,6 +89,9 @@ function checkAllRoom() {
   }
 }
 
+/**
+ * check all the fields of the edit room form
+ */
 function checkEditRoom() {
   var b = false;
   var c = false;
@@ -97,7 +109,20 @@ function checkEditRoom() {
     document.getElementById('roomName').setCustomValidity("");
     document.getElementById('roomDescription').setCustomValidity("");
   }
+}
+
+/**
+ * checks all the fields of the edit country form
+ */
+function checkCountry() {
+  var a = checkMinMax('countryName',5,30,'uploadCountryFormS','uploadCountryFormW','The name of the country is not between 5 or 30 characters.');
+  var b = checkMinMax('countryDescription',0,200,'uploadCountryFormS','uploadCountryFormW','Your description is too long');
   
+  if (!(a || b)) {
+    changeId('uploadCountryFormW', 'uploadCountryFormS');
+    document.getElementById('countryName').setCustomValidity("");
+    document.getElementById('countryDescription').setCustomValidity("");
+  }
 }
 
 /**

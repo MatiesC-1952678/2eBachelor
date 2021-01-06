@@ -26,7 +26,8 @@
     $sth = $conn->prepare($sql);
     $sth->bindParam( ':title', $countryName, PDO::PARAM_STR, strlen($countryName));
     $sth->bindParam( ':description', $description, PDO::PARAM_STR, strlen($description));
-    $sth->execute();
+    if (!$sth->execute())
+      throw new PDOException('An error occurred');
     echo "<p>added country to database</p>";
     $url = "../management.php";
     header("location: $url ");

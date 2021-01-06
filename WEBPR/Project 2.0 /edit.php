@@ -8,7 +8,7 @@
   $user = $_SESSION["name"];
   $admin = $_SESSION["admin"];
   //USE IN OTHER PLACES!
-  if ($user != $key1 && $key1 != "") {
+  if ($user != $key1 && isset($key1)) {
     if ($admin != true) {
       echo '<p> not your account </p>';
       die();

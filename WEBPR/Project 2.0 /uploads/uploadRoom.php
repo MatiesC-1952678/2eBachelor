@@ -19,7 +19,7 @@
     $max = $_POST["timeslotmax"];
     
     echo "<p>checking parameters</p>";
-    if (strlen($roomName) > 30 || strlen($description) > 200 || $hotelName == "") 
+    if (strlen($roomName) > 30 || strlen($description) > 200 || !isset($hotelName)) 
       throw new Exception('parameters entered are incorrect');
     if ($cost < 0)
       throw new Exception('cost entered falsely');
@@ -52,7 +52,8 @@
     $sth->bindParam( ':startdate', $startdate, PDO::PARAM_STR, strlen($startdate));
     $sth->bindParam( ':enddate', $enddate, PDO::PARAM_STR, strlen($enddate));
     $sth->bindParam( ':timeslotmax', $max, PDO::PARAM_INT);
-    $sth->execute();
+    if (!$sth->execute())
+      throw new PDOException('An error occurred');
     echo "<p>added room to database</p>";
     $url = "../management.php";
     header("location: $url ");

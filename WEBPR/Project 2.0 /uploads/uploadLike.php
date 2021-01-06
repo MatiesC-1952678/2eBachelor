@@ -23,7 +23,8 @@
         $sth->bindParam( ':likedby', $likedby, PDO::PARAM_STR, strlen($likedby));
         $sth->bindParam( ':room', $room, PDO::PARAM_STR, strlen($room));
         $sth->bindParam( ':hotel', $hotel, PDO::PARAM_STR, strlen($hotel));
-        $sth->execute();
+        if (!$sth->execute())
+          throw new PDOException('An error occurred');
         echo "<p>added like to database</p>";
     } else {
         echo "<p>deleting like from database</p>";
@@ -32,7 +33,8 @@
         $sth->bindParam( ':likedby', $likedby, PDO::PARAM_STR, strlen($likedby));
         $sth->bindParam( ':room', $room, PDO::PARAM_STR, strlen($room));
         $sth->bindParam( ':hotel', $hotel, PDO::PARAM_STR, strlen($hotel));
-        $sth->execute();
+        if (!$sth->execute())
+          throw new PDOException('An error occurred');
         echo "<p>deleted like from database</p>";
     }
 

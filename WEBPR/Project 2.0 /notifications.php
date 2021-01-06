@@ -24,12 +24,12 @@
         try {
             $conn = new PDO( "pgsql:host=" . DB_HOST . ";port=5432;dbname=" . DB_NAME , DB_USER, DB_PASSWORD);
             $sth = $conn->prepare("INSERT INTO notifications VALUES(:sentto, :description, :date, :time, :room, :hotel);");
-            $sth->bindParam(':sentto', $name, PDO::PARAM_STR);
-            $sth->bindParam(':description', $description, PDO::PARAM_STR);
-            $sth->bindParam(':date', $date, PDO::PARAM_STR);
-            $sth->bindParam(':time', $time, PDO::PARAM_STR);
-            $sth->bindParam(':room', $room, PDO::PARAM_STR);
-            $sth->bindParam(':hotel', $hotel, PDO::PARAM_STR);
+            $sth->bindParam(':sentto', $name, PDO::PARAM_STR, strlen($name));
+            $sth->bindParam(':description', $description, PDO::PARAM_STR, strlen($description));
+            $sth->bindParam(':date', $date, PDO::PARAM_STR, strlen($date));
+            $sth->bindParam(':time', $time, PDO::PARAM_STR, strlen($time));
+            $sth->bindParam(':room', $room, PDO::PARAM_STR, strlen($room));
+            $sth->bindParam(':hotel', $hotel, PDO::PARAM_STR, strlen($hotel));
             if ($sth->execute()) {
                 echo "succesfully added notification";
             }

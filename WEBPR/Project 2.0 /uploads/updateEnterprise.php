@@ -21,7 +21,8 @@
 
     $sth = $conn->prepare("SELECT * FROM enterprises WHERE enterprises.name = :original");
     $sth->bindParam( ':original', $original, PDO::PARAM_STR, strlen($original) );
-    $sth->execute();
+    if (!$sth->execute())
+      throw new PDOException('An error occurred');
     $row = $sth->fetch(PDO::FETCH_ASSOC);
     if (empty($name))
         $name = $row["name"];
@@ -62,7 +63,8 @@
     $sth->bindParam( ':phone', $phone, PDO::PARAM_STR, strlen($phone) );
     $sth->bindParam( ':password', $password, PDO::PARAM_STR, strlen($password) );
     $sth->bindParam( ':original', $original, PDO::PARAM_STR, strlen($original) );
-    $sth->execute();
+    if (!$sth->execute())
+      throw new PDOException('An error occurred');
 
     if ($_SESSION["admin"] == true)
       $url = "../admin.php";

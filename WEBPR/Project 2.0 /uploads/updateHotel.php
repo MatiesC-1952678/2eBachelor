@@ -26,7 +26,8 @@
     $sth = $conn->prepare("SELECT * FROM hotels WHERE belongstoenterprise = :enterprise AND name = :name");
     $sth->bindParam(':enterprise', $enterpriseName, PDO::PARAM_STR, strlen($enterpriseName));
     $sth->bindParam(':name', $originalname, PDO::PARAM_STR, strlen($originalname));
-    $sth->execute();
+    if (!$sth->execute())
+      throw new PDOException('An error occurred');
     $row = $sth->fetch(PDO::FETCH_ASSOC);
     if (empty($newname))
         $newname = $row["name"];
@@ -54,7 +55,7 @@
     if(strtotime($startTime) > strtotime($endTime)) {
         throw new Exception("starting time is behind ending time");
     }
-    if (strlen($newname) > 30 || strlen($description) > 200 || $country == "") {
+    if (strlen($newname) > 30 || strlen($description) > 200 || !isset($country)) {
         throw new Exception('parameters entered are incorrect');
     }
 
@@ -75,7 +76,8 @@
     $sth->bindParam( ':starttime', $startTime, PDO::PARAM_STR, strlen($startTime));
     $sth->bindParam( ':endtime', $endTime, PDO::PARAM_STR, strlen($endTime));
     $sth->bindParam( ':country', $country, PDO::PARAM_STR, strlen($country));
-    $sth->execute();
+    if (!$sth->execute())
+      throw new PDOException('An error occurred');
     echo "<p>updated hotel in database + CASCADE</p>";
     if ($_SESSION["admin"] == true)
       $url = "../admin.php";

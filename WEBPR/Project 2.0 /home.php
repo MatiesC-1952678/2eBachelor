@@ -10,6 +10,7 @@
   <meta name="description" content="A platform for hotels and customers to easily meet">
   <meta name="keywords" content="Room,Country,Hotel,Book">
   <meta name="author" content="Maties Claesen">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/home.css">
 </head>
@@ -23,7 +24,7 @@
     <!-- Main Content -->
     <div class="MainContent">
       <?php
-      if ($_SESSION["typeLogged"] != "") {
+      if (isset($_SESSION["typeLogged"])) {
         include("html/searchbar.html");
       }
         ?>

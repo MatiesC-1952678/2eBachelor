@@ -28,7 +28,7 @@
     <?php
       $results = showSingleRoomAndHotel($room, $hotel);
       $array = explode(" ", $results);
-      if ($array[0] == "")
+      if (!isset($array[0]))
         $timeslot = "null";
       else 
         $timeslot = $array[0];

@@ -13,7 +13,8 @@
     $sth->bindParam(':hotelname', $hotelName, PDO::PARAM_STR, strlen($hotelName));
     $sth->bindParam(':roomname', $roomName, PDO::PARAM_STR, strlen($roomName));
     $sth->bindParam(':bookedby', $user, PDO::PARAM_STR, strlen($user));
-    $sth->execute();
+    if (!$sth->execute())
+      throw new PDOException('An error occurred');
     echo 'succesfully deleted';
 
     require "uploadNotification.php";
@@ -22,7 +23,8 @@
     $sth->bindParam(':room', $roomName, PDO::PARAM_STR, strlen($roomName));
     $sth->bindParam(':hotel', $hotelName, PDO::PARAM_STR, strlen($hotelName));
     $sth->bindParam(':user', $user, PDO::PARAM_STR, strlen($user));
-    $sth->execute();
+    if (!$sth->execute())
+      throw new PDOException('An error occurred');
     echo "  $roomName $hotelName  ".date('Y-m-d').date('H:i:s');
     while ($row = $sth->fetch(PDO::FETCH_NUM)) {
       uploadNotification($row[0], "The room $roomName from the hotel $hotelName that you were interested in is now available for booking", date('Y-m-d'), date('H:i:s'), $roomName, $hotelName);

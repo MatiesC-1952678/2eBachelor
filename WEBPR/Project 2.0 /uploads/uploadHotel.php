@@ -27,7 +27,7 @@
     if(strtotime($startTime) > strtotime($endTime)) {
         throw new Exception("starting time is behind ending time");
     }
-    if (strlen($hotelName) > 30 || strlen($description) > 200 || $country == "") {
+    if (strlen($hotelName) > 30 || strlen($description) > 200 || !isset($country)) {
         throw new Exception('parameters entered are incorrect');
     }
 
@@ -45,7 +45,8 @@
     $sth->bindParam( ':starttime', $startTime, PDO::PARAM_STR, strlen($startTime));
     $sth->bindParam( ':endtime', $endTime, PDO::PARAM_STR, strlen($endTime));
     $sth->bindParam( ':country', $country, PDO::PARAM_STR, strlen($country));
-    $sth->execute();
+    if (!$sth->execute())
+      throw new PDOException('An error occurred');
     echo "<p>added hotel to database</p>";
     $url = "../management.php";
     header("location: $url ");

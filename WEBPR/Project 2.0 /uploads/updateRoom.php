@@ -23,7 +23,8 @@
     $sth = $conn->prepare("SELECT * FROM hotels,rooms WHERE rooms.belongstohotel = :originalhotel AND rooms.name = :originalroom");
     $sth->bindParam(':originalhotel', $originalHotel, PDO::PARAM_STR, strlen($originalHotel));
     $sth->bindParam(':originalroom', $originalRoom, PDO::PARAM_STR, strlen($originalRoom));
-    $sth->execute();
+    if (!$sth->execute())
+      throw new PDOException('An error occurred');
     $row = $sth->fetch(PDO::FETCH_ASSOC);
     if (empty($hotelName))
         $hotelName = $row["belongstohotel"];
@@ -39,7 +40,7 @@
     notifyBookings("SELECT * FROM bookings WHERE roomname = :key2 AND hotelname = :key1", $originalHotel, $originalRoom, "the room ".$originalRoom." from the hotel ".$originalHotel." you has undergone some changes. Look it up to make sure you aren't missing anything.");
 
     echo "<p>checking parameters</p>";
-    if (strlen($roomName) > 30 || strlen($description) > 200 || $hotelName == "") {
+    if (strlen($roomName) > 30 || strlen($description) > 200 || !isset($hotelName)) {
         throw new Exception('parameters entered are incorrect');
     }
 
@@ -55,7 +56,8 @@
     $sth->bindParam( ':name', $roomName, PDO::PARAM_STR, strlen($roomName));
     $sth->bindParam( ':description', $description, PDO::PARAM_STR, strlen($description));
     $sth->bindParam( ':cost', $cost, PDO::PARAM_INT);
-    $sth->execute();
+    if (!$sth->execute())
+      throw new PDOException('An error occurred');
     echo "<p>added room to database</p>";
     if ($_SESSION["admin"] == true) 
         $url = "../admin.php";

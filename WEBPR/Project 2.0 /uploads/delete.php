@@ -11,7 +11,8 @@
             $sth = $conn->prepare($sql);
             $sth->bindParam( ':key1', $key1, PDO::PARAM_STR, strlen($key1));
             $sth->bindParam( ':key2', $key2, PDO::PARAM_STR, strlen($key2));
-            $sth->execute();
+            if (!$sth->execute())
+                throw new PDOException('An error occurred');
         } catch (PDOException $e) {
             print "Error! " . $e->getMessage() . "\n";
             die(); 

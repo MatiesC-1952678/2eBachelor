@@ -18,7 +18,8 @@
 
     $sth = $conn->prepare("SELECT * FROM users WHERE users.username = :original");
     $sth->bindParam(':original', $original, PDO::PARAM_STR, strlen($original));
-    $sth->execute();
+    if (!$sth->execute())
+      throw new PDOException('An error occurred');
     $row = $sth->fetch(PDO::FETCH_ASSOC);
     if (empty($username))
         $username = $row["username"];
@@ -48,7 +49,8 @@
     $sth->bindParam( ':email', $email, PDO::PARAM_STR, strlen($email) );
     $sth->bindParam( ':password', $password, PDO::PARAM_STR, strlen($password) );
     $sth->bindParam( ':original', $original, PDO::PARAM_STR, strlen($original) );
-    $sth->execute();
+    if (!$sth->execute())
+      throw new PDOException('An error occurred');
 
     if ($_SESSION["admin"] == true)
       $url = "../admin.php";

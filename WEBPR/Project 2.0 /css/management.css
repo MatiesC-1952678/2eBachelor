@@ -23,3 +23,16 @@
     border-color: red;
     color: red;
 }
+
+#uploadCountryFormS {
+    padding: 1%;
+}
+
+#uploadCountryFormW {
+    padding: 1%;
+    border-style: dotted;
+    border-radius: 15px;
+    border-width: 2px;
+    border-color: red;
+    color: red;
+}

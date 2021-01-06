@@ -26,7 +26,7 @@
       <!-- List -->
       <div id="List">
         <?php 
-        if ($_POST["search"] == "") {
+        if (!isset($_POST["search"])) {
             showUsers("SELECT * FROM users", "", "Room", "Room-Title");      
         } else {
             showUsers("SELECT * FROM users WHERE LOWER(users.username) LIKE :search;", $_POST["search"], "Room", "Room-Title");

@@ -3,7 +3,7 @@
   $room = $_GET["room"];
   $hotel = $_GET["hotel"];
   require 'php/reusables.php';
-  if ($room == "" || $hotel == "") {
+  if (!isset($room) || !isset($hotel)) {
     echoError();
     die();
   }

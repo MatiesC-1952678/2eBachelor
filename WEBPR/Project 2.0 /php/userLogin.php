@@ -23,7 +23,8 @@
 
     $sth = $conn->prepare($sql);
     $sth->bindParam( ':username', $username, PDO::PARAM_STR, strlen($username) );
-    $sth->execute();
+    if (!$sth->execute())
+      throw new PDOException('An error occurred');
     $row = $sth->fetch(PDO::FETCH_NUM);
     
     //ADMIN LOGIN
@@ -34,7 +35,7 @@
 
     if ($sth->rowCount() > 0) {
       if ($email != $row[1]) {
-        echo "<p>email incorrect to log in to the account $username</p>";
+        echo '<p>email incorrect to log in to the account '.$username.'</p><a href="../login.php">Go back</a>';
         die();
       }
       if ($password != $row[2]) {
@@ -59,11 +60,13 @@
         $sth->bindParam( ':username', $username, PDO::PARAM_STR, strlen($username) );
         $sth->bindParam( ':email', $email, PDO::PARAM_STR, strlen($email) );
         $sth->bindParam( ':password', $password, PDO::PARAM_STR, strlen($password));
-        $sth->execute();
+        if (!$sth->execute())
+          throw new PDOException('An error occurred');
         echo "<p>succesfully inserted user</p>";
 
         $sth = $conn->prepare( "SELECT * FROM users;");
-        $sth->execute();
+        if (!$sth->execute())
+          throw new PDOException('An error occurred');
         while ($row = $sth->fetch( PDO::FETCH_NUM ) ) {
           echo "<p>column1: " . $row[0] . " column2: " . $row[1] . "column3: " . $row[2] . "</p>";
         }
@@ -76,7 +79,7 @@
     header("location: $url ");
 
   } catch (PDOException $e) {
-    print "Error! " . $e->getMessage() . "\n";
+    print "Error! You can't make an account using these parameters.";
     echo '<p><a href="../login.php"> go back </a></p>';
     die();
   } catch (Exception $e) {
