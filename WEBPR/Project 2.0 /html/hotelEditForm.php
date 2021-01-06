@@ -1,7 +1,9 @@
 <!-- Hotel Edit Form -->
 <p> here you can edit the hotel you have chosen </p>
 <h1> Keep the textfields empty for values you don't want to change: </h1>
-<form id="uploadHotelFormS" action="uploads/updateHotel.php?original=<?php echo urlencode($key2) ?>&enterprise=<?php echo urlencode($key1) ?>" method="post">
+<form id="uploadHotelFormS" action="uploads/updateHotel.php" method="post">
+    <input type="hidden" name="original" value="<?php echo $key2 ?>">
+    <input type="hidden" name="enterprise" value="<?php echo $key1 ?>">
     <label for="hotelName">The name of your hotel:</label>
     <input type="text" id="hotelName" name="hotelName" value="" onblur="checkEditHotel()">
     <label for="hotelDescription">Description of your hotel (max 200 characters):</label>

@@ -11,8 +11,8 @@
     $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
     
     echo "<p>succesfully connected</p>";
-    $originalHotel = $_GET["hotel"];
-    $originalRoom = $_GET["original"];
+    $originalHotel = $_POST["hotel"];
+    $originalRoom = $_POST["original"];
     $hotelName = $_POST["hotelName"];
     $roomName = $_POST["roomName"];
     $description = $_POST["roomDescription"];

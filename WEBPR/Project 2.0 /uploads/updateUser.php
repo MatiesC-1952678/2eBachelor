@@ -9,7 +9,7 @@
     $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 
     echo "<p>succesfully connected</p>";
-    $original = $_GET["original"];
+    $original = $_POST["original"];
     $username = $_POST["username"];
     $email = $_POST["email"];
     $password = $_POST["password"];

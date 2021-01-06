@@ -1,6 +1,8 @@
 <p> here you can edit the room you have chosen </p>
 <h1> Keep the textfields empty for values you don't want to change: </h1>
-<form id="uploadRoomFormS" action="uploads/updateRoom.php?hotel=<?php echo urlencode($key2) ?>&original=<?php echo urlencode($key3) ?>" method="post">
+<form id="uploadRoomFormS" action="uploads/updateRoom.php" method="post">
+    <input type="hidden" name="hotel" value="<?php echo $key2?>">
+    <input type="hidden" name="original" value="<?php echo $key3?>">
     <?php
         showRadioHotels($key1, false);
     ?>

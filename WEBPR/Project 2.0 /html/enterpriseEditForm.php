@@ -1,6 +1,7 @@
 <p> here you can edit the enterprise you have chosen </p>
 <h1> Keep the textfields empty for values you don't want to change: </h1>
-<form id="enterpriseS" action="uploads/updateEnterprise.php?original=<?php echo urlencode($key1) ?>" method="post">
+<form id="enterpriseS" action="uploads/updateEnterprise.php" method="post">
+    <input type="hidden" name="original" value="<?php echo $key1 ?>">
     <label for="enterpriseName">The name of your enterprise:</label>
     <input type="text" id="enterpriseName" name="enterpriseName" value="" onblur="checkEditEnterprise()">
     <label for="enterpriseDescription">Description of your enterprise (max 200 characters):</label>

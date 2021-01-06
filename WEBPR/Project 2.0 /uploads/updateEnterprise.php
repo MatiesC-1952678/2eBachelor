@@ -10,7 +10,7 @@
     $conn = new PDO( "pgsql:host=" . DB_HOST . ";port=5432;dbname=" . DB_NAME , DB_USER, DB_PASSWORD);
     $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 
-    $original = $_GET["original"];
+    $original = $_POST["original"];
     $name = $_POST["enterpriseName"];
     $description = $_POST["enterpriseDescription"];
     $email = $_POST["enterpriseEmail"];
