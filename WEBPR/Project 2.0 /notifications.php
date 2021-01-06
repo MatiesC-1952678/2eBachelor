@@ -54,8 +54,8 @@
   <meta name="description" content="A platform for hotels and customers to easily meet">
   <meta name="keywords" content="Room,Country,Hotel,Book">
   <meta name="author" content="Maties Claesen">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css">
-  <script type="text/javascript" src=""></script>
 </head>
 
 <body>
@@ -66,18 +66,18 @@
 
     <!-- Notifications -->
     <div>
-      <p>All your bookings</p>
-      <div id="List">
+      <p class="title">All your bookings</p>
+      <div class="List">
         <!-- Bookings -->
         <?php showRooms("SELECT * FROM bookings,hotels,rooms WHERE bookings.bookedby = :name AND bookings.roomname = rooms.name AND bookings.hotelname = rooms.belongstohotel AND belongstohotel = hotels.name", $_SESSION["name"], "RoomNonFloat", "Booking-Title", false, true); ?>
       </div>
-      <p>All your interests/likes</p>
-      <div id="List">
+      <p class="title">All your interests/likes</p>
+      <div class="List">
         <!-- Interests -->
         <?php showRooms("SELECT * FROM likes,hotels,rooms WHERE likes.likedby = :name AND likes.room = rooms.name AND likes.hotel = rooms.belongstohotel AND rooms.belongstohotel = hotels.name", $_SESSION["name"], "Room", "Room-Title", true); ?>
       </div>
-      <p>All your notifications</p>
-      <div id="List">
+      <p class="title">All your notifications</p>
+      <div class="List">
         <!-- UserNotifications -->
         <?php 
         notifyBookings($_SESSION["name"], date('Y-m-d'), "How was your stay at the last room you stayed in?", true);

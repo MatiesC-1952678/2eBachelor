@@ -1,4 +1,4 @@
-<p> here you can edit the user you have chosen </p>
+<p class="title"> here you can edit the user you have chosen </p>
 <h1> Keep the textfields empty for values you don't want to change: </h1>
 <form id="userS" action="uploads/updateUser.php" method="post">
     <input type="hidden" name="original" value="<?php echo $key1 ?>">

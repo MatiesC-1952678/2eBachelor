@@ -24,10 +24,10 @@
 
     <?php include("php/header.php") ?>
 
-      <div id="List">
-        <p>All your hotels you've posted publicly</p>
+      <div class="List">
+        <p class="title">All your hotels you've posted publicly</p>
         <?php
-        showHotels("SELECT * FROM hotels WHERE hotels.belongstoenterprise = :enterprise", $_SESSION["name"], "Booking", "Booking-Title", true);
+          showHotels("SELECT * FROM hotels WHERE hotels.belongstoenterprise = :enterprise", $_SESSION["name"], "Booking", "Booking-Title", true);
         ?>
       </div>
 
@@ -50,14 +50,15 @@
             <?php
                 showRadioCountries();
             ?>
-            <label>Select an image that you want upload (you can add multiple in a row): (jpeg)</label>
-            <input type="file" name="imageToUpload" accept="image/jpeg">
-            <input type="submit" name="submit" value="Upload hotel" onmouseover="checkAllHotel()">
+            <!-- Upload Image Form -->
+            <label>Select an image that you want upload (you can add multiple): (jpg, jpeg, png)</label>
+            <input type="file" name="imagesToUpload[]" accept="image/jpeg,image/jpg,image/png" multiple>
+            <input type="submit" name="submit" value="Add Hotel" onmouseover="checkAllHotel()">
         </form>
     </div>
 
-    <div id="List">
-      <p>All your rooms you've posted publicly</p>
+    <div class="List">
+      <p class="title">All your rooms you've posted publicly</p>
       <?php
         showRooms("SELECT * FROM hotels,rooms WHERE hotels.belongstoenterprise = :name AND rooms.belongstohotel = hotels.name", $_SESSION["name"], "Booking", "Booking-Title", false, false, true);
       ?>
@@ -81,14 +82,15 @@
             <label for="timeslotmax">the max timeslot length</label>
             <input id="timeslotmax" name="timeslotmax" type="number" min="1" max="9999999999" value="5" onblur="checkAllRoom()">
 
-            <label>Select an image that you want upload (you can add multiple in a row): (jpeg)</label>
-            <input type="file" name="imageToUpload" accept="image/jpeg">
-            <input type="submit" name="submit" value="Upload Room" onmouseover="checkAllRoom()">
+            <!-- Upload Image Form -->
+            <label>Select an image that you want upload (you can add multiple): (jpg, jpeg, png)</label>
+            <input type="file" name="imagesToUpload[]" accept="image/jpeg,image/jpg,image/png" multiple>
+            <input type="submit" name="submit" value="Add Room" onmouseover="checkAllRoom()">
         </form>
     </div>
 
-    <div id="List">
-      <p>All user bookings</p>
+    <div class="List">
+      <p class="title">All user bookings</p>
         <?php
           showBookings("SELECT * FROM bookings,hotels WHERE hotels.belongstoenterprise = :room AND hotels.name = bookings.hotelname", $_SESSION["name"], "");
         ?>
@@ -101,9 +103,7 @@
             <input type="text" id="countryName" name="countryName" value="" onblur="checkCountry()">
             <label for="countryDescription">Description of your country (max 200 characters):</label>
             <input type="text" id="countryDescription" name="countryDescription" value="" onblur="checkCountry()">
-            <label>Select an image that you want upload (you can add multiple in a row): (jpg, jpeg, png)</label>
-            <input type="file" name="imageToUpload" accept="image/jpeg,image/jpg,image/png" onblur="checkCountry()">
-            <input type="submit" name="submit" value="Upload Country" onblur="checkCountry()">
+            <input type="submit" name="submit" value="Add Country" onmouseover="checkCountry()">
         </form>
     </div>
 

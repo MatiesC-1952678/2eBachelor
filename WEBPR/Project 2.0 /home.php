@@ -1,6 +1,7 @@
 <?php
   session_start();
   require "php/reusables.php";
+  //checkStayLoggedIn($_COOKIE["loggedIn"]);
   ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +31,7 @@
         ?>
 
       <!-- List -->
-      <div id="List">
+      <div class="List">
         <!-- Some examples of the items you could see in this list -->
         <?php 
           switch ($_POST["type"]) {

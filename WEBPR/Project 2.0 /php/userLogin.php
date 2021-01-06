@@ -2,6 +2,7 @@
   session_start();
   require 'globals.php';
   require 'inputChecks.php';
+  require 'reusables.php';
   try {
     echo "<p>connecting to server</p>";
     $conn = new PDO( "pgsql:host=" . DB_HOST . ";port=5432;dbname=" . DB_NAME , DB_USER, DB_PASSWORD);
@@ -10,6 +11,7 @@
     $username = $_POST["username"];
     $email = $_POST["email"];
     $password = $_POST["password"];
+    $stayLogged = $_POST["stayLogged"];
 
     //double check for correct input
     checkMinMax(strlen($username), 5, 30, "Name is not between 5 and 30 characters");
@@ -47,6 +49,11 @@
         echo "<p>loging user: $username and $email</p>";
         $_SESSION["typeLogged"] = "user";
         $_SESSION["name"] = $username;
+        //cookie for staying logged in
+        /*
+        if (!empty($stayLogged))
+          stayLoggedIn($username, "user");
+        */
       }
     } else {
         //insert user
@@ -64,12 +71,19 @@
           throw new PDOException('An error occurred');
         echo "<p>succesfully inserted user</p>";
 
+        /*
+        if (!empty($stayLogged))
+          stayLoggedIn($username, "user");
+        */
+
+        /* TESTING PURPOSES
         $sth = $conn->prepare( "SELECT * FROM users;");
         if (!$sth->execute())
           throw new PDOException('An error occurred');
         while ($row = $sth->fetch( PDO::FETCH_NUM ) ) {
           echo "<p>column1: " . $row[0] . " column2: " . $row[1] . "column3: " . $row[2] . "</p>";
         }
+        */
     }
 
     $_SESSION["typeLogged"] = "user";

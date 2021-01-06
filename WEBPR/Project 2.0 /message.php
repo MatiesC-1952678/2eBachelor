@@ -12,6 +12,7 @@
   <meta name="description" content="A platform for hotels and customers to easily meet">
   <meta name="keywords" content="Room,Country,Hotel,Book">
   <meta name="author" content="Maties Claesen">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/message.css">
 </head>
@@ -35,7 +36,7 @@
 
     <form id="ChatBox" action="uploads/uploadMessage.php" method="post">
         <input type="hidden" name="name" value="<?php echo $user ?>">
-        <input id="messagebox" type="text" placeholder="Aa" name="message">
+        <input id="messagebox" type="text" placeholder="Aa" name="message" autocomplete="off">
         <div class ="element">
             <input id="submit" type="submit" name="submit" value="Send Message">
         </div>

@@ -4,6 +4,8 @@
   checkSession($_SESSION["typeLogged"], "user", false, "php/logOut.php", "You need to be logged in as a user to make a booking");
   $room = $_GET["roomName"];
   $hotel = $_GET["hotelName"];
+  $startDate = $_GET["startdate"];
+  $endDate = $_GET["enddate"];
 ?>
 
 <!DOCTYPE html>
@@ -14,6 +16,7 @@
   <meta name="description" content="A platform for hotels and customers to easily meet">
   <meta name="keywords" content="Room,Country,Hotel,Book">
   <meta name="author" content="Maties Claesen">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/error.css">
 </head>
@@ -35,18 +38,24 @@
       $startDate = $array[1];
       $endDate = $array[2];
     ?>
-    <div id="List">
-      <p> All the other bookings for this room (meaning you can't book on these time periods)</p>
+    <div class="List">
+      <p class="title"> All the available timeslots (these have either the max timeslot or go for 5 days at a time)</p>
+      <?php showTimeslots("SELECT hotels.startdate,hotels.enddate,rooms.startdate,rooms.enddate,rooms.timeslotmax 
+      FROM hotels,rooms
+      WHERE rooms.name = :room AND hotels.name =:hotel AND rooms.belongstohotel = hotels.name", $room, $hotel) ?>
+    </div>
+    <div class="List">
+      <p class="title"> All the other bookings for this room (meaning you can't book on these time periods)</p>
       <?php showBookings("SELECT * FROM bookings WHERE roomname = :room AND hotelname = :hotel", $room, $hotel) ?>
     </div>
     <p> Make sure you don't book over someone else's booking because this will result in an error when making the booking! </p>
     <form action="uploads/uploadBooking.php" method="post" id="formS">
-      <input type="hidden" name="roomName" value="<?php echo $_GET["roomName"]?>">
-      <input type="hidden" name="hotelName" value="<?php echo $_GET["hotelName"]?>">
+      <input type="hidden" name="roomName" value="<?php echo $room?>">
+      <input type="hidden" name="hotelName" value="<?php echo $hotel?>">
       <label for="startDate">The date you want to start booking your room</label>
-      <input type="date" id="startDate" name="startDate" value="" onblur="checkBooking(<?php echo $timeslot.',\''.$startDate.'\',\''.$endDate.'\''?>)">
+      <input type="date" id="startDate" name="startDate" value="<?php echo $startDate?>" onblur="checkBooking(<?php echo $timeslot.',\''.$startDate.'\',\''.$endDate.'\''?>)">
       <label for="endDate">The date you want to stop booking your room</label>
-      <input type="date" id="endDate" name="endDate" value="" onblur="checkBooking(<?php echo $timeslot.',\''.$startDate.'\',\''.$endDate.'\''?>)">
+      <input type="date" id="endDate" name="endDate" value="<?php echo $endDate?>" onblur="checkBooking(<?php echo $timeslot.',\''.$startDate.'\',\''.$endDate.'\''?>)">
       <input type="submit" name="submit" value="Reserve Room">
     </form>
     <?php include("php/footer.php") ?>

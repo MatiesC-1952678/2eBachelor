@@ -1,4 +1,4 @@
-<p> here you can edit the room you have chosen </p>
+<p class="title"> here you can edit the room you have chosen </p>
 <h1> Keep the textfields empty for values you don't want to change: </h1>
 <form id="uploadRoomFormS" action="uploads/updateRoom.php" method="post">
     <input type="hidden" name="hotel" value="<?php echo $key2?>">

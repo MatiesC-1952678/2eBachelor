@@ -5,10 +5,12 @@
   checkSession($_SESSION["typeLogged"], "enterprise", false, "../php/logOut.php");
 
   try {
+    //ESTABLISHING CONNECTION
     echo "<p>connecting to server</p>";
     $conn = new PDO( "pgsql:host=" . DB_HOST . ";port=5432;dbname=" . DB_NAME , DB_USER, DB_PASSWORD);
     $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
     
+    //GETTING PARAMETERS
     echo "<p>succesfully connected</p>";
     $hotelName = $_POST["hotelName"];
     $roomName = $_POST["roomName"];
@@ -18,6 +20,7 @@
     $enddate = $_POST["enddate"];
     $max = $_POST["timeslotmax"];
     
+    //CHECKING PARAMETERS
     echo "<p>checking parameters</p>";
     if (strlen($roomName) > 30 || strlen($description) > 200 || !isset($hotelName)) 
       throw new Exception('parameters entered are incorrect');
@@ -39,6 +42,7 @@
     } else if ((isset($startdate) && !isset($enddate)) || (!isset($startdate) && isset($enddate)))
       throw new Exception('both dates have to be either set or not set, not one or the other');
 
+    //INSERTING INTO rooms
     echo "<p>parameters correct</p><p>adding room to database</p>";
     $sql = "INSERT INTO rooms
     (belongstohotel, name, description, cost, startdate, enddate, timeslotmax)
@@ -55,6 +59,12 @@
     if (!$sth->execute())
       throw new PDOException('An error occurred');
     echo "<p>added room to database</p>";
+
+    //UPLOADING IMAGES
+    for ($i = 0; $i < count($_FILES["imagesToUpload"]["name"]); $i++) {
+      uploadOneImage($_FILES["imagesToUpload"]["tmp_name"][$i], $_FILES["imagesToUpload"]["name"][$i], $_FILES["imagesToUpload"]["size"], $roomName, "room");
+    }
+
     $url = "../management.php";
     header("location: $url ");
 

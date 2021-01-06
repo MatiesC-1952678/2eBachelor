@@ -10,6 +10,7 @@
   <meta name="description" content="A platform for enterprises and customers to easily meet">
   <meta name="keywords" content="Room,Country,enterprise,Book">
   <meta name="author" content="Maties Claesen">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/login.css">
 </head>
@@ -23,14 +24,15 @@
     <!-- Login -->
     <div class="loginPage">
       <form class="radioButtons" action="" method="post">
-          <!--- user or enterprise choice --->
+          <!-- user or enterprise choice -->
           <p>Do you want to register as a User or as a enterprise?</p>
           <input type="radio" id="customer" name="typeOfUser" value="customer" onclick="showElements()">
           <label for="customer">User</label>
           <input type="radio" id="enterprise" name="typeOfUser" value="enterprise" onclick="showElements()">
           <label for="enterprise">Enterprise</label>
       </form>
-        <!--- user login --->
+      <p> if you want to log in using a previous account. Enter your name, email and password. (The other fields are not necessary for entering) </p>
+        <!-- user login -->
       <form class="userLogin" action="php/userLogin.php" method="post">
         <div id="userH">
           <label for="username">Username: Your username (between 5 and 30 characters and not be taken):</label>
@@ -39,10 +41,12 @@
           <input id="email" type="email" name="email" value="" onblur="checkAllUser()">
           <label for="password">Password (must be between 5 and 50 char):</label>
           <input id="password" type="text" name="password" value="" onblur="checkAllUser()">
+          <!-- <label for="stayLogged">Do you want to stay logged in?</label>
+          <input id="stayLogged" type="checkbox" value="stayLogged" name="stayLogged"> -->
           <input id="loginButton" type="submit" name="" value="register/login" onmouseover="checkAllUser()">
         </div>
       </form>
-        <!--- enterprise login --->
+        <!-- enterprise login -->
       <form class="enterpriseLogin" action="php/enterpriseLogin.php" method="post">
         <div id="enterpriseH">
           <label for="enterpriseName">The name of your enterprise (between 5 and 30 characters and not be taken):</label>

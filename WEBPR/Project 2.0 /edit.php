@@ -10,7 +10,7 @@
   //USE IN OTHER PLACES!
   if ($user != $key1 && isset($key1)) {
     if ($admin != true) {
-      echo '<p> not your account </p>';
+      echo '<p class="title"> not your account </p>';
       die();
     }
   }
@@ -24,6 +24,7 @@
   <meta name="description" content="A platform for hotels and customers to easily meet">
   <meta name="keywords" content="Room,Country,Hotel,Book">
   <meta name="author" content="Maties Claesen">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/login.css">
   <link rel="stylesheet" href="css/management.css">
@@ -40,25 +41,25 @@
         <?php
             switch ($type) {
                 case "hotel":
-                    echo '<div id="List">';
+                    echo '<div class="List">';
                     showHotels("SELECT * FROM hotels WHERE hotels.name = :enterprise", $key2, "Booking", "Booking-Title");
                     echo '</div>';
                     include('html/hotelEditForm.php');
                     break;
                 case "room":
-                    echo '<div id="List">';
+                    echo '<div class="List">';
                     showSingleRoomAndHotel($key3, $key2);
                     echo '</div>';
                     include('html/roomEditForm.php');
                     break;
                 case "user":
-                    echo '<div id="List">';
+                    echo '<div class="List">';
                     showUsers("SELECT * FROM users WHERE users.username = :search", $key2, "Room", "Room-Title", true, true);
                     echo '</div>';
                     include('html/userEditForm.php');
                     break;
                 case "enterprise":
-                    echo '<div id="List">';
+                    echo '<div class="List">';
                     showUsers("SELECT * FROM enterprises WHERE enterprises.name = :search", $key2, "Room", "Room-Title", false, true);
                     echo '</div>';
                     include('html/enterpriseEditForm.php');

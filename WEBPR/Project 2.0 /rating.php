@@ -16,6 +16,7 @@
   <meta name="description" content="A platform for hotels and customers to easily meet">
   <meta name="keywords" content="Room,Country,Hotel,Book">
   <meta name="author" content="Maties Claesen">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/error.css">
 </head>
@@ -29,7 +30,7 @@
     <!-- Main Content -->
     <div class="MainContent">
         <?php showSingleRoomAndHotel($room, $hotel); ?>
-        <p> Your Rating </p>
+        <p class="title"> Your Rating </p>
         <div id="formS">
           <form action="uploads/uploadRating.php" method="post">
             <input type="hidden" name="user" value="<?php echo $_SESSION["name"]?>">

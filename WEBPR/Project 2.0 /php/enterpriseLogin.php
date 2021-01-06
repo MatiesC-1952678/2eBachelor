@@ -46,7 +46,7 @@
         $_SESSION["name"] = $name;
       }
     } else {
-        //CREATING AN ACCOUNT
+        //INSERTING ENTERPRISE
         echo "<p>$name, $description, $email, $phone</p>";
         $sql =  "INSERT INTO enterprises
         (name, description, email, phone, password)
@@ -61,12 +61,15 @@
         if (!$sth->execute())
           throw new PDOException('An error occurred');
         echo "<p>succesfully inserted enterprise</p>";
+
+        /*
         $sth = $conn->prepare( "SELECT * FROM enterprises;");
         if (!$sth->execute())
           throw new PDOException('An error occurred');
         while ($row = $sth->fetch( PDO::FETCH_NUM ) ) {
           echo "<p>id: " . $row[0] . " name: " . $row[1] . " description: " . $row[2] . " email: " . $row[3] . " phone: " . $row[4] . "</p>";
         }
+        */
 
         $_SESSION["typeLogged"] = "enterprise";
         $_SESSION["name"] = $name;

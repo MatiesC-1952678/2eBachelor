@@ -5,10 +5,12 @@
   checkSession($_SESSION["typeLogged"], "enterprise", false, "../php/logOut.php");
 
   try {
+    //ESTABLISHING CONNECTION
     echo "<p>connecting to server</p>";
     $conn = new PDO( "pgsql:host=" . DB_HOST . ";port=5432;dbname=" . DB_NAME , DB_USER, DB_PASSWORD);
     $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
     
+    //GETTING PARAMETERS
     echo "<p>succesfully connected</p>";
     $enterpriseName = $_SESSION["name"];
     $hotelName = $_POST["hotelName"];
@@ -20,6 +22,7 @@
     $country = $_POST["hotelCountry"];
     echo "<p>$startTime & $endTime</p>";
     
+    //CHECKING PARAMETERS
     echo "<p>checking parameters</p>";
     if(strtotime($startDate) > strtotime($endDate)){
         throw new Exception("starting date is behind ending date");
@@ -31,6 +34,7 @@
         throw new Exception('parameters entered are incorrect');
     }
 
+    //ADDING HOTEL TO DATABASE
     echo "<p>parameters correct</p><p>adding hotel to database</p>";
     $sql = "INSERT INTO hotels
     (belongstoenterprise, name, description, startdate, enddate, starttime, endtime, country)
@@ -48,6 +52,12 @@
     if (!$sth->execute())
       throw new PDOException('An error occurred');
     echo "<p>added hotel to database</p>";
+
+    //UPLOADING IMAGES
+    for ($i = 0; $i < count($_FILES["imagesToUpload"]["name"]); $i++) {
+      uploadOneImage($_FILES["imagesToUpload"]["tmp_name"][$i], $_FILES["imagesToUpload"]["name"][$i], $_FILES["imagesToUpload"]["size"], $hotelName, "hotel");
+    }
+
     $url = "../management.php";
     header("location: $url ");
 

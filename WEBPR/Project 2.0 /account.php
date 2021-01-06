@@ -22,9 +22,9 @@
   <meta name="description" content="A platform for enterprises and customers to easily meet">
   <meta name="keywords" content="Room,Country,enterprise,Book">
   <meta name="author" content="Maties Claesen">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/account.css">
-  <script type="text/javascript" src=""></script>
 </head>
 
 <body>
@@ -59,13 +59,13 @@
         <input type="hidden" name="name" value=<?php echo $_SESSION["name"]?>>
         <input type="hidden" name="type" value=<?php echo $_SESSION["typeLogged"]?>>
         <input type="hidden" name="url" value="../account.php">
-        <label>Select an image that you want upload (you can add multiple in a row): (jpg, jpeg, png)</label>
-        <input type="file" name="imageToUpload" accept="image/jpeg,image/jpg,image/png">
+        <label>Select an image that you want upload (you can add multiple): (jpg, jpeg, png)</label>
+        <input type="file" name="imagesToUpload[]" accept="image/jpeg,image/jpg,image/png" multiple>
         <input type="submit" name="submit" value="Upload Image">
       </form>
 
-      <div id="List">
-      <p>All user bookings</p>
+      <div class="List">
+      <p class="title">All user bookings</p>
         <?php
           showBookings("SELECT * FROM bookings,hotels WHERE hotels.belongstoenterprise = :room AND hotels.name = bookings.hotelname", $_SESSION["name"], "");
         ?>

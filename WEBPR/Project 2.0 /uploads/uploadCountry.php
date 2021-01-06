@@ -29,6 +29,7 @@
     if (!$sth->execute())
       throw new PDOException('An error occurred');
     echo "<p>added country to database</p>";
+
     $url = "../management.php";
     header("location: $url ");
 

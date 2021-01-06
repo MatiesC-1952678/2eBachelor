@@ -4,7 +4,7 @@
   if ($_SESSION["admin"] == true) 
         $url = "../admin.php";
   else {
-    echo "<p>page does not exist</p>";
+    echo '<p class="title">page does not exist</p>';
     die();
   }
   ?>
@@ -16,8 +16,8 @@
   <meta name="description" content="A platform for hotels and customers to easily meet">
   <meta name="keywords" content="Room,Country,Hotel,Book">
   <meta name="author" content="Maties Claesen">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css">
-  <script type="text/javascript" src=""></script>
 </head>
 
 <body>
@@ -29,25 +29,25 @@
     <!-- Main Content -->
     <div class="MainContent">
       <h1> all enterprises on the website </h1>
-      <div id="List">
+      <div class="List">
           <?php 
             showUsers("SELECT * FROM enterprises", "", "Room", "Room-Title", false, true);
           ?>
       </div>
       <h1> all hotels on the website </h1>
-      <div id="List">
+      <div class="List">
           <?php 
             showHotels("SELECT * FROM hotels", "", "Room", "Room-Title", true);
           ?>
       </div>
       <h1> all rooms on the website </h1>
-      <div id="List">
+      <div class="List">
           <?php 
             showRooms("SELECT * FROM hotels,rooms WHERE hotels.name = rooms.belongstohotel", "", "Room", "Room-Title", false, false, true);
           ?>
       </div>
       <h1> all users on the website </h1>
-      <div id="List">
+      <div class="List">
           <?php 
             showUsers("SELECT * FROM users", "", "Room", "Room-Title", true, true);
           ?>

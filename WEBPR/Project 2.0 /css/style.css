@@ -7,6 +7,14 @@ body {
 .MainContent {
   clear: both;
 }
+
+.title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
 /*Searchbar*/
 #Searchbar {
   display: flex;
@@ -36,21 +44,8 @@ input {
   border-radius: 15px;
 }
 
-#SearchIcon{
-  border-radius: 30px;
-  -webkit-box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
-  -moz-box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
-  box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
-  padding: 5px;
-  margin: 10px;
-  width: 30px;
-  height: 30px;
-  float: left;
-  background-color: white;
-}
-
 /* List */
-#List {
+.List {
   clear: both;
   overflow: scroll;
   min-height: 200px;
@@ -66,12 +61,13 @@ input {
 }
 
 .uploadedImage {
-  width: 15%;
-  height: 15%;
+  margin-left: 10px;
+  border-radius: 15px;
 }
 
-#Room {
+.Room {
   word-break: break-word;
+  max-width: 400px;
   margin-left: 2%;
   margin-right: 2%;
   margin-top: 2%;
@@ -84,8 +80,9 @@ input {
   float: left;
 }
 
-#RoomNonFloat {
+.RoomNonFloat {
   word-break: break-word;
+  max-width: 400px;
   margin-left: 2%;
   margin-right: 2%;
   margin-top: 2%;
@@ -97,7 +94,7 @@ input {
   box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
 }
 
-#Room-Title {
+.Room-Title {
   margin-left: 0px;
   margin-top: 0px;
   margin-right: 0px;
@@ -121,8 +118,9 @@ footer {
 
 
 /* Bookings */
-#Booking {
+.Booking {
   word-break: break-word;
+  max-width: 400px;
   margin-left: 2%;
   margin-right: 2%;
   margin-top: 2%;
@@ -135,7 +133,7 @@ footer {
   float: left;
 }
 
-#Booking-Title {
+.Booking-Title {
   margin-left: 0px;
   margin-top: 0px;
   margin-right: 0px;

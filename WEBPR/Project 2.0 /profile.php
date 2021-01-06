@@ -18,8 +18,8 @@
   <meta name="description" content="A platform for enterprises and customers to easily meet">
   <meta name="keywords" content="Room,Country,enterprise,Book">
   <meta name="author" content="Maties Claesen">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css">
-  <script type="text/javascript" src=""></script>
 </head>
 
 <body>
@@ -45,24 +45,24 @@
         <?php showImages($_SESSION["name"], $_SESSION["typeLogged"]); ?>
       </div>
 
-      <div id="List">
+      <div class="List">
         <?php
           if ($type == "enterprise") {
-            echo '<p> Hotels from this enterprise: </p>';
+            echo '<p class="title"> Hotels from this enterprise: </p>';
             showHotels("SELECT * FROM hotels WHERE hotels.belongstoenterprise = :enterprise", $name, "Room", "Room-Title");
-            echo '<p> Rooms from this enterprise: </p>';
+            echo '<p class="title"> Rooms from this enterprise: </p>';
             showRooms("SELECT * FROM hotels,rooms WHERE hotels.belongstoenterprise = :name AND rooms.belongstohotel = hotels.name", $name, "Room", "Room-Title", true);
           } else {
-            echo '<p> Bookings from this user: </p>';
+            echo '<p class="title"> Bookings from this user: </p>';
             showRooms("SELECT * FROM bookings,hotels,rooms WHERE bookedby = :name AND roomname = rooms.name AND rooms.belongstohotel = hotels.name", $name, "Room", "Booking-Title");
-            echo '<p> Interests of this user: </p>';
+            echo '<p class="title"> Interests of this user: </p>';
             showRooms("SELECT * FROM likes,hotels,rooms WHERE likes.likedby = :name AND rooms.name = likes.room AND rooms.belongstohotel = hotels.name", $name, "Room", "Room-Title", true);
           }
         ?>
       </div>
 
-      <div id="List">
-      <p>All user bookings</p>
+      <div class="List">
+      <p class="title">All user bookings</p>
         <?php
           showBookings("SELECT * FROM bookings,hotels WHERE hotels.belongstoenterprise = :room AND hotels.name = bookings.hotelname", $name, "");
         ?>

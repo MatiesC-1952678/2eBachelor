@@ -72,9 +72,9 @@
         }
     }
 
-    function echoHotel($id, $titleId, $title, $enterprise, $description, $startDate, $endDate, $startTime, $endTime, $country, bool $editable = false) {
-        echo '<article id="'.$id.'">
-                <h1 id="'.$titleId.'">'.$title.'</h1><ul>
+    function echoHotel($class, $titleClass, $title, $enterprise, $description, $startDate, $endDate, $startTime, $endTime, $country, bool $editable = false) {
+        echo '<article class="'.$class.'">
+                <h1 class="'.$titleClass.'">'.$title.'</h1><ul>
                 <li> Enterprise: <a href="profile.php?name='.$enterprise.'&type=enterprise">'.$enterprise.'</a></li>
                 <li> Description: '.$description.'</li>
                 <li> Availability: '.$startDate.' - '.$endDate.' </li>
@@ -84,13 +84,15 @@
             echo '<li><a href="edit.php?key1='.urlencode($enterprise).'&key2='.urlencode($title).'&type=hotel"> edit </a></li>
                 <li><a href="uploads/delete.php?type=hotel&key1='.urlencode($enterprise).'&key2='.urlencode($title).'"> delete </a></li>';
         }
-        echo    '</ul></article>';
+        echo    '</ul>';
+        showImages($title, "hotel");
+        echo    '</article>';
     }
 
     //COULD ADD MORE DATA LIKE: start date, end date, time, country, ... -> alles van hotel
-    function echoRoom($id, $titleId, $title, $enterprise, $hotel, $cost, $description, $start, $end, $max, bool $canBeBooked = false, bool $editable = false) {
-        echo '<article id="'.$id.'">
-                <h1 id="'.$titleId.'">'.$title.'</h1><ul>
+    function echoRoom($class, $titleClass, $title, $enterprise, $hotel, $cost, $description, $start, $end, $max, bool $canBeBooked = false, bool $editable = false) {
+        echo '<article class="'.$class.'">
+                <h1 class="'.$titleClass.'">'.$title.'</h1><ul>
                 <li> Enterprise: <a href="profile.php?name='.$enterprise.'&type=enterprise">'.$enterprise.'</a></li>
                 <li> Hotel: '.$hotel.'</li>
                 <li> Cost: €'.$cost.'</li>';
@@ -109,12 +111,14 @@
             echo '<li><a href="edit.php?key1='.urlencode($enterprise).'&key2='.urlencode($hotel).'&key3='.urlencode($title).'&type=room"> edit </a></li>
                 <li><a href="uploads/delete.php?type=room&key1='.urlencode($enterprise).'&key2='.urlencode($hotel).'&key3='.urlencode($title).'"> delete </a></li>';
         }
-        echo    '</ul></article>';
+        echo    '</ul>';
+        showImages($title, "room");
+        echo    '</article>';
     }
 
-    function echoUser($id, $titleId, $name, $email, $password, bool $editable = false) {
-        echo    '<article id="'.$id.'">
-                    <h1 id="'.$titleId.'">'.$name.'</h1><ul>
+    function echoUser($class, $titleClass, $name, $email, $password, bool $editable = false) {
+        echo    '<article class="'.$class.'">
+                    <h1 class="'.$titleClass.'">'.$name.'</h1><ul>
                     <li><a href="profile.php?name='.urlencode($name).'&type=user">Go to profile</a></li>
                     <li><a href="message.php?user='.urlencode($name).'">Send a message</a></li>';
         if ($editable) {
@@ -126,9 +130,9 @@
         echo      '</ul></article>';
     }
 
-    function echoEnterprise($id, $titleId, $name, $description, $email, $phone, $password, bool $editable = false) {
-        echo    '<article id="'.$id.'">
-                    <h1 id="'.$titleId.'">'.$name.'</h1><ul>
+    function echoEnterprise($class, $titleClass, $name, $description, $email, $phone, $password, bool $editable = false) {
+        echo    '<article class="'.$class.'">
+                    <h1 class="'.$titleClass.'">'.$name.'</h1><ul>
                     <li> Description: '.$description.'</li>
                     <li> Email: '.$email.'</li>
                     <li> Phone: '.$phone.'</li>
@@ -141,9 +145,9 @@
         echo      '</ul></article>';
     }
 
-    function echoNotification($id, $titleId, $description, $date, $time, $room, $hotel) {
-        echo    '<article id="'.$id.'">
-                    <h1 id="'.$titleId.'">'.$room.' - '.$date.'  '.$time.'</h1>
+    function echoNotification($class, $titleClass, $description, $date, $time, $room, $hotel) {
+        echo    '<article class="'.$class.'">
+                    <h1 class="'.$titleClass.'">'.$room.' - '.$date.'  '.$time.'</h1>
                     <p> Hotel: '.$hotel.'</p>
                     <p> Description: '.$description.' </p>
                     </article>';
@@ -151,32 +155,38 @@
 
     function echoMessage($user, $message, $time) {
         if ($user == $_SESSION["name"]) {
-            $mid = "RightMessage";
-            $uid = "Right";
+            $mclass = "RightMessage";
+            $uclass = "Right";
         } else  {
-            $mid = "LeftMessage";
-            $uid = "Left";
+            $mclass = "LeftMessage";
+            $uclass = "Left";
         }
         echo 
-        '<p id="'.$uid.'">'.$user.' '.$time.'</p>
-            <p id="'.$mid.'">'.$message.'</p>';
+        '<p class="'.$mclass.'">'.$user.' '.$time.'</p>
+            <p class="'.$uclass.'">'.$message.'</p>';
     }
 
     function echoRating($ratedby, $review, $rating) {
-        echo    '<article id="RoomNonFloat">
-                <h1 id="Room-Title">'.$ratedby.'</h1>
+        echo    '<article class="RoomNonFloat">
+                <h1 class="Room-Title">'.$ratedby.'</h1>
                 <p> Review: '.$review.' </p>
                 <p> Rating: '.$rating.' stars </p>
                 </article>';
     }
 
     function echoBooking($bookedby, $startdate, $enddate, $room, $hotel) {
-        echo    '<article id="Room">
-                <h1 id="Room-Title">'.$bookedby.'</h1>
+        echo    '<article class="Room">
+                <h1 class="Room-Title">'.$bookedby.'</h1>
                 <a href="profile.php?name='.urlencode($bookedby).'&type=user">Go to profile</a>
                 <a href="message.php?user='.urlencode($bookedby).'">Send a message</a>
                 <p> Hotel: '.$hotel.' -  Room: '.$room.'</p>
                 <p> Unavailable: '.$startdate.' - '.$enddate.' </p>
+                </article>';
+    }
+
+    function echoTimeslot($start, $timeslot) {
+        echo    '<article class="Room">
+                <p class="Room-Title">'.$start.' - '.date('Y-m-d', strtotime($start. " + $timeslot days")).'</p>
                 </article>';
     }
 
@@ -240,6 +250,76 @@
             print "Error! " . $e->getMessage() . "\n";
             die();
         }
+    }
+
+    function showTimeslots($sql, $room, $hotel) {
+        try {
+            $conn = new PDO( "pgsql:host=" . DB_HOST . ";port=5432;dbname=" . DB_NAME , DB_USER, DB_PASSWORD);
+            $sth = $conn->prepare($sql);
+            $sth->bindParam(':room', $room, PDO::PARAM_STR, strlen($room));
+            $sth->bindParam(':hotel', $hotel, PDO::PARAM_STR, strlen($hotel));
+            if (!$sth->execute())
+                throw new PDOException('An error occurred');
+            $row = $sth->fetch( PDO::FETCH_NUM );
+
+            //SET VARIABLES
+            $startDate = $row[2];
+            $endDate = $row[3];
+            $timeslot = $row[4];
+            echo "$startDate $endDate ";
+            if (empty($startDate) || empty($enddate)) {
+                //echo "I came here";
+                $startDate = $row[0];
+                $endDate = $row[1];
+            }
+            if (empty($timeslot)) {
+                $timeslot = 5;
+            }
+            $dates = getBookingDates($room, $hotel);
+            //echo "$startDate $endDate ";
+            if (!empty($dates)) {
+                makeTimeslotPeriod($startDate, $dates[0], $timeslot);
+                for ($i = 1; $i < (count($dates)/2)-1; $i+=2) {
+                    makeTimeslotPeriod($dates[$i], $dates[$i+1], $timeslot);
+                }
+                makeTimeslotPeriod($dates[count($dates)-1], $endDate, $timeslot);
+            } else {
+                makeTimeslotPeriod($startDate, $endDate, $timeslot);
+            }
+
+            
+        } catch (PDOException $e) {
+            print "Error! " . $e->getMessage() . "\n";
+            die();
+        }
+    }
+
+    function getBookingDates($room, $hotel) {
+        try {
+            $conn = new PDO( "pgsql:host=" . DB_HOST . ";port=5432;dbname=" . DB_NAME , DB_USER, DB_PASSWORD);
+            $sth = $conn->prepare("SELECT startd,endd FROM bookings WHERE roomname = :room AND hotelname = :hotel");
+            $sth->bindParam(':room', $room, PDO::PARAM_STR, strlen($room));
+            $sth->bindParam(':hotel', $hotel, PDO::PARAM_STR, strlen($hotel));
+            if (!$sth->execute())
+                throw new PDOException('An error occurred');
+            return $sth->fetch( PDO::FETCH_NUM );
+        } catch (PDOException $e) {
+            print "Error! " . $e->getMessage() . "\n";
+            die();
+        }
+    }
+
+    function makeTimeslotPeriod($start, $end, $timeslot) {
+        $dayDiff = round((strtotime($end) - strtotime($start)) / (60 * 60 * 24));
+        $slotAmount = floor($dayDiff/$timeslot);
+        echo "daydif: $dayDiff slotamount: $slotAmount start: $start end: $end timeslot: $timeslot";
+        for ($i = 0; $i < $slotAmount; $i++) {
+            $dayAmount = $i * $timeslot;
+            echoTimeslot(date('Y-m-d', strtotime($start. " + $dayAmount days")), $timeslot);
+        }
+        $endDay = $timeslot * $dayDiff;
+        echo "endday: $endDay";
+        echoTimeslot(strtotime($start." + $endDay days"), $dayDiff % $timeslot);
     }
 
     function showBookings($sql, $room, $hotel) {
@@ -376,10 +456,61 @@
         }
     }
 
+    /**
+     * upload one image at a time
+     * tmp = tmp name of the file
+     * img = the real name of the file
+     * size = size
+     * name = new prefix of the image file for on server
+     * type = new postfix of the image file for on server
+     */
+    function uploadOneImage($tmp, $img, $size, $name, $type) {
+        $target_dir = "images/";
+        $usersFileName = $tmp;
+        $imageType = strtolower(pathinfo($img,PATHINFO_EXTENSION));
+        $url = $_POST["url"];
+        //echo "<p>$usersFileName + $imageType</p>";
+
+        //CHECKS BEFOREHAND
+        if($imageType != "jpg" && $imageType != "png" && $imageType != "jpeg") {
+            echo '<p>png, jpg, jpeg files are only allowed.</p>
+                    <a href="'.$url.'"> go back </a>';
+            die();
+        }
+        $sizeInfo = getImageSize($usersFileName);
+        if ($sizeInfo[0] > 1000 || $sizeInfo[1] > 1000) {
+            echo '<p>Your image is bigger than 500x500.</p>
+                    <a href="'.$url.'"> go back </a>';
+            die();
+        }
+        if ($_FILES["imageToUpload"]["size"] > 50000000) {
+            echo '<p>your file is larger than 50000kb.</p>
+                    <a href="'.$url.'"> go back </a>';
+            die();
+        }
+
+        //GENERATING IMAGE NAME
+        $i = 0;
+        while (file_exists($target_dir.$name."_".$type."_".$i.".jpg")) {
+            $i = $i+1;
+        }
+        $newName = $name."_".$type."_".$i.".jpg";
+        //echo "<p>choses as i: $i </p><p> $newName </p>";
+
+        //MAKING TARGET DIR
+        $target_file=$target_dir.$newName;
+        //echo "<p>chosen as target file: $target_file</p>";
+        if (isset($_POST["submit"])) {
+        if (!move_uploaded_file($usersFileName,$target_file)) {
+            echo "<p>file not added </p>";
+        }
+        }
+    }
+
     function showImages($name, $type) {
           $i = 0;
           while(file_exists("uploads/images/".$name."_".$type."_".$i.".jpg")) {
-            echo '<img class="uploadedImage" src="uploads/images/'.$name."_".$type."_".$i.'.jpg" alt="user uploaded image" width="150px" height="150px">';
+            echo '<img class="uploadedImage" src="uploads/images/'.$name."_".$type."_".$i.'.jpg" alt="user uploaded image" width="70" height="70">';
             $i += 1;
           }
     }
@@ -430,4 +561,42 @@
             }
         }
     }
+
+    /*
+    function stayLoggedIn($name, $type) {
+        try {
+            echo "$name, $type";
+            $conn = new PDO( "pgsql:host=" . DB_HOST . ";port=5432;dbname=" . DB_NAME , DB_USER, DB_PASSWORD);
+            $sth = $conn->prepare("INSERT INTO cookies 
+            (name, type) 
+            VALUES 
+            (:name, :type);");
+            $sth->bindParam(':name', $name, PDO::PARAM_STR, strlen($name));
+            $sth->bindParam(':type', $type, PDO::PARAM_STR, strlen($type));
+            setCookie("loggedIn", "3");
+            if (!$sth->execute())
+                echo "<p> error with inserting </p>";
+                //throw new PDOException('An Error has occurred');
+        } catch (PDOException $e) {
+            print "Error! " . $e->getMessage() . "\n";
+            die();
+        }
+    }
+
+    function checkStayLoggedIn($cookieId) {
+        try {
+            $conn = new PDO( "pgsql:host=" . DB_HOST . ";port=5432;dbname=" . DB_NAME , DB_USER, DB_PASSWORD);
+            $sth = $conn->prepare("SELECT * FROM cookies WHERE cookies.id = :id");
+            $sth->bindParam(':id', $cookieId, PDO::PARAM_STR, strlen($cookieId));
+            if (!$sth->execute())
+                throw new PDOException('An Error has occurred');
+            $row = $sth->fetch(PDO::FETCH_ASSOC);
+            $_SESSION["name"] = $row["name"];
+            $_SESSION["typeLogged"] = $row["type"];
+        } catch (PDOException $e) {
+            print "Error! " . $e->getMessage() . "\n";
+            die();
+        }
+    }
+    */
 ?>
