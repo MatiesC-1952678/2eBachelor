@@ -32,7 +32,7 @@
 
     if ($sth->rowCount() > 0) {
       $row = $sth->fetch( PDO::FETCH_ASSOC );
-      if ($email != $row[1]) {
+      if ($email != $row["email"]) {
         echo '<p>email incorrect to log in to the account '.$name.'</p><a href="../login.php">Go back</a>';
         die();
       }

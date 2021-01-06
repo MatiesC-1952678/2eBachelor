@@ -379,7 +379,7 @@
     function showImages($name, $type) {
           $i = 0;
           while(file_exists("uploads/images/".$name."_".$type."_".$i.".jpg")) {
-            echo '<img class="uploadedImage" src="uploads/images/'.$name."_".$type."_".$i.'.jpg" alt="user uploaded image">';
+            echo '<img class="uploadedImage" src="uploads/images/'.$name."_".$type."_".$i.'.jpg" alt="user uploaded image" width="150px" height="150px">';
             $i += 1;
           }
     }

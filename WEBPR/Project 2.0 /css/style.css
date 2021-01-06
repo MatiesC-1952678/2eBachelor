@@ -3,75 +3,16 @@ body {
   margin: 0px;
 }
 
-/* Header */
-.LogoAll {
-  margin-top: -10px;
-  margin-left: 100px;
-  margin-right: 100px;
-  margin-bottom: 100px;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
-  -webkit-box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
-  -moz-box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
-  box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
-  min-height: 130px;
-}
-
-.LogoAll img {
-  float: left;
-  width: 150px;
-  height: auto;
-  padding-left: 20px;
-  padding-top: 20px;
-}
-
-.LogoTitle {
-  float: left;
-  margin: 50px;
-  padding-top: 20px;
-  font-family: "futura bold", sans-serif;
-}
-
-.HeaderNav {
-  margin-top: 50px;
-  margin-right: 10px;
-  float: right;
-}
-
-#Nav-ul {
-  list-style-type: none;
-  margin: 0px;
-  padding: 0px;
-  overflow: hidden;
-}
-
-#Nav-ul li {
-  float: left;
-}
-#icon {
-  border-radius: 30px;
-  -webkit-box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
-  -moz-box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
-  box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
-  padding: 5px;
-  margin: 10px;
-  width: 30px;
-  height: 30px;
-}
-
-#nav {
-  /*float: left;*/
-  margin-top: 25px;
-  color: orange;
-}
-
 /* Main Content */
+.MainContent {
+  clear: both;
+}
 /*Searchbar*/
 #Searchbar {
   display: flex;
   flex-wrap: wrap;
-  margin: auto;
-  margin-top: -50px;
+  margin-left: 5%;
+  margin-right: 5%;
   -webkit-box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
   -moz-box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
   box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
@@ -111,8 +52,9 @@ input {
 /* List */
 #List {
   clear: both;
-  overflow: auto;
-  max-height: 80%;
+  overflow: scroll;
+  min-height: 200px;
+  max-height: 700px;
   max-width: 90%;
   margin: auto;
   float: none;

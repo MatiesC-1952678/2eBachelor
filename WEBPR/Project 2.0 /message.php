@@ -14,7 +14,6 @@
   <meta name="author" content="Maties Claesen">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/message.css">
-  <script type="text/javascript" src="javascript/chat.js"></script>
 </head>
 
 <body>
@@ -30,7 +29,7 @@
     </div>
     <div class="MainContent" id="ChatMessages">
       <?php 
-      showMessages("SELECT * FROM messages WHERE userone = :userone AND usertwo = :usertwo OR userone = :usertwotwo AND usertwo = :useroneone", $_SESSION["name"], $user); 
+      showMessages("SELECT * FROM messages WHERE userone = :userone AND usertwo = :usertwo OR userone = :usertwotwo AND usertwo = :useroneone ORDER BY time", $_SESSION["name"], $user); 
       ?>
     </div>
 

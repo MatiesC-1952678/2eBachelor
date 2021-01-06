@@ -3,7 +3,7 @@
     require "../php/globals.php";
     require "../php/reusables.php";
     $userone = $_SESSION["name"];
-    $usertwo = $_GET["name"];
+    $usertwo = $_POST["name"];
     $message = $_POST["message"];
     $time = date('Y-m-d H:i:s');
     checkSession($_SESSION["typeLogged"], "user", false, "../php/logOut.php", "You need to be logged in as a user to send messages");

@@ -1,4 +1,3 @@
-
 function switchElements() {
     if (document.getElementById("DateRadio").checked || document.getElementById("DateRoomRadio").checked) {
         document.getElementById("searchS").id = "searchH";
