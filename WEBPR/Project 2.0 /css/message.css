@@ -1,8 +1,10 @@
 #ChatHead {
     z-index: 1;
-    margin-left: 20%;
-    margin-right: 20%;
-    border-radius: 15px;
+    width: 90%;
+    height: 7vh;
+    margin: auto;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
     background-color: orange;
     display: flex;
 }
@@ -11,59 +13,60 @@
     z-index: 0;
     padding-top: 1%;
     padding-bottom: 5%;
-    margin-top: 0%;
-    margin-bottom: 0%;
-    margin-left: 20%;
-    margin-right: 20%;
-    border-radius: 15px;
-    height: 200%;
     -webkit-box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
     -moz-box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
     box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
     overflow: auto;
-    width: 60%;
-    max-height: 300px;
+    width: 90%;
+    margin: auto;
+    margin-top: 0%;
+    margin-bottom: 0%;
+    max-height: 60vh;
 }
 
-#Right {
+.Right {
     display: flex;
     flex-direction: row;
     padding: 0px;
 }
 
-#Left {
+.Left {
     display: flex;
     flex-direction: row-reverse;
     padding: 0px;
 }
 
-#RightMessage {
+.RightMessage {
     display: flex;
     flex-direction: row;
-    padding: 0px;
+    padding: 4px;
     -webkit-box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
     -moz-box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
     box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin-right: 30%;
 }
-#LeftMessage {
+.LeftMessage {
     display: flex;
     flex-direction: row-reverse;
-    padding: 0px;
+    padding: 4px;
     -webkit-box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
     -moz-box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
     box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    margin-left: 30%;
 }
 
 #ChatBox {
     z-index: 2;
-    margin-left: 20%;
-    margin-right: 20%;
     display: flex;
     -webkit-box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
     -moz-box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
     box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    padding: 1%;
+    border-radius: 15px;
+    padding: 3%;
+    margin: auto;
     background-color: lightblue;
   }

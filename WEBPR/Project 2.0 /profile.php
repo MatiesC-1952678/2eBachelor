@@ -41,22 +41,23 @@
       </article>
 
       <!-- Uploaded Images -->
-      <div class="userImages">
+      <div class="userImages List">
         <?php showImages($_SESSION["name"], $_SESSION["typeLogged"]); ?>
       </div>
 
-      <div class="List">
         <?php
           if ($type == "enterprise") {
-            echo '<p class="title"> Hotels from this enterprise: </p>';
+            echo '<p class="title"> Hotels from this enterprise: </p><div class="List">';
             showHotels("SELECT * FROM hotels WHERE hotels.belongstoenterprise = :enterprise", $name, "Room", "Room-Title");
-            echo '<p class="title"> Rooms from this enterprise: </p>';
+            echo '</div><p class="title"> Rooms from this enterprise: </p><div class="List">';
             showRooms("SELECT * FROM hotels,rooms WHERE hotels.belongstoenterprise = :name AND rooms.belongstohotel = hotels.name", $name, "Room", "Room-Title", true);
+            echo '</div>';
           } else {
-            echo '<p class="title"> Bookings from this user: </p>';
+            echo '<p class="title"> Bookings from this user: </p><div class="List">';
             showRooms("SELECT * FROM bookings,hotels,rooms WHERE bookedby = :name AND roomname = rooms.name AND rooms.belongstohotel = hotels.name", $name, "Room", "Booking-Title");
-            echo '<p class="title"> Interests of this user: </p>';
+            echo '</div><p class="title"> Interests of this user: </p><div class="List">';
             showRooms("SELECT * FROM likes,hotels,rooms WHERE likes.likedby = :name AND rooms.name = likes.room AND rooms.belongstohotel = hotels.name", $name, "Room", "Room-Title", true);
+            echo '</div>';
           }
         ?>
       </div>

@@ -1,7 +1,11 @@
-  #searchH {
-    display: none;
-  }
+#searchH {
+  display: none;
+}
 
-  #datepickerH {
-      display: none;
-  }
+#datepickerH {
+  display: none;
+}
+
+#mapH {
+  display: none;
+}

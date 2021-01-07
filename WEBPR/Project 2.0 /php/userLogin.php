@@ -30,9 +30,10 @@
     $row = $sth->fetch(PDO::FETCH_NUM);
     
     //ADMIN LOGIN
-    if ($username == "MatiesWebsiteAdmin_901828PQRZ2_#2" && $password == "748920_ZRTUJFGPML&1") {
+    if ($username == "MatiesWebsiteAdmin_901828PQRZ2" && $email == "WEB&ejioz344@ADMIN.COM" && $password == "748920_ZRTUJFGPML&1_##1_123456FJDSQKFDI^^D$$34$455") {
       $_SESSION["admin"] = true;
       header("location: ../admin.php");
+      die();
     }
 
     if ($sth->rowCount() > 0) {

@@ -39,6 +39,7 @@
       if ($password != $row["password"] ) {
         //FAILING TO LOG IN INTO EXISTING ACCOUNT
         echo "<p>password incorrect</p>";
+        die();
       } else {
         //LOGGING IN TO AN ACCOUNT
         echo "<p>logged in</p>";

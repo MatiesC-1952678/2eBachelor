@@ -62,7 +62,12 @@
 
     //UPLOADING IMAGES
     for ($i = 0; $i < count($_FILES["imagesToUpload"]["name"]); $i++) {
-      uploadOneImage($_FILES["imagesToUpload"]["tmp_name"][$i], $_FILES["imagesToUpload"]["name"][$i], $_FILES["imagesToUpload"]["size"], $roomName, "room");
+      uploadOneImage($_FILES["imagesToUpload"]["tmp_name"][$i], $_FILES["imagesToUpload"]["name"][$i], $_FILES["imagesToUpload"]["size"][$i], $roomName, "room");
+    }
+
+    //UPLOADING VIDEOS
+    for ($i = 0; $i < count($_FILES["videosToUpload"]["name"]); $i++) {
+      uploadOneVideo($_FILES["videosToUpload"]["tmp_name"][$i], $_FILES["videosToUpload"]["name"][$i], $_FILES["videosToUpload"]["size"][$i], $roomName, "room");
     }
 
     $url = "../management.php";

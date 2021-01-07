@@ -15,8 +15,8 @@ function xmlRequest() {
 function showResult(xmlhttp) {
     if ((xmlhttp) && (xmlhttp.readyState == 4) && (xmlhttp.status == 200)) {
         if (xmlhttp.responseText == "0")
-            document.getElementById("List").setCustomValidity("Error accessing db");
+            document.getElementsByClassName("List")[0].setCustomValidity("Error accessing db");
         else
-            document.getElementById("List").innerHTML = xmlhttp.responseText;
+            document.getElementsByClassName("List")[0].innerHTML = xmlhttp.responseText;
     }
 }

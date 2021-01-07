@@ -43,7 +43,7 @@
             <input type="submit" value="upload rating">
           </form>
         </div>
-        <?php echo "<p> Ratings </p>"; showRatings($room, $hotel); ?>
+        <?php echo '<p class="title"> Ratings </p>'; showRatings($room, $hotel); ?>
     </div>
 
     <?php include("php/footer.php") ?>

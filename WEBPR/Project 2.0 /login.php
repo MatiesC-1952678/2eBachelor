@@ -40,7 +40,7 @@
           <label for="email">E-mail: (must be valid and between 5 and 50 characters):</label>
           <input id="email" type="email" name="email" value="" onblur="checkAllUser()">
           <label for="password">Password (must be between 5 and 50 char):</label>
-          <input id="password" type="text" name="password" value="" onblur="checkAllUser()">
+          <input id="password" type="password" name="password" value="" onblur="checkAllUser()">
           <!-- <label for="stayLogged">Do you want to stay logged in?</label>
           <input id="stayLogged" type="checkbox" value="stayLogged" name="stayLogged"> -->
           <input id="loginButton" type="submit" name="" value="register/login" onmouseover="checkAllUser()">
@@ -58,7 +58,7 @@
           <label for="enterprisePhone">Your enterprise's phonenumber (numbers only and max 50 characters):</label>
           <input type="phonenumber" id="enterprisePhone" name="enterprisePhone" value="" onblur="checkAllEnterprise()">
           <label for="enterprisePassword">Password (must be between 5 and 50 characters):</label>
-          <input id="enterprisePassword" type="text" name="enterprisePassword" value="" onblur="checkAllEnterprise()">
+          <input id="enterprisePassword" type="password" name="enterprisePassword" value="" onblur="checkAllEnterprise()">
           <input id="loginButton" type="submit" name="" value="register/login" onmouseover="checkAllEnterprise()">
         </div>
       </form>

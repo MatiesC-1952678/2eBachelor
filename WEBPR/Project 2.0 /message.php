@@ -25,7 +25,7 @@
 
     <div id="ChatHead">
         <a class="element" href="chat.php"> Go Back </a>
-        <p class="element">  <?php echo $user ?> </p>
+        <text class="element">  <?php echo $user ?> </text>
         <a class="element" href="profile.php?name=<?php echo $user ?>&type=user"> Go To Profile </a>
     </div>
     <div class="MainContent" id="ChatMessages">

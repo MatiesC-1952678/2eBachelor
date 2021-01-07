@@ -86,6 +86,7 @@
         }
         echo    '</ul>';
         showImages($title, "hotel");
+        showVideos($title, "hotel");
         echo    '</article>';
     }
 
@@ -113,6 +114,7 @@
         }
         echo    '</ul>';
         showImages($title, "room");
+        showVideos($title, "room");
         echo    '</article>';
     }
 
@@ -162,8 +164,8 @@
             $uclass = "Left";
         }
         echo 
-        '<p class="'.$mclass.'">'.$user.' '.$time.'</p>
-            <p class="'.$uclass.'">'.$message.'</p>';
+        '<p class="'.$uclass.'">'.$user.' '.$time.'</p>
+            <p class="'.$mclass.'">'.$message.'</p>';
     }
 
     function echoRating($ratedby, $review, $rating) {
@@ -345,9 +347,9 @@
             if (!$sth->execute())
                 throw new PDOException('An error occurred');
             $row = $sth->fetch( PDO::FETCH_NUM );
-            echo '<p>Hotel:</p>';
+            echo '<p class="title">Hotel:</p>';
             echoHotel("RoomNonFloat", "Room-Title", $row[1], $row[0], $row[2], $row[3], $row[4], $row[5], $row[6], $row[7]);
-            echo '<p>Room:</p>';
+            echo '<p class="title">Room:</p>';
             echoRoom("RoomNonFloat", "Room-Title", $row[9], $row[0], $row[1], $row[11], $row[10], $row[12], $row[13], $row[14], false);
             
             $startDate = $row[12];
@@ -389,45 +391,47 @@
      * type = new postfix of the image file for on server
      */
     function uploadOneImage($tmp, $img, $size, $name, $type) {
-        $target_dir = "images/";
-        $usersFileName = $tmp;
-        $imageType = strtolower(pathinfo($img,PATHINFO_EXTENSION));
-        $url = $_POST["url"];
-        //echo "<p>$usersFileName + $imageType</p>";
+        if (!empty($tmp) && !empty($img) && !empty($size)) {
+            $target_dir = "images/";
+            $usersFileName = $tmp;
+            $imageType = strtolower(pathinfo($img,PATHINFO_EXTENSION));
+            $url = $_POST["url"];
+            //echo "<p>$usersFileName + $imageType</p>";
 
-        //CHECKS BEFOREHAND
-        if($imageType != "jpg" && $imageType != "png" && $imageType != "jpeg") {
-            echo '<p>png, jpg, jpeg files are only allowed.</p>
-                    <a href="'.$url.'"> go back </a>';
-            die();
-        }
-        $sizeInfo = getImageSize($usersFileName);
-        if ($sizeInfo[0] > 1000 || $sizeInfo[1] > 1000) {
-            echo '<p>Your image is bigger than 500x500.</p>
-                    <a href="'.$url.'"> go back </a>';
-            die();
-        }
-        if ($size > 50000000) {
-            echo '<p>your file is larger than 50000kb.</p>
-                    <a href="'.$url.'"> go back </a>';
-            die();
-        }
+            //CHECKS BEFOREHAND
+            if($imageType != "jpg" && $imageType != "png" && $imageType != "jpeg") {
+                echo '<p>png, jpg, jpeg files are only allowed.</p>
+                        <a href="'.$url.'"> go back </a>';
+                die();
+            }
+            $sizeInfo = getImageSize($usersFileName);
+            if ($sizeInfo[0] > 1000 || $sizeInfo[1] > 1000) {
+                echo '<p>Your image is bigger than 500x500.</p>
+                        <a href="'.$url.'"> go back </a>';
+                die();
+            }
+            if ($size > 50000000) {
+                echo '<p>your file is larger than 50000kb.</p>
+                        <a href="'.$url.'"> go back </a>';
+                die();
+            }
 
-        //GENERATING IMAGE NAME
-        $i = 0;
-        while (file_exists($target_dir.$name."_".$type."_".$i.".jpg")) {
-            $i = $i+1;
-        }
-        $newName = $name."_".$type."_".$i.".jpg";
-        //echo "<p>choses as i: $i </p><p> $newName </p>";
+            //GENERATING IMAGE NAME
+            $i = 0;
+            while (file_exists($target_dir.$name."_".$type."_".$i.".jpg")) {
+                $i = $i+1;
+            }
+            $newName = $name."_".$type."_".$i.".jpg";
+            //echo "<p>choses as i: $i </p><p> $newName </p>";
 
-        //MAKING TARGET DIR
-        $target_file=$target_dir.$newName;
-        //echo "<p>chosen as target file: $target_file</p>";
-        if (isset($_POST["submit"])) {
-        if (!move_uploaded_file($usersFileName,$target_file)) {
-            echo "<p>file not added </p>";
-        }
+            //MAKING TARGET DIR
+            $target_file=$target_dir.$newName;
+            //echo "<p>chosen as target file: $target_file</p>";
+            if (isset($_POST["submit"])) {
+                if (!move_uploaded_file($usersFileName,$target_file)) {
+                    echo "<p>file not added </p>";
+                }
+            }
         }
     }
 
@@ -440,45 +444,41 @@
      * type = new postfix of the video file for on server
      */
     function uploadOneVideo($tmp, $img, $size, $name, $type) {
-        $target_dir = "videos/";
-        $usersFileName = $tmp;
-        $videoType = strtolower(pathinfo($img,PATHINFO_EXTENSION));
-        $url = $_POST["url"];
-        echo "<p>$usersFileName + $imageType</p>";
+        if (!empty($tmp) && !empty($img) && !empty($size)) {
+            $target_dir = "videos/";
+            $usersFileName = $tmp;
+            $videoType = strtolower(pathinfo($img,PATHINFO_EXTENSION));
+            $url = $_POST["url"];
+            echo "<p>$usersFileName + $imageType</p>";
 
-        //CHECKS BEFOREHAND
-        if($videoType != "mv4" && $videoType != "mp4") {
-            echo '<p>mv4, mp4 files are only allowed.</p>
-                    <a href="'.$url.'"> go back </a>';
-            die();
-        }
-        $sizeInfo = getImageSize($usersFileName);
-        if ($sizeInfo[0] > 1000 || $sizeInfo[1] > 1000) {
-            echo '<p>Your image is bigger than 500x500.</p>
-                    <a href="'.$url.'"> go back </a>';
-            die();
-        }
-        if ($size > 50000000000) {
-            echo '<p>your file is larger than 50000kb.</p>
-                    <a href="'.$url.'"> go back </a>';
-            die();
-        }
+            //CHECKS BEFOREHAND
+            if($videoType != "mv4" && $videoType != "mp4") {
+                echo '<p>mv4, mp4 files are only allowed.</p>
+                        <a href="'.$url.'"> go back </a>';
+                die();
+            }
+            if ($size > 50000000000) {
+                echo '<p>your file is larger than 50000kb.</p>
+                        <a href="'.$url.'"> go back </a>';
+                die();
+            }
 
-        //GENERATING IMAGE NAME
-        $i = 0;
-        while (file_exists($target_dir.$name."_".$type."_".$i.".mp4")) {
-            $i = $i+1;
-        }
-        $newName = $name."_".$type."_".$i.".mp4";
-        echo "<p>choses as i: $i </p><p> $newName </p>";
+            //GENERATING IMAGE NAME
+            $i = 0;
+            while (file_exists($target_dir.$name."_".$type."_".$i.".mp4")) {
+                $i = $i+1;
+            }
+            $newName = $name."_".$type."_".$i.".mp4";
+            echo "<p>choses as i: $i </p><p> $newName </p>";
 
-        //MAKING TARGET DIR
-        $target_file=$target_dir.$newName;
-        echo "<p>chosen as target file: $target_file</p>";
-        if (isset($_POST["submit"])) {
-        if (!move_uploaded_file($usersFileName,$target_file)) {
-            echo "<p>file not added </p>";
-        }
+            //MAKING TARGET DIR
+            $target_file=$target_dir.$newName;
+            echo "<p>chosen as target file: $target_file</p>";
+            if (isset($_POST["submit"])) {
+                if (!move_uploaded_file($usersFileName,$target_file)) {
+                    echo "<p>file not added </p>";
+                }
+            }
         }
     }
 
@@ -493,7 +493,7 @@
     function showVideos($name, $type) {
         $i = 0;
           while(file_exists("uploads/videos/".$name."_".$type."_".$i.".mp4")) {
-            echo '  <video class="uploadedImage" alt="user uploaded video" width="200" height="200" controls>
+            echo '  <video class="uploadedImage" alt="user uploaded video" width="150" height="150" controls>
                         <source src="uploads/videos/'.$name."_".$type."_".$i.'.mp4" typ="video/mp4">
                     unsupported in browser
                     </video>';

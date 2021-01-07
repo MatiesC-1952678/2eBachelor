@@ -31,6 +31,7 @@
           <li>test</li>
           <li>test</li>
           <li>test</li>
+          <p> uitleg aan de user & enterprises </p>
         </ul>
       </section>
 

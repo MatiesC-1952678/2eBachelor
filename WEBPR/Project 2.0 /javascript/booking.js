@@ -98,7 +98,7 @@ function checkIdBeforeDate(firstDateId, secondDate, before, after, error) {
 function checkTimeslot(timeslot, startDateId, endDateId, before, after) {
   var startDate = new Date(document.getElementById(startDateId).value);
   var endDate = new Date(document.getElementById(endDateId).value);
-  var dayDiff = (endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24); 
+  var dayDiff = (endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24) + 1; 
   if (timeslot != null && dayDiff > timeslot) {
       changeId(before, after);
       document.getElementById(endDateId).setCustomValidity("The amount of days that you stay exceeds the maximum allowed of days (check timeslot). | Amount of days: "+dayDiff+" Max timeslot: "+timeslot);

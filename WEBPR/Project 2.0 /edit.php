@@ -54,13 +54,13 @@
                     break;
                 case "user":
                     echo '<div class="List">';
-                    showUsers("SELECT * FROM users WHERE users.username = :search", $key2, "Room", "Room-Title", true, true);
+                    showUsers("SELECT * FROM users WHERE users.username = :search", $key1, "Room", "Room-Title", true, true);
                     echo '</div>';
                     include('html/userEditForm.php');
                     break;
                 case "enterprise":
                     echo '<div class="List">';
-                    showUsers("SELECT * FROM enterprises WHERE enterprises.name = :search", $key2, "Room", "Room-Title", false, true);
+                    showUsers("SELECT * FROM enterprises WHERE enterprises.name = :search", $key1, "Room", "Room-Title", false, true);
                     echo '</div>';
                     include('html/enterpriseEditForm.php');
                     break;

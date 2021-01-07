@@ -53,6 +53,9 @@
             <!-- Upload Image Form -->
             <label>Select an image that you want upload (you can add multiple): (jpg, jpeg, png)</label>
             <input type="file" name="imagesToUpload[]" accept="image/jpeg,image/jpg,image/png" multiple>
+            <!-- Upload Video Form -->
+            <label>Select videos that you want upload (you can add multiple): (mv4, mp4)</label>
+            <input type="file" name="videosToUpload[]" accept="video/mv4,video/mp4" multiple>
             <input type="submit" name="submit" value="Add Hotel" onmouseover="checkAllHotel()">
         </form>
     </div>
@@ -85,6 +88,9 @@
             <!-- Upload Image Form -->
             <label>Select an image that you want upload (you can add multiple): (jpg, jpeg, png)</label>
             <input type="file" name="imagesToUpload[]" accept="image/jpeg,image/jpg,image/png" multiple>
+            <!-- Upload Video Form -->
+            <label>Select videos that you want upload (you can add multiple): (mv4, mp4)</label>
+            <input type="file" name="videosToUpload[]" accept="video/mv4,video/mp4" multiple>
             <input type="submit" name="submit" value="Add Room" onmouseover="checkAllRoom()">
         </form>
     </div>

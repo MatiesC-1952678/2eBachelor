@@ -1,3 +1,6 @@
+if (document.getElementById('mapH'))   
+    checkMap();
+
 function switchElements() {
     if (document.getElementById("DateRadio").checked || document.getElementById("DateRoomRadio").checked) {
         document.getElementById("searchS").id = "searchH";
@@ -8,8 +11,17 @@ function switchElements() {
     }
 }
 
+function checkMap() {
+    var checkbox = document.getElementById("MapBox");
+    if (checkbox != null && !checkbox.checked) 
+        document.getElementById("map").id = "mapH";
+    else 
+        document.getElementById("mapH").id = "map";
+}
+
 var search = document.getElementById("searchbar");
-search.addEventListener("input", xmlRequest, false);
+if (search != null)
+    search.addEventListener("input", xmlRequest, false);
 
 function xmlRequest() {
     var xmlhttp = new XMLHttpRequest();
@@ -27,16 +39,14 @@ function xmlRequest() {
             id = current.id.substring(0, current.id.length-5);
         }
     } 
-
     xmlhttp.send("search="+search.value+"&type="+id);
-
 }
 
 function showResult(xmlhttp) {
     if ((xmlhttp) && (xmlhttp.readyState == 4) && (xmlhttp.status == 200)) {
         if (xmlhttp.responseText == "0")
-            document.getElementById("List").setCustomValidity("Error accessing db");
+            document.getElementsByClassName("List")[0].setCustomValidity("Error accessing db");
         else
-            document.getElementById("List").innerHTML = xmlhttp.responseText;
+            document.getElementsByClassName("List")[0].innerHTML = xmlhttp.responseText;
     }
 }
