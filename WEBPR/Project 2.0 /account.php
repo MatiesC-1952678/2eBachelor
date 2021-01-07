@@ -51,7 +51,10 @@
 
       <!-- Uploaded Images -->
       <div class="userImages">
-        <?php showImages($_SESSION["name"], $_SESSION["typeLogged"]); ?>
+        <?php 
+        showImages($_SESSION["name"], $_SESSION["typeLogged"]);
+        showVideos($_SESSION["name"], $_SESSION["typeLogged"]); 
+        ?>
       </div>
 
       <!-- Upload Image Form -->
@@ -59,21 +62,23 @@
         <input type="hidden" name="name" value=<?php echo $_SESSION["name"]?>>
         <input type="hidden" name="type" value=<?php echo $_SESSION["typeLogged"]?>>
         <input type="hidden" name="url" value="../account.php">
-        <label>Select an image that you want upload (you can add multiple): (jpg, jpeg, png)</label>
+        <label>Select images that you want upload (you can add multiple): (jpg, jpeg, png)</label>
         <input type="file" name="imagesToUpload[]" accept="image/jpeg,image/jpg,image/png" multiple>
         <input type="submit" name="submit" value="Upload Image">
       </form>
 
-      <div class="List">
-      <p class="title">All user bookings</p>
-        <?php
-          showBookings("SELECT * FROM bookings,hotels WHERE hotels.belongstoenterprise = :room AND hotels.name = bookings.hotelname", $_SESSION["name"], "");
-        ?>
+      <!-- Upload Image Form -->
+      <form class="boxed" id="UploadVideoForm" action="uploads/uploadVideo.php" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="name" value=<?php echo $_SESSION["name"]?>>
+        <input type="hidden" name="type" value=<?php echo $_SESSION["typeLogged"]?>>
+        <input type="hidden" name="url" value="../account.php">
+        <label>Select videos that you want upload (you can add multiple): (mv4, mp4)</label>
+        <input type="file" name="videosToUpload[]" accept="video/mv4,video/mp4" multiple>
+        <input type="submit" name="submit" value="Upload Video">
+      </form>
+
+      <?php include("php/footer.php"); ?>
     </div>
-
-    <?php include("php/footer.php"); ?>
-
   </div>
-</div>
 </body>
 </html>

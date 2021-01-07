@@ -47,7 +47,7 @@
 
     $datediff = round((strtotime($endDateChosen) - strtotime($startDateChosen)) / (60 * 60 * 24));
     echo "<p> your days amount staying: ".$datediff.' max amount staying: '.$max;
-    if($datediff > $max) 
+    if(!empty($max) && $datediff > $max) 
       throw new Exception("your chosen timeslot is bigger than the max (meaning you stay more days than allowed)");
 
     echo "<p> checking overlaps with other bookings </p>";

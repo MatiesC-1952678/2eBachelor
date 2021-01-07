@@ -1,8 +1,8 @@
 /* Header */
 .LogoAll {
     margin-top: -10px;
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 2%;
+    margin-right: 2%;
     margin-bottom: 5%;
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
@@ -15,18 +15,18 @@
   
 .Logo {
     float: left;
-    padding-left: 20px;
-    padding-top: 20px;
+    padding-left: 10px;
+    padding-top: 10px;
     width: 130px;
     height: 80px;
 }
 
 .LogoSmaller {
     float: left;
-    padding-left: 20px;
-    padding-top: 20px;
-    width: 100px;
-    height: 66px;
+    padding-left: 10px;
+    padding-top: 30px;
+    width: 80px;
+    height: 53.3px;
 }
 
 .LogoTitle {
@@ -42,6 +42,7 @@
 .HeaderNav {
     margin-top: 50px;
     margin-right: 10px;
+    margin-bottom: 20px;
     float: right;
 }
 
@@ -63,7 +64,7 @@
 }
 
 .icon {
-    margin: 10px;
+    margin: 7px;
 }
 
 .nav {

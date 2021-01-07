@@ -12,7 +12,7 @@
                 echo "unsuccesfully queried bookings";
             while ($row = $sth->fetch(PDO::FETCH_NUM)) {
                 $newDes = $description.' <a href="rating.php?room='.urlencode($row[1]).'&hotel='.urlencode($row[2]).'"> Rate the '.$row[1].' from the '.$row[2].' hotel </a>';
-                uploadNotification($user, $newDes, date('Y-m-d'), date('H:i:s'), $row[1], $row[2]);
+                uploadNotification($row[0], $newDes, $row[1], $row[2], date('Y-m-d H:i:s'));
             }
         } catch (PDOException $e) {
             print "Error! " . $e->getMessage() . "\n";
@@ -20,13 +20,12 @@
         }
     }
 
-    function uploadNotification($name, $description, $date, $time, $room, $hotel) {
+    function uploadNotification($name, $description, $room, $hotel, $time) {
         try {
             $conn = new PDO( "pgsql:host=" . DB_HOST . ";port=5432;dbname=" . DB_NAME , DB_USER, DB_PASSWORD);
-            $sth = $conn->prepare("INSERT INTO notifications VALUES(:sentto, :description, :date, :time, :room, :hotel);");
+            $sth = $conn->prepare("INSERT INTO notifications VALUES(:sentto, :description, :room, :hotel, :time);");
             $sth->bindParam(':sentto', $name, PDO::PARAM_STR, strlen($name));
             $sth->bindParam(':description', $description, PDO::PARAM_STR, strlen($description));
-            $sth->bindParam(':date', $date, PDO::PARAM_STR, strlen($date));
             $sth->bindParam(':time', $time, PDO::PARAM_STR, strlen($time));
             $sth->bindParam(':room', $room, PDO::PARAM_STR, strlen($room));
             $sth->bindParam(':hotel', $hotel, PDO::PARAM_STR, strlen($hotel));

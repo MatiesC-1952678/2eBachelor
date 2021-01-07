@@ -1,11 +1,12 @@
 <?php
   session_start();
   require 'php/reusables.php';
+  require 'php/timeslots.php';
   checkSession($_SESSION["typeLogged"], "user", false, "php/logOut.php", "You need to be logged in as a user to make a booking");
   $room = $_GET["roomName"];
   $hotel = $_GET["hotelName"];
-  $startDate = $_GET["startdate"];
-  $endDate = $_GET["enddate"];
+  $bookStart = $_GET["start"];
+  $bookEnd = $_GET["end"];
 ?>
 
 <!DOCTYPE html>
@@ -37,6 +38,10 @@
         $timeslot = $array[0];
       $startDate = $array[1];
       $endDate = $array[2];
+      if (!isset($bookStart) || !isset($bookEnd)) {
+        $bookStart = $startDate;
+        $bookEnd = $endDate;
+      }
     ?>
     <div class="List">
       <p class="title"> All the available timeslots (these have either the max timeslot or go for 5 days at a time)</p>
@@ -53,9 +58,9 @@
       <input type="hidden" name="roomName" value="<?php echo $room?>">
       <input type="hidden" name="hotelName" value="<?php echo $hotel?>">
       <label for="startDate">The date you want to start booking your room</label>
-      <input type="date" id="startDate" name="startDate" value="<?php echo $startDate?>" onblur="checkBooking(<?php echo $timeslot.',\''.$startDate.'\',\''.$endDate.'\''?>)">
+      <input type="date" id="startDate" name="startDate" value="<?php echo $bookStart?>" onblur="checkBooking(<?php echo $timeslot.',\''.$startDate.'\',\''.$endDate.'\''?>)">
       <label for="endDate">The date you want to stop booking your room</label>
-      <input type="date" id="endDate" name="endDate" value="<?php echo $endDate?>" onblur="checkBooking(<?php echo $timeslot.',\''.$startDate.'\',\''.$endDate.'\''?>)">
+      <input type="date" id="endDate" name="endDate" value="<?php echo $bookEnd?>" onblur="checkBooking(<?php echo $timeslot.',\''.$startDate.'\',\''.$endDate.'\''?>)">
       <input type="submit" name="submit" value="Reserve Room">
     </form>
     <?php include("php/footer.php") ?>

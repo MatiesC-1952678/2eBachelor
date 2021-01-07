@@ -104,6 +104,10 @@ input {
   background-color: lightblue;
 }
 
+.red {
+  background-color: red;
+}
+
 /* Footer */
 footer {
   border-top-left-radius: 15px;

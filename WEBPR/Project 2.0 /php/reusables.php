@@ -99,7 +99,7 @@
         if (isset($description))
             echo '<li> Description: '.$description.'</li>';
         if (isset($start) && isset($end))
-            echo '<li> Availability (overrides hotel):  '.$start.' - '.$end.'</li>';
+            echo '<li> Availability:  '.$start.' - '.$end.' (overrides hotel) </li>';
         if (isset($max))
             echo '<li> Max Timeslot: '.$max.'</li>';
                 if ($canBeBooked) {
@@ -145,9 +145,9 @@
         echo      '</ul></article>';
     }
 
-    function echoNotification($class, $titleClass, $description, $date, $time, $room, $hotel) {
+    function echoNotification($class, $titleClass, $description, $room, $hotel, $time) {
         echo    '<article class="'.$class.'">
-                    <h1 class="'.$titleClass.'">'.$room.' - '.$date.'  '.$time.'</h1>
+                    <h1 class="'.$titleClass.'">'.$room.' - '.$time.'</h1>
                     <p> Hotel: '.$hotel.'</p>
                     <p> Description: '.$description.' </p>
                     </article>';
@@ -181,12 +181,6 @@
                 <a href="message.php?user='.urlencode($bookedby).'">Send a message</a>
                 <p> Hotel: '.$hotel.' -  Room: '.$room.'</p>
                 <p> Unavailable: '.$startdate.' - '.$enddate.' </p>
-                </article>';
-    }
-
-    function echoTimeslot($start, $timeslot) {
-        echo    '<article class="Room">
-                <p class="Room-Title">'.$start.' - '.date('Y-m-d', strtotime($start. " + $timeslot days")).'</p>
                 </article>';
     }
 
@@ -252,76 +246,6 @@
         }
     }
 
-    function showTimeslots($sql, $room, $hotel) {
-        try {
-            $conn = new PDO( "pgsql:host=" . DB_HOST . ";port=5432;dbname=" . DB_NAME , DB_USER, DB_PASSWORD);
-            $sth = $conn->prepare($sql);
-            $sth->bindParam(':room', $room, PDO::PARAM_STR, strlen($room));
-            $sth->bindParam(':hotel', $hotel, PDO::PARAM_STR, strlen($hotel));
-            if (!$sth->execute())
-                throw new PDOException('An error occurred');
-            $row = $sth->fetch( PDO::FETCH_NUM );
-
-            //SET VARIABLES
-            $startDate = $row[2];
-            $endDate = $row[3];
-            $timeslot = $row[4];
-            echo "$startDate $endDate ";
-            if (empty($startDate) || empty($enddate)) {
-                //echo "I came here";
-                $startDate = $row[0];
-                $endDate = $row[1];
-            }
-            if (empty($timeslot)) {
-                $timeslot = 5;
-            }
-            $dates = getBookingDates($room, $hotel);
-            //echo "$startDate $endDate ";
-            if (!empty($dates)) {
-                makeTimeslotPeriod($startDate, $dates[0], $timeslot);
-                for ($i = 1; $i < (count($dates)/2)-1; $i+=2) {
-                    makeTimeslotPeriod($dates[$i], $dates[$i+1], $timeslot);
-                }
-                makeTimeslotPeriod($dates[count($dates)-1], $endDate, $timeslot);
-            } else {
-                makeTimeslotPeriod($startDate, $endDate, $timeslot);
-            }
-
-            
-        } catch (PDOException $e) {
-            print "Error! " . $e->getMessage() . "\n";
-            die();
-        }
-    }
-
-    function getBookingDates($room, $hotel) {
-        try {
-            $conn = new PDO( "pgsql:host=" . DB_HOST . ";port=5432;dbname=" . DB_NAME , DB_USER, DB_PASSWORD);
-            $sth = $conn->prepare("SELECT startd,endd FROM bookings WHERE roomname = :room AND hotelname = :hotel");
-            $sth->bindParam(':room', $room, PDO::PARAM_STR, strlen($room));
-            $sth->bindParam(':hotel', $hotel, PDO::PARAM_STR, strlen($hotel));
-            if (!$sth->execute())
-                throw new PDOException('An error occurred');
-            return $sth->fetch( PDO::FETCH_NUM );
-        } catch (PDOException $e) {
-            print "Error! " . $e->getMessage() . "\n";
-            die();
-        }
-    }
-
-    function makeTimeslotPeriod($start, $end, $timeslot) {
-        $dayDiff = round((strtotime($end) - strtotime($start)) / (60 * 60 * 24));
-        $slotAmount = floor($dayDiff/$timeslot);
-        echo "daydif: $dayDiff slotamount: $slotAmount start: $start end: $end timeslot: $timeslot";
-        for ($i = 0; $i < $slotAmount; $i++) {
-            $dayAmount = $i * $timeslot;
-            echoTimeslot(date('Y-m-d', strtotime($start. " + $dayAmount days")), $timeslot);
-        }
-        $endDay = $timeslot * $dayDiff;
-        echo "endday: $endDay";
-        echoTimeslot(strtotime($start." + $endDay days"), $dayDiff % $timeslot);
-    }
-
     function showBookings($sql, $room, $hotel) {
         try {
             $conn = new PDO( "pgsql:host=" . DB_HOST . ";port=5432;dbname=" . DB_NAME , DB_USER, DB_PASSWORD);
@@ -364,12 +288,12 @@
     function showNotifications() {
         try {
             $conn = new PDO( "pgsql:host=" . DB_HOST . ";port=5432;dbname=" . DB_NAME , DB_USER, DB_PASSWORD);
-            $sth = $conn->prepare("SELECT * FROM notifications WHERE sentto = :name");
+            $sth = $conn->prepare("SELECT * FROM notifications WHERE sentto = :name ORDER BY time");
             $sth->bindParam(':name', $_SESSION["name"], PDO::PARAM_STR, strlen($_SESSION["name"]));
             if (!$sth->execute())
                 echo '<p> error getting notifications </p>';
             while ($row = $sth->fetch(PDO::FETCH_NUM)) {
-                echoNotification("RoomNonFloat", "Room-Title", $row[1], $row[2], $row[3], $row[4], $row[5]);
+                echoNotification("RoomNonFloat", "Room-Title", $row[1], $row[2], $row[3], $row[4]);
             }
         } catch (PDOException $e) {
             print "Error! " . $e->getMessage() . "\n";
@@ -483,7 +407,7 @@
                     <a href="'.$url.'"> go back </a>';
             die();
         }
-        if ($_FILES["imageToUpload"]["size"] > 50000000) {
+        if ($size > 50000000) {
             echo '<p>your file is larger than 50000kb.</p>
                     <a href="'.$url.'"> go back </a>';
             die();
@@ -507,12 +431,74 @@
         }
     }
 
+    /**
+     * upload one video at a time
+     * tmp = tmp name of the file
+     * img = the real name of the file
+     * size = size
+     * name = new prefix of the video file for on server
+     * type = new postfix of the video file for on server
+     */
+    function uploadOneVideo($tmp, $img, $size, $name, $type) {
+        $target_dir = "videos/";
+        $usersFileName = $tmp;
+        $videoType = strtolower(pathinfo($img,PATHINFO_EXTENSION));
+        $url = $_POST["url"];
+        echo "<p>$usersFileName + $imageType</p>";
+
+        //CHECKS BEFOREHAND
+        if($videoType != "mv4" && $videoType != "mp4") {
+            echo '<p>mv4, mp4 files are only allowed.</p>
+                    <a href="'.$url.'"> go back </a>';
+            die();
+        }
+        $sizeInfo = getImageSize($usersFileName);
+        if ($sizeInfo[0] > 1000 || $sizeInfo[1] > 1000) {
+            echo '<p>Your image is bigger than 500x500.</p>
+                    <a href="'.$url.'"> go back </a>';
+            die();
+        }
+        if ($size > 50000000000) {
+            echo '<p>your file is larger than 50000kb.</p>
+                    <a href="'.$url.'"> go back </a>';
+            die();
+        }
+
+        //GENERATING IMAGE NAME
+        $i = 0;
+        while (file_exists($target_dir.$name."_".$type."_".$i.".mp4")) {
+            $i = $i+1;
+        }
+        $newName = $name."_".$type."_".$i.".mp4";
+        echo "<p>choses as i: $i </p><p> $newName </p>";
+
+        //MAKING TARGET DIR
+        $target_file=$target_dir.$newName;
+        echo "<p>chosen as target file: $target_file</p>";
+        if (isset($_POST["submit"])) {
+        if (!move_uploaded_file($usersFileName,$target_file)) {
+            echo "<p>file not added </p>";
+        }
+        }
+    }
+
     function showImages($name, $type) {
-          $i = 0;
-          while(file_exists("uploads/images/".$name."_".$type."_".$i.".jpg")) {
-            echo '<img class="uploadedImage" src="uploads/images/'.$name."_".$type."_".$i.'.jpg" alt="user uploaded image" width="70" height="70">';
+        $i = 0;
+        while(file_exists("uploads/images/".$name."_".$type."_".$i.".jpg")) {
+        echo '<img class="uploadedImage" src="uploads/images/'.$name."_".$type."_".$i.'.jpg" alt="user uploaded image" width="70" height="70">';
+        $i += 1;
+        }
+    }
+
+    function showVideos($name, $type) {
+        $i = 0;
+          while(file_exists("uploads/videos/".$name."_".$type."_".$i.".mp4")) {
+            echo '  <video class="uploadedImage" alt="user uploaded video" width="200" height="200" controls>
+                        <source src="uploads/videos/'.$name."_".$type."_".$i.'.mp4" typ="video/mp4">
+                    unsupported in browser
+                    </video>';
             $i += 1;
-          }
+        }
     }
 
     function pdo($sql, $key1 = "", $key2 = "", $key3 = "") {

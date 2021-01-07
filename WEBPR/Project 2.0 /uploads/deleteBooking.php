@@ -27,7 +27,7 @@
       throw new PDOException('An error occurred');
     echo "  $roomName $hotelName  ".date('Y-m-d').date('H:i:s');
     while ($row = $sth->fetch(PDO::FETCH_NUM)) {
-      uploadNotification($row[0], "The room $roomName from the hotel $hotelName that you were interested in is now available for booking", date('Y-m-d'), date('H:i:s'), $roomName, $hotelName);
+      uploadNotification($row[0], "The room $roomName from the hotel $hotelName that you were interested in is now available for booking", $roomName, $hotelName, date('Y-m-d H:i:s'));
     }
     echo 'added all notifications';
     header("location: ../notifications.php");
