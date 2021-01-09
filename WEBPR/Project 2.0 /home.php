@@ -69,7 +69,6 @@
     <?php include("php/footer.php") ?>
 
   </div>
-  <script src='https://unpkg.com/@turf/turf/turf.min.js'></script>
   <script src="javascript/home.js"></script>
   <?php if (isset($_SESSION["typeLogged"])) { echo '<script src="javascript/map.js"></script>'; } ?>
 </body>

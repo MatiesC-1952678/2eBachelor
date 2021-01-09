@@ -9,16 +9,15 @@
             $sth = $conn->prepare("SELECT * FROM countries");
             if (!$sth->execute())
                 throw new PDOException('An error occurred');
-            echo '<p>All the available countries*</p><ul class="radioList">';
+            echo '<p>All the available countries*</p>';
             if ($nonEdit)
                 $func = "checkAllHotel()";
             else
                 $func = "checkEditHotel()";
             while ($row = $sth->fetch( PDO::FETCH_NUM ) ) {
-            echo '<label for="'.$row[0].'">'.$row[0].'</label class="radioElements">
-                    <input type="radio" class="radioCountry" id="'.$row[0].'" name="hotelCountry" value="'.$row[0].'" onclick="'.$func.'" class="radioElements">';
+            echo '<label for="'.urlencode($row[0]).'">'.htmlspecialchars($row[0]).'</label class="radioElements">
+                    <input type="radio" class="radioCountry" id="'.urlencode($row[0]).'" name="hotelCountry" value="'.htmlspecialchars($row[0]).'" onclick="'.$func.'" class="radioElements">';
             }
-            echo "</ul>";
         } catch (PDOException $e) {
             print "Error! " . $e->getMessage() . "\n";
             die();
@@ -37,19 +36,18 @@
                 $func = "checkAllRoom()";
             else
                 $func = "checkEditRoom()";
-            echo '<p>All the available hotels*</p><ul>';
+            echo '<p>All the available hotels*</p>';
             while ($row = $sth->fetch( PDO::FETCH_NUM ) ) {
-            echo '<label for="'.$row[1].'">'.$row[1].'</label>
-                    <input type="radio" class="radioHotel" id="'.$row[1].'" name="hotelName" value="'.$row[1].'" onclick="'.$func.'">';
+            echo '<label for="'.urlencode($row[1]).'">'.htmlspecialchars($row[1]).'</label>
+                    <input type="radio" class="radioHotel" id="'.urlencode($row[1]).'" name="hotelName" value="'.htmlspecialchars($row[1]).'" onclick="'.$func.'">';
             }
-            echo "</ul>";
         } catch (PDOException $e) {
             print "Error! " . $e->getMessage() . "\n";
             die();
         }
     }
 
-    function likes($roomName, $hotelName) {
+    function likes($roomName, $hotelName, $isUl = true) {
         try {
             if ($_SESSION["typeLogged"] == "user") {
                 $user = $_SESSION["name"];
@@ -61,10 +59,14 @@
                 if (!$sth->execute())
                     throw new PDOException('An error occurred');
                 $row = $sth->fetch(PDO::FETCH_NUM);
+                if ($isUl)
+                    echo '<li>';
                 if (empty($row))
                     echo '<a href="uploads/uploadLike.php?room='.urlencode($roomName).'&hotel='.urlencode($hotelName).'&status=uninterested">uninterested</a>';
                 else 
                     echo '<a href="uploads/uploadLike.php?room='.urlencode($roomName).'&hotel='.urlencode($hotelName).'&status=interested">interested</a>';
+                if ($isUl)
+                    echo '</li>';
             }
         }  catch (PDOException $e) {
             print "Error! " . $e->getMessage() . "\n";
@@ -74,12 +76,12 @@
 
     function echoHotel($class, $titleClass, $title, $enterprise, $description, $startDate, $endDate, $startTime, $endTime, $country, bool $editable = false) {
         echo '<article class="'.$class.'">
-                <h1 class="'.$titleClass.'">'.$title.'</h1><ul>
-                <li> Enterprise: <a href="profile.php?name='.$enterprise.'&type=enterprise">'.$enterprise.'</a></li>
-                <li> Description: '.$description.'</li>
+                <h2 class="'.$titleClass.' title">'.htmlspecialchars($title).'</h2><ul>
+                <li> Enterprise: <a href="profile.php?name='.urlencode($enterprise).'&type=enterprise">'.htmlspecialchars($enterprise).'</a></li>
+                <li> Description: '.htmlspecialchars($description).'</li>
                 <li> Availability: '.$startDate.' - '.$endDate.' </li>
                 <li> Opening hours: '.$startTime.' - '.$endTime.'</li> 
-                <li> Country: '.$country.'</li>';
+                <li> Country: '.htmlspecialchars($country).'</li>';
         if ($editable) {
             echo '<li><a href="edit.php?key1='.urlencode($enterprise).'&key2='.urlencode($title).'&type=hotel"> edit </a></li>
                 <li><a href="uploads/delete.php?type=hotel&key1='.urlencode($enterprise).'&key2='.urlencode($title).'"> delete </a></li>';
@@ -93,12 +95,12 @@
     //COULD ADD MORE DATA LIKE: start date, end date, time, country, ... -> alles van hotel
     function echoRoom($class, $titleClass, $title, $enterprise, $hotel, $cost, $description, $start, $end, $max, $long = 0, $lat = 0, bool $canBeBooked = false, bool $editable = false) {
         echo '<article class="'.$class.'">
-                <h1 class="'.$titleClass.'">'.$title.'</h1><ul>
-                <li> Enterprise: <a href="profile.php?name='.$enterprise.'&type=enterprise">'.$enterprise.'</a></li>
-                <li> Hotel: '.$hotel.'</li>
+                <h2 class="'.$titleClass.' title">'.htmlspecialchars($title).'</h2><ul>
+                <li> Enterprise: <a href="profile.php?name='.urlencode($enterprise).'&type=enterprise">'.htmlspecialchars($enterprise).'</a></li>
+                <li> Hotel: '.htmlspecialchars($hotel).'</li>
                 <li> Cost: €'.$cost.'</li>';
         if (!empty($description))
-            echo '<li> Description: '.$description.'</li>';
+            echo '<li> Description: '.htmlspecialchars($description).'</li>';
         if (!empty($start) && !empty($end))
             echo '<li> Availability:  '.$start.' - '.$end.' (overrides hotel) </li>';
         if (!empty($max))
@@ -122,12 +124,12 @@
 
     function echoUser($class, $titleClass, $name, $email, $password, bool $editable = false) {
         echo    '<article class="'.$class.'">
-                    <h1 class="'.$titleClass.'">'.$name.'</h1><ul>
+                    <h2 class="'.$titleClass.' title">'.htmlspecialchars($name).'</h2><ul>
                     <li><a href="profile.php?name='.urlencode($name).'&type=user">Go to profile</a></li>
                     <li><a href="message.php?user='.urlencode($name).'">Send a message</a></li>';
         if ($editable) {
-            echo   '<li> Email: '.$email.'</li>
-                    <li> Password: '.$password.'</li>
+            echo   '<li> Email: '.htmlspecialchars($email).'</li>
+                    <li> Password: '.htmlspecialchars($password).'</li>
                     <li><a href="edit.php?key1='.urlencode($name).'&type=user"> edit </a></li>
                     <li><a href="uploads/delete.php?type=user&key1='.urlencode($name).'"> delete </a></li>';
         }
@@ -136,13 +138,13 @@
 
     function echoEnterprise($class, $titleClass, $name, $description, $email, $phone, $password, bool $editable = false) {
         echo    '<article class="'.$class.'">
-                    <h1 class="'.$titleClass.'">'.$name.'</h1><ul>
-                    <li> Description: '.$description.'</li>
-                    <li> Email: '.$email.'</li>
-                    <li> Phone: '.$phone.'</li>
+                    <h2 class="'.$titleClass.' title">'.htmlspecialchars($name).'</h2><ul>
+                    <li> Description: '.htmlspecialchars($description).'</li>
+                    <li> Email: '.htmlspecialchars($email).'</li>
+                    <li> Phone: '.htmlspecialchars($phone).'</li>
                     <li><a href="profile.php?name='.urlencode($name).'&type=enterprise">Go to profile</a></li>';
         if ($editable) {
-            echo   '<li> Password: '.$password.'</li>
+            echo   '<li> Password: '.htmlspecialchars($password).'</li>
                     <li><a href="edit.php?key1='.urlencode($name).'&type=enterprise"> edit </a></li>
                     <li><a href="uploads/delete.php?type=enterprise&key1='.urlencode($name).'"> delete </a></li>';
         }
@@ -151,8 +153,8 @@
 
     function echoNotification($class, $titleClass, $description, $room, $hotel, $time) {
         echo    '<article class="'.$class.'">
-                    <h1 class="'.$titleClass.'">'.$room.' - '.$time.'</h1>
-                    <p> Hotel: '.$hotel.'</p>
+                    <p class="'.$titleClass.' title">'.htmlspecialchars($room).' - '.$time.'</p>
+                    <p> Hotel: '.htmlspecialchars($hotel).'</p>
                     <p> Description: '.$description.' </p>
                     </article>';
     }
@@ -166,24 +168,24 @@
             $uclass = "Left";
         }
         echo 
-        '<p class="'.$uclass.'">'.$user.' '.$time.'</p>
-            <p class="'.$mclass.'">'.$message.'</p>';
+        '<p class="'.$uclass.'">'.htmlspecialchars($user).' '.$time.'</p>
+            <p class="'.$mclass.'">'.htmlspecialchars($message).'</p>';
     }
 
     function echoRating($ratedby, $review, $rating) {
         echo    '<article class="RoomNonFloat">
-                <h1 class="Room-Title">'.$ratedby.'</h1>
-                <p> Review: '.$review.' </p>
+                <h2 class="Room-Title title">'.htmlspecialchars($ratedby).'</h2>
+                <p> Review: '.htmlspecialchars($review).' </p>
                 <p> Rating: '.$rating.' stars </p>
                 </article>';
     }
 
     function echoBooking($bookedby, $startdate, $enddate, $room, $hotel) {
         echo    '<article class="Room">
-                <h1 class="Room-Title">'.$bookedby.'</h1>
+                <h2 class="Room-Title title">'.htmlspecialchars($bookedby).'</h2>
                 <a href="profile.php?name='.urlencode($bookedby).'&type=user">Go to profile</a>
                 <a href="message.php?user='.urlencode($bookedby).'">Send a message</a>
-                <p> Hotel: '.$hotel.' -  Room: '.$room.'</p>
+                <p> Hotel: '.htmlspecialchars($hotel).' -  Room: '.htmlspecialchars($room).'</p>
                 <p> Unavailable: '.$startdate.' - '.$enddate.' </p>
                 </article>';
     }
@@ -394,11 +396,12 @@
      */
     function uploadOneImage($tmp, $img, $size, $name, $type) {
         if (!empty($tmp) && !empty($img) && !empty($size)) {
+            $name = md5($name);
             $target_dir = "images/";
             $usersFileName = $tmp;
             $imageType = strtolower(pathinfo($img,PATHINFO_EXTENSION));
             $url = $_POST["url"];
-            //echo "<p>$usersFileName + $imageType</p>";
+            echo "<p>$usersFileName + $imageType</p>";
 
             //CHECKS BEFOREHAND
             if($imageType != "jpg" && $imageType != "png" && $imageType != "jpeg") {
@@ -424,11 +427,11 @@
                 $i = $i+1;
             }
             $newName = $name."_".$type."_".$i.".jpg";
-            //echo "<p>choses as i: $i </p><p> $newName </p>";
+            echo "<p>choses as i: $i </p><p> $newName </p>";
 
             //MAKING TARGET DIR
             $target_file=$target_dir.$newName;
-            //echo "<p>chosen as target file: $target_file</p>";
+            echo "<p>chosen as target file: $target_file</p>";
             if (isset($_POST["submit"])) {
                 if (!move_uploaded_file($usersFileName,$target_file)) {
                     echo "<p>file not added </p>";
@@ -447,11 +450,12 @@
      */
     function uploadOneVideo($tmp, $img, $size, $name, $type) {
         if (!empty($tmp) && !empty($img) && !empty($size)) {
+            $name = md5($name);
             $target_dir = "videos/";
             $usersFileName = $tmp;
             $videoType = strtolower(pathinfo($img,PATHINFO_EXTENSION));
             $url = $_POST["url"];
-            echo "<p>$usersFileName + $imageType</p>";
+            //echo "<p>$usersFileName + $imageType</p>";
 
             //CHECKS BEFOREHAND
             if($videoType != "mv4" && $videoType != "mp4") {
@@ -471,11 +475,11 @@
                 $i = $i+1;
             }
             $newName = $name."_".$type."_".$i.".mp4";
-            echo "<p>choses as i: $i </p><p> $newName </p>";
+            //echo "<p>choses as i: $i </p><p> $newName </p>";
 
             //MAKING TARGET DIR
             $target_file=$target_dir.$newName;
-            echo "<p>chosen as target file: $target_file</p>";
+            //echo "<p>chosen as target file: $target_file</p>";
             if (isset($_POST["submit"])) {
                 if (!move_uploaded_file($usersFileName,$target_file)) {
                     echo "<p>file not added </p>";
@@ -485,18 +489,20 @@
     }
 
     function showImages($name, $type) {
+        $name = md5($name);
         $i = 0;
         while(file_exists("uploads/images/".$name."_".$type."_".$i.".jpg")) {
-        echo '<img class="uploadedImage" src="uploads/images/'.$name."_".$type."_".$i.'.jpg" alt="user uploaded image" width="70" height="70">';
-        $i += 1;
+            echo '<img class="uploadedImage" src="uploads/images/'.$name."_".$type."_".$i.'.jpg" alt="user uploaded image" width="70" height="70">';
+            $i += 1;
         }
     }
 
     function showVideos($name, $type) {
+        $name = md5($name);
         $i = 0;
           while(file_exists("uploads/videos/".$name."_".$type."_".$i.".mp4")) {
-            echo '  <video class="uploadedImage" alt="user uploaded video" width="150" height="150" controls>
-                        <source src="uploads/videos/'.$name."_".$type."_".$i.'.mp4" typ="video/mp4">
+            echo '  <video class="uploadedImage" width="150" height="150" controls>
+                        <source src="uploads/videos/'.$name."_".$type."_".$i.'.mp4" type="video/mp4">
                     unsupported in browser
                     </video>';
             $i += 1;

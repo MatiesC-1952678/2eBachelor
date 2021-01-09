@@ -15,24 +15,24 @@ var map = new mapboxgl.Map({
 var coordinatesGeocoder = function (query) {
     // match anything which looks like a decimal degrees coordinate pair
     var matches = query.match(
-    /^[ ]*(?:Lat: )?(-?\d+\.?\d*)[, ]+(?:Lng: )?(-?\d+\.?\d*)[ ]*$/i
+        /^[ ]*(?:Lat: )?(-?\d+\.?\d*)[, ]+(?:Lng: )?(-?\d+\.?\d*)[ ]*$/i
     );
     if (!matches) {
-    return null;
+        return null;
     }
      
     function coordinateFeature(lng, lat) {
-    return {
-    center: [lng, lat],
-    geometry: {
-    type: 'Point',
-    coordinates: [lng, lat]
-    },
-    place_name: 'Lat: ' + lat + ' Lng: ' + lng,
-    place_type: ['coordinate'],
-    properties: {},
-    type: 'Feature'
-    };
+        return {
+            center: [lng, lat],
+            geometry: {
+                type: 'Point',
+                coordinates: [lng, lat]
+            },
+            place_name: 'Lat: ' + lat + ' Lng: ' + lng,
+            place_type: ['coordinate'],
+            properties: {},
+            type: 'Feature'
+        };
     }
      
     var coord1 = Number(matches[1]);
@@ -40,21 +40,20 @@ var coordinatesGeocoder = function (query) {
     var geocodes = [];
      
     if (coord1 < -90 || coord1 > 90) {
-    // must be lng, lat
-    geocodes.push(coordinateFeature(coord1, coord2));
+        // must be lng, lat
+        geocodes.push(coordinateFeature(coord1, coord2));
     }
      
     if (coord2 < -90 || coord2 > 90) {
-    // must be lat, lng
-    geocodes.push(coordinateFeature(coord2, coord1));
+        // must be lat, lng
+        geocodes.push(coordinateFeature(coord2, coord1));
     }
      
     if (geocodes.length === 0) {
-    // else could be either lng, lat or lat, lng
-    geocodes.push(coordinateFeature(coord1, coord2));
-    geocodes.push(coordinateFeature(coord2, coord1));
+        // else could be either lng, lat or lat, lng
+        geocodes.push(coordinateFeature(coord1, coord2));
+        geocodes.push(coordinateFeature(coord2, coord1));
     }
-     
     return geocodes;
 };
 
@@ -73,7 +72,7 @@ map.addControl(geocoder);
 map.on('click', function (e) {
     var long = document.getElementById('longInput');
     var lat = document.getElementById('latInput');
-    document.getElementById('lnglat').innerHTML = "<p> Lat: "+e.lngLat.lat+" - Long: "+e.lngLat.lng+"</p>";
+    document.getElementById('lnglat').innerHTML = "Lat: "+e.lngLat.lat+" - Long: "+e.lngLat.lng;
     if (long != null && lat != null) {
         long.value = e.lngLat.lng;
         lat.value = e.lngLat.lat;
@@ -102,14 +101,11 @@ function showMarkers(xmlhttp, long, lat) {
                     createMarker(room.long, room.lat, room.name, room.belongstohotel)
                 });
             } else {
-                var from = turf.point([long, lat]);
-                var options = {units: 'kilometers'};
                 var distancePlusInfo = new Array();
                 var echo = "";
                 output.forEach(room => {
                     if (room.long != 0 && room.lat != 0) {
-                        var to = turf.point([room.long, room.lat])
-                        distancePlusInfo.push(new Array(turf.distance(from, to, options), room));
+                        distancePlusInfo.push(new Array(calcDistance(lat, long, room.lat, room.long), room));
                     }
                 });
                 distancePlusInfo.sort( function(a, b) {
@@ -126,7 +122,7 @@ function showMarkers(xmlhttp, long, lat) {
                 for (var i = 0; i < distancePlusInfo.length; i++) {
                     echo += '<article class="Room"><p class="Room-Title title">'+distancePlusInfo[i][1][1]+'</p><ul><li> Distance: '+distancePlusInfo[i][0]+'km </li><li> Hotel: '+distancePlusInfo[i][1][0]+'</li><li> Cost: €'+distancePlusInfo[i][1][3]+'</li>';
                     if (distancePlusInfo[i][1][2] != "")
-                        echo += '<li> Description: '+$description+'</li>';
+                        echo += '<li> Description: '+distancePlusInfo[i][1][2]+'</li>';
                     if (distancePlusInfo[i][1][4] != "" && distancePlusInfo[i][1][5] != "")
                         echo += '<li> Availability:  '+distancePlusInfo[i][1][4]+' - '+distancePlusInfo[i][1][5]+' (overrides hotel) </li>';
                     if (distancePlusInfo[i][1][6] != "")
@@ -141,6 +137,23 @@ function showMarkers(xmlhttp, long, lat) {
         } else 
             document.getElementsByClassName("List")[0].setCustomValidity("Error accessing db");
     }
+}
+
+//INSPIRED BY https://stackoverflow.com/questions/18883601/function-to-calculate-distance-between-two-coordinates 
+function calcDistance(lat1, long1, lat2, long2) {
+      var R = 6371; // km
+      var dLat = toRad(lat2-lat1);
+      var dLon = toRad(long2-long1);
+      var lat1 = toRad(lat1);
+      var lat2 = toRad(lat2);
+
+      var first = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
+      return (2 * Math.atan2(Math.sqrt(first), Math.sqrt(1-first))) * R;
+}
+
+    // Converts numeric degrees to radians
+function toRad(Value) {
+    return Value * Math.PI / 180;
 }
 
 function createMarker(long, lat, room, hotel) {

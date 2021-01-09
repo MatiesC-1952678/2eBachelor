@@ -2,11 +2,26 @@
   session_start();
   require 'php/globals.php';
   require 'php/reusables.php';
+  require 'php/timeslots.php';
   $type = $_GET["type"];
   $name = $_GET["name"];
   if (!isset($type) || !isset($name)) {
     echoError();
     die();
+  }
+
+  function getAllRooms($enterprise) {
+    try {
+      $conn = new PDO( "pgsql:host=" . DB_HOST . ";port=5432;dbname=" . DB_NAME , DB_USER, DB_PASSWORD);
+      $sth = $conn->prepare("SELECT * FROM hotels,rooms WHERE hotels.belongstoenterprise = :enterprise AND hotels.name = rooms.belongstohotel");
+      $sth->bindParam(':enterprise', $enterprise, PDO::PARAM_STR, strlen($enterprise));
+      if (!$sth->execute())
+          throw new PDOException('An error occurred');
+      return $sth->fetchAll();
+  } catch (PDOException $e) {
+      print "Error! " . $e->getMessage() . "\n";
+      die();
+  }
   }
 ?>
 
@@ -51,6 +66,14 @@
             showHotels("SELECT * FROM hotels WHERE hotels.belongstoenterprise = :enterprise", $name, "Room", "Room-Title");
             echo '</div><p class="title"> Rooms from this enterprise: </p><div class="List">';
             showRooms("SELECT * FROM hotels,rooms WHERE hotels.belongstoenterprise = :name AND rooms.belongstohotel = hotels.name", $name, "Room", "Room-Title", true);
+            echo '</div><p class="title"> Timeslots from these rooms: </p><div class="List">';
+            $rooms = getAllRooms($name);
+            for ($i = 0; $i < count($rooms); $i++) {
+              echo "<p class='title'>".htmlspecialchars($rooms[$i]["name"])."</p>";
+              showTimeslots("SELECT hotels.startdate,hotels.enddate,rooms.startdate,rooms.enddate,rooms.timeslotmax 
+              FROM hotels,rooms
+              WHERE rooms.name = :room AND hotels.name =:hotel AND rooms.belongstohotel = hotels.name", $rooms[$i]["name"], $rooms[$i]["belongstohotel"]);
+            }
             echo '</div>';
           } else {
             echo '<p class="title"> Bookings from this user: </p><div class="List">';

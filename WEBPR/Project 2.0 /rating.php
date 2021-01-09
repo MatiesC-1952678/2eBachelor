@@ -49,6 +49,6 @@
     <?php include("php/footer.php") ?>
 
   </div>
-  <script type="text/javascript" src="javascript/inputChecks.js"></script>
+  <script src="javascript/inputChecks.js"></script>
 </body>
 </html>

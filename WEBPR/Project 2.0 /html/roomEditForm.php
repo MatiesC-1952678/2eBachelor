@@ -13,7 +13,7 @@
     <label for="cost">the cost per day</label>
     <input type="number" id="cost" name="cost" min="0" max="9999999999" value="100" onblur="checkEditRoom()">
     <!-- Map get Long and Lat form -->
-    <label for="map"> the address of your room (either longitude and latidude or an address):</label>
+    <label> the address of your room (either longitude and latidude or an address):</label>
     <div id='map'></div>
     <p id='lnglat'></p>
     <input type="hidden" id="longInput" name="long" value="">
@@ -24,5 +24,5 @@
     If you want to change you starting date, ending date or timeslot you have to delete your room resulting in all your bookings being cancelled. 
     The reason being: previous bookings can not overlap with your new dates and/or timeslot. Write down your room details before deleting!
 </p>
-<script type="text/javascript" src="javascript/management.js"></script>
+<script src="javascript/management.js"></script>
 <script src="javascript/map.js"></script>

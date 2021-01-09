@@ -3,11 +3,15 @@ if (document.getElementById('mapH'))
 
 function switchElements() {
     if (document.getElementById("DateRadio").checked || document.getElementById("DateRoomRadio").checked) {
-        document.getElementById("searchS").id = "searchH";
-        document.getElementById("datepickerH").id = "datepickerS";
+        if (document.getElementById("searchS") != null)
+            document.getElementById("searchS").id = "searchH";
+        if (document.getElementById("datepickerH") != null)
+            document.getElementById("datepickerH").id = "datepickerS";
     } else {
-        document.getElementById("searchH").id = "searchS";
-        document.getElementById("datepickerS").id = "datepickerH";
+        if (document.getElementById("searchH") != null)
+            document.getElementById("searchH").id = "searchS";
+        if (document.getElementById("datepickerS") != null)
+            document.getElementById("datepickerS").id = "datepickerH";
     }
 }
 

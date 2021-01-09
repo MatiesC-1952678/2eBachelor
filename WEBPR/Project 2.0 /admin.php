@@ -28,25 +28,25 @@
 
     <!-- Main Content -->
     <div class="MainContent">
-      <h1> all enterprises on the website </h1>
+      <text class="title"> all enterprises on the website </text>
       <div class="List">
           <?php 
             showUsers("SELECT * FROM enterprises", "", "Room", "Room-Title", false, true);
           ?>
       </div>
-      <h1> all hotels on the website </h1>
+      <text class="title"> all hotels on the website </text>
       <div class="List">
           <?php 
             showHotels("SELECT * FROM hotels", "", "Room", "Room-Title", true);
           ?>
       </div>
-      <h1> all rooms on the website </h1>
+      <text class="title"> all rooms on the website </text>
       <div class="List">
           <?php 
             showRooms("SELECT * FROM hotels,rooms WHERE hotels.name = rooms.belongstohotel", "", "Room", "Room-Title", false, false, true);
           ?>
       </div>
-      <h1> all users on the website </h1>
+      <text class="title"> all users on the website </text>
       <div class="List">
           <?php 
             showUsers("SELECT * FROM users", "", "Room", "Room-Title", true, true);

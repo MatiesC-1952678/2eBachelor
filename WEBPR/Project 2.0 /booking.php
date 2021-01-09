@@ -29,6 +29,16 @@
     <?php include("php/header.php") ?>
 
     <!-- Main Content -->
+    <p> Make sure you don't book over someone else's booking because this will result in an error when making the booking! </p>
+    <form action="uploads/uploadBooking.php" method="post" id="formS">
+      <input type="hidden" name="roomName" value="<?php echo $room?>">
+      <input type="hidden" name="hotelName" value="<?php echo $hotel?>">
+      <label for="startDate">The date you want to start booking your room</label>
+      <input type="date" id="startDate" name="startDate" value="<?php echo $bookStart?>" onblur="checkBooking(<?php echo $timeslot.',\''.$startDate.'\',\''.$endDate.'\''?>)">
+      <label for="endDate">The date you want to stop booking your room</label>
+      <input type="date" id="endDate" name="endDate" value="<?php echo $bookEnd?>" onblur="checkBooking(<?php echo $timeslot.',\''.$startDate.'\',\''.$endDate.'\''?>)">
+      <input type="submit" name="submit" value="Reserve Room">
+    </form>
     <?php
       $results = showSingleRoomAndHotel($room, $hotel);
       $array = explode(" ", $results);
@@ -53,16 +63,6 @@
       <p class="title"> All the other bookings for this room (meaning you can't book on these time periods)</p>
       <?php showBookings("SELECT * FROM bookings WHERE roomname = :room AND hotelname = :hotel", $room, $hotel) ?>
     </div>
-    <p> Make sure you don't book over someone else's booking because this will result in an error when making the booking! </p>
-    <form action="uploads/uploadBooking.php" method="post" id="formS">
-      <input type="hidden" name="roomName" value="<?php echo $room?>">
-      <input type="hidden" name="hotelName" value="<?php echo $hotel?>">
-      <label for="startDate">The date you want to start booking your room</label>
-      <input type="date" id="startDate" name="startDate" value="<?php echo $bookStart?>" onblur="checkBooking(<?php echo $timeslot.',\''.$startDate.'\',\''.$endDate.'\''?>)">
-      <label for="endDate">The date you want to stop booking your room</label>
-      <input type="date" id="endDate" name="endDate" value="<?php echo $bookEnd?>" onblur="checkBooking(<?php echo $timeslot.',\''.$startDate.'\',\''.$endDate.'\''?>)">
-      <input type="submit" name="submit" value="Reserve Room">
-    </form>
     <?php include("php/footer.php") ?>
   </div>
   <script type="text/javascript" src="javascript/booking.js"></script>

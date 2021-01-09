@@ -11,7 +11,7 @@
             if (!$sth->execute())
                 echo "unsuccesfully queried bookings";
             while ($row = $sth->fetch(PDO::FETCH_NUM)) {
-                $newDes = $description.' <a href="rating.php?room='.urlencode($row[1]).'&hotel='.urlencode($row[2]).'"> Rate the '.$row[1].' from the '.$row[2].' hotel </a>';
+                $newDes = $description.' <a href="rating.php?room='.urlencode($row[1]).'&hotel='.urlencode($row[2]).'"> Rate this room </a>';
                 uploadNotification($row[0], $newDes, $row[1], $row[2], date('Y-m-d H:i:s'));
             }
         } catch (PDOException $e) {

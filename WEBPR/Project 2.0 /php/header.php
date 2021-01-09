@@ -5,7 +5,7 @@
   <!-- Logo -->
   <div class="LogoAll sticky">
     <a href="home.php">
-      <img class="Logo" src="resources/ChaseTheSunLogo(0.2).png" alt="The Chase The Sun Logo" width="130" height="80">
+      <img class="Logo" src="resources/ChaseTheSunLogo(0.2).png" alt="The Chase The Sun Logo" width="130" height="130">
       <p class="LogoTitle">Suite Dreams</p>
       <link rel="stylesheet" href="css/header.css">
     </a>
@@ -15,37 +15,35 @@
         <li>
           <a class="Nav-a" href="accessibility.php">
             <img class="icon" src="resources/cog.svg" alt="accessibility" width="30" height="30">
-            <text class="nav">Accessibility</text>
+            <p class="nav">Accessibility</p>
           </a>
         </li>
         <?php
               if ($_SESSION["typeLogged"] == "user") {
                 echo '<li><a class="Nav-a" href="chat.php">
                   <img class="icon" src="resources/chat.svg" alt="Chat Messages" width="30" height="30">
-                  <text class="nav">Chat Messages</text></a></li>';
+                  <p class="nav">Chat Messages</p></a></li>';
                 echo '<li><a class="Nav-a" href="notifications.php">
                     <img class="icon" src="resources/plus.svg" alt="Notifications" width="30" height="30">
-                    <text class="nav">Notifications</text></a></li>';
+                    <p class="nav">Notifications</p></a></li>';
               }
               if ($_SESSION["typeLogged"] == "enterprise") {
                 echo '<li><a class="Nav-a" href="management.php">
                     <img class="icon" src="resources/plus.svg" alt="Management" width="30" height="30">
-                    <text class="nav">Management</text>
-                    </a>
-                    </li>';
+                    <p class="nav">Management</p></a></li>';
               }
             if ($_SESSION["typeLogged"] == "user" || $_SESSION["typeLogged"] == "enterprise") {
               echo '<li>
                 <a class="Nav-a" href="account.php">
                   <img class="icon" src="resources/user.svg" alt="Login" width="30" height="30">
-                  <text class="nav">Account</text>
+                  <p class="nav">Account</p>
                 </a>
               </li>';
             } else {
               echo '<li>
                 <a class="Nav-a" href="login.php">
                   <img class="icon" src="resources/user.svg" alt="Login" width="30" height="30">
-                  <text class="nav">Login</text>
+                  <p class="nav">Login</p>
                 </a>
               </li>';
             }
@@ -54,5 +52,5 @@
     </nav>
   </div>
 </header>
-<script type="text/javascript" src="javascript/header.js"></script>
+<script src="javascript/header.js"></script>
 

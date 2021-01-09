@@ -23,14 +23,14 @@
 
     <!-- Login -->
     <div class="loginPage">
-      <form class="radioButtons" action="" method="post">
-          <!-- user or enterprise choice -->
-          <p>Do you want to register as a User or as a enterprise?</p>
-          <input type="radio" id="customer" name="typeOfUser" value="customer" onclick="showElements()">
-          <label for="customer">User</label>
-          <input type="radio" id="enterprise" name="typeOfUser" value="enterprise" onclick="showElements()">
-          <label for="enterprise">Enterprise</label>
-      </form>
+      
+      <!-- user or enterprise choice -->
+      <p>Do you want to register as a User or as a enterprise?</p>
+      <input type="radio" id="customer" name="typeOfUser" value="customer" onclick="showElements()">
+      <label for="customer">User</label>
+      <input type="radio" id="enterprise" name="typeOfUser" value="enterprise" onclick="showElements()">
+      <label for="enterprise">Enterprise</label>
+      
       <p> if you want to log in using a previous account. Enter your name, email and password. (The other fields are not necessary for entering) </p>
         <!-- user login -->
       <form class="userLogin" action="php/userLogin.php" method="post">
@@ -43,7 +43,7 @@
           <input id="password" type="password" name="password" value="" onblur="checkAllUser()">
           <!-- <label for="stayLogged">Do you want to stay logged in?</label>
           <input id="stayLogged" type="checkbox" value="stayLogged" name="stayLogged"> -->
-          <input id="loginButton" type="submit" name="" value="register/login" onmouseover="checkAllUser()">
+          <input id="userLogin" type="submit" value="register/login" onmouseover="checkAllUser()">
         </div>
       </form>
         <!-- enterprise login -->
@@ -56,16 +56,16 @@
           <label for="enterpriseEmail">Your email (must be valid and between 1 and 50 characters):</label>
           <input type="email" id="enterpriseEmail" name="enterpriseEmail" value="" onblur="checkAllEnterprise()">
           <label for="enterprisePhone">Your enterprise's phonenumber (numbers only and max 50 characters):</label>
-          <input type="phonenumber" id="enterprisePhone" name="enterprisePhone" value="" onblur="checkAllEnterprise()">
+          <input type="tel" id="enterprisePhone" name="enterprisePhone" value="" onblur="checkAllEnterprise()">
           <label for="enterprisePassword">Password (must be between 5 and 50 characters):</label>
           <input id="enterprisePassword" type="password" name="enterprisePassword" value="" onblur="checkAllEnterprise()">
-          <input id="loginButton" type="submit" name="" value="register/login" onmouseover="checkAllEnterprise()">
+          <input id="enterpriseLogin" type="submit" value="register/login" onmouseover="checkAllEnterprise()">
         </div>
       </form>
     </div>
 
     <?php include("php/footer.php") ?>
 </div>
-<script type="text/javascript" src="javascript/login.js"></script>
+<script src="javascript/login.js"></script>
 </body>
 </html>

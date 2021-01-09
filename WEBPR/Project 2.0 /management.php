@@ -41,14 +41,14 @@
             <input type="text" id="hotelDescription" name="hotelDescription" value="" onblur="checkAllHotel()">
             <p> your start and end time of the availability of your hotel:</p>
             <label for="startDate">starting date</label>
-            <input type="date" name="startDate" id="startDate" onblur="checkAllHotel()" placeholder="YYYY-MM-DD" ><!-- placeholder for safari -->
+            <input type="date" name="startDate" id="startDate" onblur="checkAllHotel()" ><!-- placeholder="YYYY-MM-DD" placeholder for safari -->
             <label for="endDate">ending date</label>
-            <input type="date" name="endDate" id="endDate" onblur="checkAllHotel()" placeholder="YYYY-MM-DD" ><!-- placeholder for safari -->
+            <input type="date" name="endDate" id="endDate" onblur="checkAllHotel()" ><!-- placeholder="YYYY-MM-DD" placeholder for safari -->
             <p> the openinghours of your hotel/hotel </p>
             <label for="startTime">the hour when the hotel opens</label>
-            <input type="time" name="startTime" id="startTime" onblur="checkAllHotel()"placeholder="hh:mm" ><!-- placeholder for safari -->
+            <input type="time" name="startTime" id="startTime" onblur="checkAllHotel()" ><!-- placeholder="hh:mm" placeholder for safari -->
             <label for="endTime">the hour when the hotel closes</label>
-            <input type="time" name="endTime" id="endTime" onblur="checkAllHotel()"placeholder="hh:mm" ><!-- placeholder for safari -->
+            <input type="time" name="endTime" id="endTime" onblur="checkAllHotel()" ><!-- placeholder="hh:mm" placeholder for safari -->
             <?php
                 showRadioCountries();
             ?>
@@ -60,7 +60,7 @@
             <input id="videoHotel" type="file" name="videosToUpload[]" accept="video/mv4,video/mp4" multiple>
             <input type="submit" name="submit" value="Add Hotel" onmouseover="checkAllHotel()">
         </form>
-        <text> * zijn verplichte velden </text>
+        <p> * zijn verplichte velden </p>
     </div>
 
     <div class="List">
@@ -82,14 +82,14 @@
             <input type="number" id="cost" name="cost" min="0" max="9999999999" value="100" onblur="checkAllRoom()">
             
             <label for="startdate"> start date (make sure that your start and end date are both in between the available time of the hotel you are selecting or you will get an error while uploading):</label>
-            <input id="startdate" type="date" name="startdate" onblur="checkAllRoom()" placeholder="YYYY-MM-DD" ><!-- placeholder for safari -->
+            <input id="startdate" type="date" name="startdate" onblur="checkAllRoom()" ><!-- placeholder="YYYY-MM-DD" placeholder for safari -->
             <label for="enddate"> end date:</label>
-            <input id="enddate" type="date" name="enddate" onblur="checkAllRoom()" placeholder="YYYY-MM-DD" ><!-- placeholder for safari -->
+            <input id="enddate" type="date" name="enddate" onblur="checkAllRoom()" ><!-- placeholder="YYYY-MM-DD" placeholder for safari -->
             <label for="timeslotmax">the max timeslot length (if it's 0 you're giving no timeslot):</label>
             <input id="timeslotmax" name="timeslotmax" type="number" min="0" max="9999999999" value="5" onblur="checkAllRoom()">
 
             <!-- Map get Long and Lat form -->
-            <label for="map"> the address of your room (either longitude and latidude or an address)*:</label>
+            <label> the address of your room (either longitude and latidude or an address)*:</label>
             <div id='map'></div>
             <p id='lnglat'></p>
             <input type="hidden" id="longInput" name="long" value="">
@@ -103,7 +103,7 @@
             <input id="video" type="file" name="videosToUpload[]" accept="video/mv4,video/mp4" multiple>
             <input type="submit" name="submit" value="Add Room" onmouseover="checkAllRoom()">
         </form>
-        <text> * zijn verplichte velden </text>
+        <p> * zijn verplichte velden </p>
     </div>
 
     <div class="List">

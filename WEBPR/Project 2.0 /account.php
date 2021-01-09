@@ -24,7 +24,6 @@
   <meta name="author" content="Maties Claesen">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/account.css">
 </head>
 
 <body>
@@ -39,10 +38,10 @@
       <div class="boxed" id="AccountInfo">
         <?php
           if ($isUser) {
-            echo "<h1> USER: </h1>";
+            echo "<p class='title'> USER: </p>";
             showUsers("SELECT * FROM users WHERE username = :search", $_SESSION["name"], "Room", "Room-Title", true, true);
           } else {
-            echo "<h1> ENTERPRISE: </h1>";
+            echo "<p class='title'> ENTERPRISE: </p>";
             showUsers("SELECT * FROM enterprises WHERE name = :search", $_SESSION["name"], "Room", "Room-Title", false, true);
           }
           ?>
@@ -59,8 +58,8 @@
 
       <!-- Upload Image Form -->
       <form class="boxed" id="UploadImageForm" action="uploads/uploadImage.php" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="name" value=<?php echo $_SESSION["name"]?>>
-        <input type="hidden" name="type" value=<?php echo $_SESSION["typeLogged"]?>>
+        <input type="hidden" name="name" value="<?php echo $_SESSION["name"]?>">
+        <input type="hidden" name="type" value="<?php echo $_SESSION["typeLogged"]?>">
         <input type="hidden" name="url" value="../account.php">
         <label for="image">Select images that you want upload (you can add multiple): (jpg, jpeg, png)</label>
         <input id="image" type="file" name="imagesToUpload[]" accept="image/jpeg,image/jpg,image/png" multiple>
@@ -69,8 +68,8 @@
 
       <!-- Upload Video Form -->
       <form class="boxed" id="UploadVideoForm" action="uploads/uploadVideo.php" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="name" value=<?php echo $_SESSION["name"]?>>
-        <input type="hidden" name="type" value=<?php echo $_SESSION["typeLogged"]?>>
+        <input type="hidden" name="name" value="<?php echo $_SESSION["name"]?>">
+        <input type="hidden" name="type" value="<?php echo $_SESSION["typeLogged"]?>">
         <input type="hidden" name="url" value="../account.php">
         <label for="video">Select videos that you want upload (you can add multiple): (mv4, mp4)</label>
         <input id="video" type="file" name="videosToUpload[]" accept="video/mv4,video/mp4" multiple>

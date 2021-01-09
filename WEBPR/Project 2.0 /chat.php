@@ -39,6 +39,6 @@
     <?php include("php/footer.php") ?>
 
   </div>
-  <script type="text/javascript" src="javascript/chat.js"></script>
+  <script src="javascript/chat.js"></script>
 </body>
 </html>
