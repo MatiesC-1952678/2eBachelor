@@ -1,4 +1,11 @@
 /* Header */
+.sticky {
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    width: 96%;
+}
+
 .LogoAll {
     margin-top: -10px;
     margin-left: 2%;
@@ -11,6 +18,7 @@
     box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
     min-height: 110px;
     max-height: 130px;
+    background-color: white;
   }
   
 .Logo {
@@ -40,6 +48,7 @@
 }
 
 .HeaderNav {
+    background-color: white;
     margin-top: 50px;
     margin-right: 10px;
     margin-bottom: 20px;

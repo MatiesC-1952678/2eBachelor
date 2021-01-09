@@ -12,7 +12,9 @@
   <meta name="description" content="A platform for hotels and customers to easily meet">
   <meta name="keywords" content="Enterprise,Country,Hotel,hotels,Book">
   <meta name="author" content="Maties Claesen">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <?php include('html/metaMap.html'); ?>
+  
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/management.css">
 </head>
@@ -51,13 +53,14 @@
                 showRadioCountries();
             ?>
             <!-- Upload Image Form -->
-            <label>Select an image that you want upload (you can add multiple): (jpg, jpeg, png)</label>
-            <input type="file" name="imagesToUpload[]" accept="image/jpeg,image/jpg,image/png" multiple>
+            <label for="imageHotel">Select an image that you want upload (you can add multiple): (jpg, jpeg, png)</label>
+            <input id="imageHotel" type="file" name="imagesToUpload[]" accept="image/jpeg,image/jpg,image/png" multiple>
             <!-- Upload Video Form -->
-            <label>Select videos that you want upload (you can add multiple): (mv4, mp4)</label>
-            <input type="file" name="videosToUpload[]" accept="video/mv4,video/mp4" multiple>
+            <label for="videoHotel">Select videos that you want upload (you can add multiple): (mv4, mp4)</label>
+            <input id="videoHotel" type="file" name="videosToUpload[]" accept="video/mv4,video/mp4" multiple>
             <input type="submit" name="submit" value="Add Hotel" onmouseover="checkAllHotel()">
         </form>
+        <text> * zijn verplichte velden </text>
     </div>
 
     <div class="List">
@@ -71,28 +74,36 @@
             <?php
                 showRadioHotels($_SESSION["name"]);
             ?>
-            <label for="roomName">The name of your room:</label>
+            <label for="roomName">The name of your room*:</label>
             <input type="text" id="roomName" name="roomName" value="" onblur="checkAllRoom()">
             <label for="roomDescription">Description of your room (max 200 characters):</label>
             <input type="text" id="roomDescription" name="roomDescription" value="" onblur="checkAllRoom()">
-            <label for="cost">the cost per day</label>
+            <label for="cost">the cost per day*:</label>
             <input type="number" id="cost" name="cost" min="0" max="9999999999" value="100" onblur="checkAllRoom()">
             
             <label for="startdate"> start date (make sure that your start and end date are both in between the available time of the hotel you are selecting or you will get an error while uploading):</label>
             <input id="startdate" type="date" name="startdate" onblur="checkAllRoom()" placeholder="YYYY-MM-DD" ><!-- placeholder for safari -->
             <label for="enddate"> end date:</label>
             <input id="enddate" type="date" name="enddate" onblur="checkAllRoom()" placeholder="YYYY-MM-DD" ><!-- placeholder for safari -->
-            <label for="timeslotmax">the max timeslot length</label>
-            <input id="timeslotmax" name="timeslotmax" type="number" min="1" max="9999999999" value="5" onblur="checkAllRoom()">
+            <label for="timeslotmax">the max timeslot length (if it's 0 you're giving no timeslot):</label>
+            <input id="timeslotmax" name="timeslotmax" type="number" min="0" max="9999999999" value="5" onblur="checkAllRoom()">
+
+            <!-- Map get Long and Lat form -->
+            <label for="map"> the address of your room (either longitude and latidude or an address)*:</label>
+            <div id='map'></div>
+            <p id='lnglat'></p>
+            <input type="hidden" id="longInput" name="long" value="">
+            <input type="hidden" id="latInput" name="lat" value="">
 
             <!-- Upload Image Form -->
-            <label>Select an image that you want upload (you can add multiple): (jpg, jpeg, png)</label>
-            <input type="file" name="imagesToUpload[]" accept="image/jpeg,image/jpg,image/png" multiple>
+            <label for="image">Select an image that you want upload (you can add multiple): (jpg, jpeg, png)</label>
+            <input id="image" type="file" name="imagesToUpload[]" accept="image/jpeg,image/jpg,image/png" multiple>
             <!-- Upload Video Form -->
-            <label>Select videos that you want upload (you can add multiple): (mv4, mp4)</label>
-            <input type="file" name="videosToUpload[]" accept="video/mv4,video/mp4" multiple>
+            <label for="video">Select videos that you want upload (you can add multiple): (mv4, mp4)</label>
+            <input id="video" type="file" name="videosToUpload[]" accept="video/mv4,video/mp4" multiple>
             <input type="submit" name="submit" value="Add Room" onmouseover="checkAllRoom()">
         </form>
+        <text> * zijn verplichte velden </text>
     </div>
 
     <div class="List">
@@ -114,8 +125,8 @@
     </div>
 
     <?php include("php/footer.php") ?>
-
   </div>
-<script type="text/javascript" src="javascript/management.js"></script>
+<script src="javascript/management.js"></script>
+<script src="javascript/map.js"></script>
 </body>
 </html>

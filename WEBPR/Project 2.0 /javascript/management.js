@@ -76,7 +76,7 @@ function checkAllRoom() {
     var e = checkDatePattern('startdate','uploadRoomFormS','uploadRoomFormW','Your start date is formatted incorrectly');
     var f = checkDatePattern('enddate','uploadRoomFormS','uploadRoomFormW','Your end date is formatted incorrectly');
     var g = checkIdBeforeId('startdate','enddate','uploadRoomFormS','uploadRoomFormW','Your start date is not before your end date.');
-    var j = checkMinMax('timeslotmax',1,9999999999,'uploadRoomFormS','uploadRoomFormW','Your timeslot that you gave is less than 1 day.', false);
+    var j = checkMinMax('timeslotmax',0,9999999999,'uploadRoomFormS','uploadRoomFormW','Your timeslot that you gave is less than 1 day.', false);
     
   if (!(a || b || c || d || e || f || g || j)) {
     changeId('uploadRoomFormW', 'uploadRoomFormS');

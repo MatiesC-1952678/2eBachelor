@@ -19,35 +19,40 @@
     $startdate = $_POST["startdate"];
     $enddate = $_POST["enddate"];
     $max = $_POST["timeslotmax"];
+    $long = $_POST["long"];
+    $lat = $_POST["lat"];
     
+    echo "$long, $lat";
+
     //CHECKING PARAMETERS
     echo "<p>checking parameters</p>";
     if (strlen($roomName) > 30 || strlen($description) > 200 || !isset($hotelName)) 
       throw new Exception('parameters entered are incorrect');
     if ($cost < 0)
       throw new Exception('cost entered falsely');
-
+    if (!isset($long) || !isset($lat)) 
+      throw new Exception('You need to give a location to your room');
     if (isset($startdate) && isset($enddate)) {
       if (strtotime($startdate) > strtotime($enddate))
         throw new Exception('startdate before enddate');
-
       $sth = $conn->prepare("SELECT * FROM hotels WHERE hotels.name = :name");
       $sth->bindParam(':name', $hotelName, PDO::PARAM_STR, strlen($hotelName));
       if (!$sth->execute())
         echo 'unsuccesfully queried';
       $row = $sth->fetch(PDO::FETCH_ASSOC);
-      
       if (strtotime($row["startdate"]) > strtotime($startdate) || strtotime($row["enddate"]) < strtotime($enddate))
         throw new Exception('these dates are not in the range of the hotels opening');
     } else if ((isset($startdate) && !isset($enddate)) || (!isset($startdate) && isset($enddate)))
       throw new Exception('both dates have to be either set or not set, not one or the other');
+    if (isset($max) && $max < 0) 
+      throw new Exception('your timeslot must not be below 0');
 
     //INSERTING INTO rooms
     echo "<p>parameters correct</p><p>adding room to database</p>";
     $sql = "INSERT INTO rooms
-    (belongstohotel, name, description, cost, startdate, enddate, timeslotmax)
+    (belongstohotel, name, description, cost, startdate, enddate, timeslotmax, long, lat)
     VALUES
-    (:belongstohotel, :name, :description, :cost, :startdate, :enddate, :timeslotmax);";
+    (:belongstohotel, :name, :description, :cost, :startdate, :enddate, NULLIF(:timeslotmax::integer,'0'), :long, :lat);";
     $sth = $conn->prepare($sql);
     $sth->bindParam( ':belongstohotel', $hotelName, PDO::PARAM_STR, strlen($hotelName));
     $sth->bindParam( ':name', $roomName, PDO::PARAM_STR, strlen($roomName));
@@ -56,6 +61,8 @@
     $sth->bindParam( ':startdate', $startdate, PDO::PARAM_STR, strlen($startdate));
     $sth->bindParam( ':enddate', $enddate, PDO::PARAM_STR, strlen($enddate));
     $sth->bindParam( ':timeslotmax', $max, PDO::PARAM_INT);
+    $sth->bindParam( ':long', $long, PDO::PARAM_STR, strlen($long));
+    $sth->bindParam( ':lat', $lat, PDO::PARAM_STR, strlen($lat));
     if (!$sth->execute())
       throw new PDOException('An error occurred');
     echo "<p>added room to database</p>";

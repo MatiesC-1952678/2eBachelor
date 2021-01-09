@@ -9,7 +9,7 @@
             $sth = $conn->prepare("SELECT * FROM countries");
             if (!$sth->execute())
                 throw new PDOException('An error occurred');
-            echo '<p>All the available countries</p><ul class="radioList">';
+            echo '<p>All the available countries*</p><ul class="radioList">';
             if ($nonEdit)
                 $func = "checkAllHotel()";
             else
@@ -37,7 +37,7 @@
                 $func = "checkAllRoom()";
             else
                 $func = "checkEditRoom()";
-            echo '<p>All the available hotels</p><ul>';
+            echo '<p>All the available hotels*</p><ul>';
             while ($row = $sth->fetch( PDO::FETCH_NUM ) ) {
             echo '<label for="'.$row[1].'">'.$row[1].'</label>
                     <input type="radio" class="radioHotel" id="'.$row[1].'" name="hotelName" value="'.$row[1].'" onclick="'.$func.'">';
@@ -91,20 +91,20 @@
     }
 
     //COULD ADD MORE DATA LIKE: start date, end date, time, country, ... -> alles van hotel
-    function echoRoom($class, $titleClass, $title, $enterprise, $hotel, $cost, $description, $start, $end, $max, bool $canBeBooked = false, bool $editable = false) {
+    function echoRoom($class, $titleClass, $title, $enterprise, $hotel, $cost, $description, $start, $end, $max, $long = 0, $lat = 0, bool $canBeBooked = false, bool $editable = false) {
         echo '<article class="'.$class.'">
                 <h1 class="'.$titleClass.'">'.$title.'</h1><ul>
                 <li> Enterprise: <a href="profile.php?name='.$enterprise.'&type=enterprise">'.$enterprise.'</a></li>
                 <li> Hotel: '.$hotel.'</li>
                 <li> Cost: €'.$cost.'</li>';
-        if (isset($description))
+        if (!empty($description))
             echo '<li> Description: '.$description.'</li>';
-        if (isset($start) && isset($end))
+        if (!empty($start) && !empty($end))
             echo '<li> Availability:  '.$start.' - '.$end.' (overrides hotel) </li>';
-        if (isset($max))
+        if (!empty($max))
             echo '<li> Max Timeslot: '.$max.'</li>';
                 if ($canBeBooked) {
-                    echo '<li><a href="booking.php?roomName='.urlencode($title).'&hotelName='.urlencode($hotel).'">ReservationButton</a></li>';
+                    echo '<li><a href="booking.php?roomName='.urlencode($title).'&hotelName='.urlencode($hotel).'">Book This Room</a></li>';
                     likes($title, $hotel);
                 }
         echo   '<li><a href="rating.php?room='.urlencode($title).'&hotel='.urlencode($hotel).'">Ratings</a></li>';
@@ -112,6 +112,8 @@
             echo '<li><a href="edit.php?key1='.urlencode($enterprise).'&key2='.urlencode($hotel).'&key3='.urlencode($title).'&type=room"> edit </a></li>
                 <li><a href="uploads/delete.php?type=room&key1='.urlencode($enterprise).'&key2='.urlencode($hotel).'&key3='.urlencode($title).'"> delete </a></li>';
         }
+        if ($long != 0 && $lat != 0)
+            echo    '<li> Coordinates (long,lat): '.$long.', '.$lat.'</li>';
         echo    '</ul>';
         showImages($title, "room");
         showVideos($title, "room");
@@ -215,7 +217,7 @@
             if (!$sth->execute())
                 throw new PDOException('An error occurred');
             while ($row = $sth->fetch( PDO::FETCH_ASSOC ) ) {
-                echoRoom($boxId, $titleId, $row["name"], $row["belongstoenterprise"], $row["belongstohotel"], $row["cost"], $row["description"], $row["startdate"], $row["enddate"], $row["timeslotmax"], $canBeBooked, $editable);
+                echoRoom($boxId, $titleId, $row["name"], $row["belongstoenterprise"], $row["belongstohotel"], $row["cost"], $row["description"], $row["startdate"], $row["enddate"], $row["timeslotmax"], $row["long"], $row["lat"], $canBeBooked, $editable);
                 if ($isBooked)
                     echo '<p> period you are staying: '.$row["startd"].' - '.$row["endd"].'</p>
                           <a href="uploads/deleteBooking.php?room='.urlencode($row["name"]).'&hotel='.urlencode($row["belongstohotel"]).'"> cancel this booking </a>';
@@ -277,7 +279,7 @@
                 throw new PDOException('An error occurred');
             while ($row = $sth->fetch( PDO::FETCH_ASSOC ) ) {
                 if ($isRoom)
-                    echoRoom("Room", "Room-Title", $row["name"], $row["belongstoenterprise"], $row["belongstohotel"], $row["cost"], $row["description"], $row["startdate"], $row["enddate"], $row["timeslotmax"], true);
+                    echoRoom("Room", "Room-Title", $row["name"], $row["belongstoenterprise"], $row["belongstohotel"], $row["cost"], $row["description"], $row["startdate"], $row["enddate"], $row["timeslotmax"], $row["long"], $row["lat"], true);
                 else 
                     echoHotel("Room", "Room-Title", $row["name"], $row["belongstoenterprise"], $row["description"], $row["startdate"], $row["enddate"], $row["starttime"], $row["endtime"], $row["country"]);
             }
@@ -330,7 +332,7 @@
             if (!$sth->execute())
                 echo '<p> error getting data </p>';
             while ($row = $sth->fetch(PDO::FETCH_ASSOC)) {
-                echoRoom("Room", "Room-Title", $row["name"], $row["belongstoenterprise"], $row["belongstohotel"], $row["cost"], $row["description"], $row["startdate"], $row["enddate"], $row["timeslotmax"], true);
+                echoRoom("Room", "Room-Title", $row["name"], $row["belongstoenterprise"], $row["belongstohotel"], $row["cost"], $row["description"], $row["startdate"], $row["enddate"], $row["timeslotmax"], $row["long"], $row["lat"], true);
             }
         } catch (PDOException $e) {
             print "Error! " . $e->getMessage() . "\n";
@@ -350,7 +352,7 @@
             echo '<p class="title">Hotel:</p>';
             echoHotel("RoomNonFloat", "Room-Title", $row[1], $row[0], $row[2], $row[3], $row[4], $row[5], $row[6], $row[7]);
             echo '<p class="title">Room:</p>';
-            echoRoom("RoomNonFloat", "Room-Title", $row[9], $row[0], $row[1], $row[11], $row[10], $row[12], $row[13], $row[14], false);
+            echoRoom("RoomNonFloat", "Room-Title", $row[9], $row[0], $row[1], $row[11], $row[10], $row[12], $row[13], $row[14], $row[15], $row[16], false);
             
             $startDate = $row[12];
             $endDate = $row[13];

@@ -3,7 +3,7 @@
 <!-- Header -->
 <header>
   <!-- Logo -->
-  <div class="LogoAll">
+  <div class="LogoAll sticky">
     <a href="home.php">
       <img class="Logo" src="resources/ChaseTheSunLogo(0.2).png" alt="The Chase The Sun Logo" width="130" height="80">
       <p class="LogoTitle">Suite Dreams</p>

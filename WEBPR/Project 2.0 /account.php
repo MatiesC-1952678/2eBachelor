@@ -62,8 +62,8 @@
         <input type="hidden" name="name" value=<?php echo $_SESSION["name"]?>>
         <input type="hidden" name="type" value=<?php echo $_SESSION["typeLogged"]?>>
         <input type="hidden" name="url" value="../account.php">
-        <label>Select images that you want upload (you can add multiple): (jpg, jpeg, png)</label>
-        <input type="file" name="imagesToUpload[]" accept="image/jpeg,image/jpg,image/png" multiple>
+        <label for="image">Select images that you want upload (you can add multiple): (jpg, jpeg, png)</label>
+        <input id="image" type="file" name="imagesToUpload[]" accept="image/jpeg,image/jpg,image/png" multiple>
         <input type="submit" name="submit" value="Upload Image">
       </form>
 
@@ -72,8 +72,8 @@
         <input type="hidden" name="name" value=<?php echo $_SESSION["name"]?>>
         <input type="hidden" name="type" value=<?php echo $_SESSION["typeLogged"]?>>
         <input type="hidden" name="url" value="../account.php">
-        <label>Select videos that you want upload (you can add multiple): (mv4, mp4)</label>
-        <input type="file" name="videosToUpload[]" accept="video/mv4,video/mp4" multiple>
+        <label for="video">Select videos that you want upload (you can add multiple): (mv4, mp4)</label>
+        <input id="video" type="file" name="videosToUpload[]" accept="video/mv4,video/mp4" multiple>
         <input type="submit" name="submit" value="Upload Video">
       </form>
 

@@ -11,26 +11,11 @@
   <meta name="description" content="A platform for hotels and customers to easily meet">
   <meta name="keywords" content="Room,Country,Hotel,Book">
   <meta name="author" content="Maties Claesen">
-  <!-- Map Specializing -->
-  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no'>
-  
-  <script src='https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js'></script>
-  
-  <link href='https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css' rel='stylesheet'>
-  <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.2.0/mapbox-gl-geocoder.min.js'></script>
-  <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.2.0/mapbox-gl-geocoder.css' type='text/css' />
+
+  <?php include('html/metaMap.html'); ?>
 
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/home.css">
-  <style>
-    #map {
-       width: 80%;
-       height: 300px;
-       margin: auto;
-       margin-bottom: 30px;
-       margin-top: 30px;
-    }
-  </style>
 </head>
 
 <body>
@@ -44,7 +29,7 @@
 
       <?php
       if (isset($_SESSION["typeLogged"])) {
-        echo "<div id='map'></div>";
+        echo "<div id='map'></div><p id='lnglat'></p>";
         include("html/searchbar.html");
       }
       ?>
@@ -67,7 +52,7 @@
               showUsers("SELECT * FROM enterprises WHERE LOWER(enterprises.name) LIKE :search;", $_POST["search"], "Room", "Room-Title", false);
               break;
             case ("Date"):
-              showDateSearch("SELECT * FROM hotels,rooms WHERE rooms.belongstohotel = hotels.name AND (hotels.startdate, hotels.enddate) OVERLAPS (:date::DATE, :date::DATE);", $_POST["date"]);
+              showDateSearch("SELECT * FROM hotels,rooms WHERE rooms.belongstohotel = hotels.name AND (hotels.startdate, hotels.enddate) OVERLAPS (:date::DATE, :date::DATE) AND rooms.startdate is NULL AND rooms.enddate is NULL;", $_POST["date"]);
               break;
             case ("DateRoom"):
               showDateSearch("SELECT * FROM hotels,rooms WHERE rooms.belongstohotel = hotels.name AND (rooms.startdate, rooms.enddate) OVERLAPS (:date::DATE, :date::DATE);", $_POST["date"]);
@@ -84,6 +69,7 @@
     <?php include("php/footer.php") ?>
 
   </div>
+  <script src='https://unpkg.com/@turf/turf/turf.min.js'></script>
   <script src="javascript/home.js"></script>
   <?php if (isset($_SESSION["typeLogged"])) { echo '<script src="javascript/map.js"></script>'; } ?>
 </body>
