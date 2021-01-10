@@ -69,7 +69,7 @@
       <p class="title">All your bookings</p>
       <div class="List">
         <!-- Bookings -->
-        <?php showRooms("SELECT * FROM bookings,hotels,rooms WHERE bookings.bookedby = :name AND bookings.roomname = rooms.name AND bookings.hotelname = rooms.belongstohotel AND belongstohotel = hotels.name", $_SESSION["name"], "RoomNonFloat", "Booking-Title", false, true); ?>
+        <?php showRooms("SELECT *, hotels.startdate AS hotelstart, hotels.enddate AS hotelend FROM bookings,hotels,rooms WHERE bookings.bookedby = :name AND bookings.roomname = rooms.name AND bookings.hotelname = rooms.belongstohotel AND belongstohotel = hotels.name", $_SESSION["name"], "RoomNonFloat", "Booking-Title", false, true); ?>
       </div>
       <p class="title">All your interests/likes</p>
       <div class="List">

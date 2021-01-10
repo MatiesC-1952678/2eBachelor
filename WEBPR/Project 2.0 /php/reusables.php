@@ -219,7 +219,7 @@
             while ($row = $sth->fetch( PDO::FETCH_ASSOC ) ) {
                 echoRoom($boxId, $titleId, $row["name"], $row["belongstoenterprise"], $row["belongstohotel"], $row["cost"], $row["description"], $row["startdate"], $row["enddate"], $row["timeslotmax"], $row["long"], $row["lat"], $canBeBooked, $editable);
                 if ($isBooked) {
-                    $dayDiff = round((strtotime($row["enddate"]) - strtotime($row["startdate"])) / (60 * 60 * 24));;
+                    $dayDiff = round((strtotime($row["endd"]) - strtotime($row["startd"])) / (60 * 60 * 24));;
                     $totalCost = $dayDiff * (int) $row["cost"];
                     echo '<div class="subBooking"><p> Booked from: '.$row["startd"].' to '.$row["endd"].'</p><p> Days staying: '.$dayDiff.' </p><p> Total cost: €'.$totalCost.' </p>
                           <a href="uploads/deleteBooking.php?room='.urlencode($row["name"]).'&hotel='.urlencode($row["belongstohotel"]).'"> cancel this booking </a></div>';

@@ -1,4 +1,5 @@
-document.getElementById("datepickerS").id = "datepickerH";
+if (document.getElementById("datepickerS") != null)
+    document.getElementById("datepickerS").id = "datepickerH";
 
 if (document.getElementById('mapH'))   
     checkMap();
