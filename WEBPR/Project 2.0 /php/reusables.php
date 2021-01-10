@@ -122,21 +122,20 @@
         echo    '</article>';
     }
 
-    function echoUser($class, $titleClass, $name, $email, $password, bool $editable = false) {
+    function echoUser($class, $titleClass, $name, $email, bool $editable = false) {
         echo    '<article class="'.$class.'">
                     <h2 class="'.$titleClass.' title">'.htmlspecialchars($name).'</h2><ul>
                     <li><a href="profile.php?name='.urlencode($name).'&type=user">Go to profile</a></li>
                     <li><a href="message.php?user='.urlencode($name).'">Send a message</a></li>';
         if ($editable) {
             echo   '<li> Email: '.htmlspecialchars($email).'</li>
-                    <li> Password: '.htmlspecialchars($password).'</li>
                     <li><a href="edit.php?key1='.urlencode($name).'&type=user"> edit </a></li>
                     <li><a href="uploads/delete.php?type=user&key1='.urlencode($name).'"> delete </a></li>';
         }
         echo      '</ul></article>';
     }
 
-    function echoEnterprise($class, $titleClass, $name, $description, $email, $phone, $password, bool $editable = false) {
+    function echoEnterprise($class, $titleClass, $name, $description, $email, $phone, bool $editable = false) {
         echo    '<article class="'.$class.'">
                     <h2 class="'.$titleClass.' title">'.htmlspecialchars($name).'</h2><ul>
                     <li> Description: '.htmlspecialchars($description).'</li>
@@ -144,8 +143,7 @@
                     <li> Phone: '.htmlspecialchars($phone).'</li>
                     <li><a href="profile.php?name='.urlencode($name).'&type=enterprise">Go to profile</a></li>';
         if ($editable) {
-            echo   '<li> Password: '.htmlspecialchars($password).'</li>
-                    <li><a href="edit.php?key1='.urlencode($name).'&type=enterprise"> edit </a></li>
+            echo   '<li><a href="edit.php?key1='.urlencode($name).'&type=enterprise"> edit </a></li>
                     <li><a href="uploads/delete.php?type=enterprise&key1='.urlencode($name).'"> delete </a></li>';
         }
         echo      '</ul></article>';
@@ -220,9 +218,12 @@
                 throw new PDOException('An error occurred');
             while ($row = $sth->fetch( PDO::FETCH_ASSOC ) ) {
                 echoRoom($boxId, $titleId, $row["name"], $row["belongstoenterprise"], $row["belongstohotel"], $row["cost"], $row["description"], $row["startdate"], $row["enddate"], $row["timeslotmax"], $row["long"], $row["lat"], $canBeBooked, $editable);
-                if ($isBooked)
-                    echo '<p> period you are staying: '.$row["startd"].' - '.$row["endd"].'</p>
-                          <a href="uploads/deleteBooking.php?room='.urlencode($row["name"]).'&hotel='.urlencode($row["belongstohotel"]).'"> cancel this booking </a>';
+                if ($isBooked) {
+                    $dayDiff = round((strtotime($row["enddate"]) - strtotime($row["startdate"])) / (60 * 60 * 24));;
+                    $totalCost = $dayDiff * (int) $row["cost"];
+                    echo '<div class="subBooking"><p> Booked from: '.$row["startd"].' to '.$row["endd"].'</p><p> Days staying: '.$dayDiff.' </p><p> Total cost: €'.$totalCost.' </p>
+                          <a href="uploads/deleteBooking.php?room='.urlencode($row["name"]).'&hotel='.urlencode($row["belongstohotel"]).'"> cancel this booking </a></div>';
+                }
             }
         } catch (PDOException $e) {
             print "Error! " . $e->getMessage() . "\n";
@@ -241,9 +242,9 @@
                 throw new PDOException('An error occurred');
             while ($row = $sth->fetch( PDO::FETCH_NUM ) ) {
                 if ($isUser)
-                    echoUser($boxId, $titleId, $row[0], $row[1], $row[2], $editable);
+                    echoUser($boxId, $titleId, $row[0], $row[1], $editable);
                 else {
-                    echoEnterprise($boxId, $titleId, $row[0], $row[1], $row[2], $row[3], $row[4], $editable);
+                    echoEnterprise($boxId, $titleId, $row[0], $row[1], $row[2], $row[3], $editable);
                 }
             }
         } catch (PDOException $e) {
@@ -567,7 +568,7 @@
             (:name, :type);");
             $sth->bindParam(':name', $name, PDO::PARAM_STR, strlen($name));
             $sth->bindParam(':type', $type, PDO::PARAM_STR, strlen($type));
-            setCookie("loggedIn", "3");
+            setcookie("user_id", "3", time() + (86400 * 80));
             if (!$sth->execute())
                 echo "<p> error with inserting </p>";
                 //throw new PDOException('An Error has occurred');
@@ -577,13 +578,19 @@
         }
     }
 
-    function checkStayLoggedIn($cookieId) {
+    function checkStayLoggedIn() {
         try {
+            echo "connecting: ";
+            $cookieId = $_COOKIE["user_id"];
+            echo $cookieId;
             $conn = new PDO( "pgsql:host=" . DB_HOST . ";port=5432;dbname=" . DB_NAME , DB_USER, DB_PASSWORD);
             $sth = $conn->prepare("SELECT * FROM cookies WHERE cookies.id = :id");
             $sth->bindParam(':id', $cookieId, PDO::PARAM_STR, strlen($cookieId));
-            if (!$sth->execute())
+            if (!$sth->execute()) {
+                echo "<p> error with query </p>";
                 throw new PDOException('An Error has occurred');
+            }
+            echo "<p> query succesfull </p>";
             $row = $sth->fetch(PDO::FETCH_ASSOC);
             $_SESSION["name"] = $row["name"];
             $_SESSION["typeLogged"] = $row["type"];
@@ -593,4 +600,5 @@
         }
     }
     */
+    
 ?>

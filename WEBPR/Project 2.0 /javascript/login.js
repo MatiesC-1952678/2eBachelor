@@ -14,6 +14,13 @@ function showElements() {
   }
 }
 
+initElements();
+function initElements() {
+  document.getElementById("radioH").id = "radioS";
+  document.getElementById("userS").id = "userH";
+  document.getElementById("enterpriseS").id = "enterpriseH";
+}
+
 function checkAllUser() {
   var a = checkName('username', 'userS', 'userW');
   var b = checkEmail('email','userS','userW');

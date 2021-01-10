@@ -27,7 +27,6 @@
     $sth->bindParam( ':username', $username, PDO::PARAM_STR, strlen($username) );
     if (!$sth->execute())
       throw new PDOException('An error occurred');
-    $row = $sth->fetch(PDO::FETCH_NUM);
     
     //ADMIN LOGIN
     if ($username == "MatiesWebsiteAdmin_901828PQRZ2" && $email == "WEB&ejioz344@ADMIN.COM" && $password == "748920_ZRTUJFGPML&1_##1_123456FJDSQKFDI^^D$$34$455") {
@@ -37,11 +36,12 @@
     }
 
     if ($sth->rowCount() > 0) {
+      $row = $sth->fetch(PDO::FETCH_NUM);
       if ($email != $row[1]) {
         echo '<p>email incorrect to log in to the account '.$username.'</p><a href="../login.php">Go back</a>';
         die();
       }
-      if ($password != $row[2]) {
+      if (!password_verify($password, $row[2])) {
         //incorrect password
         echo '<p>password incorrect</p><a href="../login.php">Go back</a>';
         die();
@@ -52,14 +52,16 @@
         $_SESSION["name"] = $username;
         //cookie for staying logged in
         /*
-        if (!empty($stayLogged))
+        if (isset($stayLogged))
           stayLoggedIn($username, "user");
+        die();
         */
       }
     } else {
         //insert user
         echo "<p>registering user: $username and $email</p>";
 
+        $hash = password_hash($password, PASSWORD_DEFAULT);
         $sql =  "INSERT INTO users
         (username, email, password)
         VALUES
@@ -67,16 +69,14 @@
         $sth = $conn->prepare($sql);
         $sth->bindParam( ':username', $username, PDO::PARAM_STR, strlen($username) );
         $sth->bindParam( ':email', $email, PDO::PARAM_STR, strlen($email) );
-        $sth->bindParam( ':password', $password, PDO::PARAM_STR, strlen($password));
+        $sth->bindParam( ':password', $hash, PDO::PARAM_STR, strlen($hash));
         if (!$sth->execute())
           throw new PDOException('An error occurred');
         echo "<p>succesfully inserted user</p>";
-
         /*
-        if (!empty($stayLogged))
+        if (isset($stayLogged))
           stayLoggedIn($username, "user");
         */
-
         /* TESTING PURPOSES
         $sth = $conn->prepare( "SELECT * FROM users;");
         if (!$sth->execute())

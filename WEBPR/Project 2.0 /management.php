@@ -9,6 +9,7 @@
 <head>
   <title>Suite Dreams - Management</title>
   <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html"/>
   <meta name="description" content="A platform for hotels and customers to easily meet">
   <meta name="keywords" content="Enterprise,Country,Hotel,hotels,Book">
   <meta name="author" content="Maties Claesen">

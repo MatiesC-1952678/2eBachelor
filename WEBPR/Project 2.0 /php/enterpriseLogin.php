@@ -33,12 +33,12 @@
     if ($sth->rowCount() > 0) {
       $row = $sth->fetch( PDO::FETCH_ASSOC );
       if ($email != $row["email"]) {
-        echo '<p>email incorrect to log in to the account '.$name.'</p><a href="../login.php">Go back</a>';
+        echo '<p>email incorrect to log in to the account '.$username.'</p><a href="../login.php">Go back</a>';
         die();
       }
-      if ($password != $row["password"] ) {
+      if (!password_verify($password, $row["password"])) {
         //FAILING TO LOG IN INTO EXISTING ACCOUNT
-        echo "<p>password incorrect</p>";
+        echo '<p>password incorrect</p><a href="../login.php">Go back</a>';
         die();
       } else {
         //LOGGING IN TO AN ACCOUNT

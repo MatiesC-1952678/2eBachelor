@@ -52,3 +52,7 @@
   border-color: red;
   color: red;
 }
+
+#radioH {
+  display: none;
+}

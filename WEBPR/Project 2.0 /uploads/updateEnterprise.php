@@ -49,9 +49,11 @@
     if (strlen($email) > 50) {
         throw new Exception('email is too long');
     }
-    if (strlen($password) < 5 || strlen($password) > 30) {
+    if (strlen($password) < 5 || strlen($password) > 50) {
         throw new Exception("password is not correct", 1);
     }
+
+    $hash = password_hash($password, PASSWORD_DEFAULT);
 
     $sql =  "UPDATE enterprises SET 
     name = :name, description = :description, email = :email, phone = :phone, password = :password
@@ -61,7 +63,7 @@
     $sth->bindParam( ':description', $description, PDO::PARAM_STR, strlen($description) );
     $sth->bindParam( ':email', $email, PDO::PARAM_STR, strlen($email) );
     $sth->bindParam( ':phone', $phone, PDO::PARAM_STR, strlen($phone) );
-    $sth->bindParam( ':password', $password, PDO::PARAM_STR, strlen($password) );
+    $sth->bindParam( ':password', $hash, PDO::PARAM_STR, strlen($hash) );
     $sth->bindParam( ':original', $original, PDO::PARAM_STR, strlen($original) );
     if (!$sth->execute())
       throw new PDOException('An error occurred');
@@ -76,11 +78,11 @@
 
   } catch (PDOException $e) {
     print "Error! " . $e->getMessage() . "\n";
-    echo '<p><a href="../login.php"> go back </a></p>';
+    echo '<p>go back!</p>';
     die();
   } catch (Exception $e) {
     print "Error! " . $e->getMessage() . "\n";
-    echo '<p><a href="../login.php"> go back </a></p>';
+    echo '<p>go back!</p>';
     die();
   }
 ?>

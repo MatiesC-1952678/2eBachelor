@@ -30,6 +30,7 @@
 <head>
   <title>Suite Dreams - Profile</title>
   <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html"/>
   <meta name="description" content="A platform for enterprises and customers to easily meet">
   <meta name="keywords" content="Room,Country,enterprise,Book">
   <meta name="author" content="Maties Claesen">
