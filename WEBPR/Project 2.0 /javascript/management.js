@@ -73,9 +73,12 @@ function checkAllRoom() {
     var b = checkMinMax('roomName',5,30,'uploadRoomFormS','uploadRoomFormW','You room name has to be between 5 and 30 characters.');
     var c = checkMinMax('roomDescription', 0, 200, 'uploadRoomFormS','uploadRoomFormW','Your description is longer than 200 characters.');
     var d = checkMinMax('cost',0,9999999999,'uploadRoomFormS','uploadRoomFormW','Your cost must be 0 or above', false);
-    var e = checkDatePattern('startdate','uploadRoomFormS','uploadRoomFormW','Your start date is formatted incorrectly');
-    var f = checkDatePattern('enddate','uploadRoomFormS','uploadRoomFormW','Your end date is formatted incorrectly');
-    var g = checkIdBeforeId('startdate','enddate','uploadRoomFormS','uploadRoomFormW','Your start date is not before your end date.');
+    var e = false; var f = false; var g = false;
+    if (document.getElementById('startdate').value != "" || document.getElementById('enddate').value != "") {
+      var e = checkDatePattern('startdate','uploadRoomFormS','uploadRoomFormW','Your start date is formatted incorrectly');
+      var f = checkDatePattern('enddate','uploadRoomFormS','uploadRoomFormW','Your end date is formatted incorrectly');
+      var g = checkIdBeforeId('startdate','enddate','uploadRoomFormS','uploadRoomFormW','Your start date is not before your end date.');
+    }
     var j = checkMinMax('timeslotmax',0,9999999999,'uploadRoomFormS','uploadRoomFormW','Your timeslot that you gave is less than 1 day.', false);
     
   if (!(a || b || c || d || e || f || g || j)) {

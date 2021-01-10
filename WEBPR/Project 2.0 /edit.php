@@ -14,7 +14,7 @@
       die();
     }
   }
-  checkSession($_SESSION["typeLogged"], "", true, "php/logOut.php", "You need to be logged to enter this page");
+  checkSession($_SESSION["typeLogged"], "", true, "error.php", "You need to be logged to enter this page");
   ?>
 <!DOCTYPE html>
 <html lang="en">

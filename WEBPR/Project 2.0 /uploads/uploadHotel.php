@@ -31,18 +31,9 @@
     timeFormatted($endTime, "Your end time is not formatted correctly. Go back and retry.");
     biggerThenTimeDate($startDate, $endDate, "The starting date that you have entered is currenlty after the ending date. Go back and retry.");
     biggerThenTimeDate($startTime, $endTime, "The starting time that you have entered is currenlty after the ending date. Go back and retry.");
-    checkMinMax(strlen($newname), 5, 30, "The Name is not between 5 and 30 characters. Go back and retry.");
+    checkMinMax(strlen($hotelName), 5, 30, "The Name is not between 5 and 30 characters. Go back and retry.");
     checkMinMax(strlen($description), 0, 200, "Description is longer than 200 characters. Go back and retry.");
     issetCorrect($country, "You did not select a country from the options given. Go back and retry.");
-    if(strtotime($startDate) > strtotime($endDate)){
-        throw new Exception("starting date is behind ending date");
-    }
-    if(strtotime($startTime) > strtotime($endTime)) {
-        throw new Exception("starting time is behind ending time");
-    }
-    if (strlen($hotelName) > 30 || strlen($description) > 200 || !isset($country)) {
-        throw new Exception('parameters entered are incorrect');
-    }
 
     //ADDING HOTEL TO DATABASE
     //echo "<p>parameters correct</p><p>adding hotel to database</p>";

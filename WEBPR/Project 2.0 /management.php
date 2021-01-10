@@ -35,19 +35,19 @@
 
       <div class="boxed form"><p>Here you can add a new hotel (linked to this hotel)</p>
         <form id="uploadHotelFormS" action="uploads/uploadHotel.php" method="post" enctype="multipart/form-data">
-            <label for="hotelName">The name of your hotel:</label>
+            <label for="hotelName">The name of your hotel (between 5 and 30 characters):</label>
             <input type="text" id="hotelName" name="hotelName" value="" onblur="checkAllHotel()">
             <label for="hotelDescription">Description of your hotel (max 200 characters):</label>
             <input type="text" id="hotelDescription" name="hotelDescription" value="" onblur="checkAllHotel()">
             <p> your start and end time of the availability of your hotel:</p>
-            <label for="startDate">starting date</label>
+            <label for="startDate">starting date (YYYY-MM-DD):*</label>
             <input type="date" name="startDate" id="startDate" onblur="checkAllHotel()" ><!-- placeholder="YYYY-MM-DD" placeholder for safari -->
-            <label for="endDate">ending date</label>
+            <label for="endDate">ending date (YYYY-MM-DD):*</label>
             <input type="date" name="endDate" id="endDate" onblur="checkAllHotel()" ><!-- placeholder="YYYY-MM-DD" placeholder for safari -->
             <p> the openinghours of your hotel/hotel </p>
-            <label for="startTime">the hour when the hotel opens</label>
+            <label for="startTime">the hour when the hotel opens (hh:mm)</label>
             <input type="time" name="startTime" id="startTime" onblur="checkAllHotel()" ><!-- placeholder="hh:mm" placeholder for safari -->
-            <label for="endTime">the hour when the hotel closes</label>
+            <label for="endTime">the hour when the hotel closes (hh:mm)</label>
             <input type="time" name="endTime" id="endTime" onblur="checkAllHotel()" ><!-- placeholder="hh:mm" placeholder for safari -->
             <?php
                 showRadioCountries();
@@ -74,16 +74,16 @@
             <?php
                 showRadioHotels($_SESSION["name"]);
             ?>
-            <label for="roomName">The name of your room*:</label>
+            <label for="roomName">The name of your room (between 5 and 30 characters)*:</label>
             <input type="text" id="roomName" name="roomName" value="" onblur="checkAllRoom()">
             <label for="roomDescription">Description of your room (max 200 characters):</label>
             <input type="text" id="roomDescription" name="roomDescription" value="" onblur="checkAllRoom()">
-            <label for="cost">the cost per day*:</label>
+            <label for="cost">the cost per day (max 9999999999)*:</label>
             <input type="number" id="cost" name="cost" min="0" max="9999999999" value="100" onblur="checkAllRoom()">
             
-            <label for="startdate"> start date (make sure that your start and end date are both in between the available time of the hotel you are selecting or you will get an error while uploading):</label>
+            <label for="startdate"> start date (YYYY-MM-DD)(make sure that your start and end date are both in between the available time of the hotel you are selecting or you will get an error while uploading):</label>
             <input id="startdate" type="date" name="startdate" onblur="checkAllRoom()" ><!-- placeholder="YYYY-MM-DD" placeholder for safari -->
-            <label for="enddate"> end date:</label>
+            <label for="enddate"> end date (YYYY-MM-DD):</label>
             <input id="enddate" type="date" name="enddate" onblur="checkAllRoom()" ><!-- placeholder="YYYY-MM-DD" placeholder for safari -->
             <label for="timeslotmax">the max timeslot length (if it's 0 you're giving no timeslot):</label>
             <input id="timeslotmax" name="timeslotmax" type="number" min="0" max="9999999999" value="5" onblur="checkAllRoom()">

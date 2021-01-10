@@ -1,7 +1,7 @@
 <?php
   session_start();
   require 'php/reusables.php';
-  checkSession($_SESSION["typeLogged"], "user", false, "php/logOut.php", "You need to be logged in as a user to send messages");
+  checkSession($_SESSION["typeLogged"], "user", false, "error.php", "You need to be logged in as a user to send messages");
   ?>
 <!DOCTYPE html>
 <html lang="en">

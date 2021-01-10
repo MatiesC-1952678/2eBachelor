@@ -2,7 +2,7 @@
   session_start();
   require 'php/reusables.php';
   require 'php/timeslots.php';
-  checkSession($_SESSION["typeLogged"], "user", false, "php/logOut.php", "You need to be logged in as a user to make a booking");
+  checkSession($_SESSION["typeLogged"], "user", false, "error.php", "You need to be logged in as a user to make a booking");
   $room = $_GET["roomName"];
   $hotel = $_GET["hotelName"];
   $bookStart = $_GET["start"];

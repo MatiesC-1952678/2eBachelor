@@ -30,29 +30,30 @@
     checkMinMax(strlen($roomName), 5, 30, "The Name is not between 5 and 30 characters. Go back and retry.");
     checkMinMax(strlen($description), 0, 200, "Description is longer than 200 characters. Go back and retry.");
     issetCorrect($hotelName, "You did not select a hotel from the options given. Go back and retry.");
-    checkMinMax($cost, 0, 9999999999, "Your cost must be 0 or higher. Go back and retry");
-    issetCorrect($long, "You need to give a location to your room. Go back and retry");
-    issetCorrect($lat, "You need to give a location to your room. Go back and retry");
+    checkMinMax($cost, 0, 9999999999, "Your cost must be 0 or higher. Go back and retry.");
+    issetCorrect($long, "You need to give a location to your room. Go back and retry.");
+    issetCorrect($lat, "You need to give a location to your room. Go back and retry.");
     if (isset($startdate) && isset($enddate)) {
       biggerThenTimeDate($startdate, $enddate, "The starting date that you have entered is currenlty after the ending date. Go back and retry.");
-
+      
       $sth = $conn->prepare("SELECT * FROM hotels WHERE hotels.name = :name");
       $sth->bindParam(':name', $hotelName, PDO::PARAM_STR, strlen($hotelName));
       if (!$sth->execute())
         throw new Exception();
       $row = $sth->fetch(PDO::FETCH_ASSOC);
-
+      
       biggerThenTimeDate($row["startdate"], $startdate, "The starting date that you have entered is currenlty after the ending date. Go back and retry.");
       biggerThenTimeDate($enddate, $row["enddate"], "The starting date that you have entered is currenlty after the ending date. Go back and retry.");
       
-    } else if ((isset($startdate) && !isset($enddate)) || (!isset($startdate) && isset($enddate)))
+    } else if ((isset($startdate) && !isset($enddate)) || (!isset($startdate) && isset($enddate))) {
       header("location: ../error.php?error=".urlencode('<p>You need to have both dates specified not just one. Go back and retry.</p>'));
       die();
+    }
     if (isset($max) && $max < 0) {
       header("location: ../error.php?error=".urlencode('<p>Your timeslot is below zero. Go back and retry.</p>'));
       die();
     }
-
+    
     //INSERTING INTO rooms
     //echo "<p>parameters correct</p><p>adding room to database</p>";
     $sql = "INSERT INTO rooms
