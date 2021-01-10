@@ -2,16 +2,17 @@
   session_start();
   require "../php/globals.php";
   require "../php/reusables.php";
-  checkSession($_SESSION["typeLogged"], "enterprise", false, "../php/logOut.php");
+  require "../php/inputChecks.php";
+  checkSession($_SESSION["typeLogged"], "enterprise", false, "../error.php");
 
   try {
     //ESTABLISHING CONNECTION
-    echo "<p>connecting to server</p>";
+    //echo "<p>connecting to server</p>";
     $conn = new PDO( "pgsql:host=" . DB_HOST . ";port=5432;dbname=" . DB_NAME , DB_USER, DB_PASSWORD);
     $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
     
     //GETTING PARAMETERS
-    echo "<p>succesfully connected</p>";
+    //echo "<p>succesfully connected</p>";
     $hotelName = $_POST["hotelName"];
     $roomName = $_POST["roomName"];
     $description = $_POST["roomDescription"];
@@ -22,33 +23,38 @@
     $long = $_POST["long"];
     $lat = $_POST["lat"];
     
-    echo "$long, $lat";
+    //echo "$long, $lat";
 
     //CHECKING PARAMETERS
-    echo "<p>checking parameters</p>";
-    if (strlen($roomName) > 30 || strlen($description) > 200 || !isset($hotelName)) 
-      throw new Exception('parameters entered are incorrect');
-    if ($cost < 0)
-      throw new Exception('cost entered falsely');
-    if (!isset($long) || !isset($lat)) 
-      throw new Exception('You need to give a location to your room');
+    //echo "<p>checking parameters</p>";
+    checkMinMax(strlen($roomName), 5, 30, "The Name is not between 5 and 30 characters. Go back and retry.");
+    checkMinMax(strlen($description), 0, 200, "Description is longer than 200 characters. Go back and retry.");
+    issetCorrect($hotelName, "You did not select a hotel from the options given. Go back and retry.");
+    checkMinMax($cost, 0, 9999999999, "Your cost must be 0 or higher. Go back and retry");
+    issetCorrect($long, "You need to give a location to your room. Go back and retry");
+    issetCorrect($lat, "You need to give a location to your room. Go back and retry");
     if (isset($startdate) && isset($enddate)) {
-      if (strtotime($startdate) > strtotime($enddate))
-        throw new Exception('startdate before enddate');
+      biggerThenTimeDate($startdate, $enddate, "The starting date that you have entered is currenlty after the ending date. Go back and retry.");
+
       $sth = $conn->prepare("SELECT * FROM hotels WHERE hotels.name = :name");
       $sth->bindParam(':name', $hotelName, PDO::PARAM_STR, strlen($hotelName));
       if (!$sth->execute())
-        echo 'unsuccesfully queried';
+        throw new Exception();
       $row = $sth->fetch(PDO::FETCH_ASSOC);
-      if (strtotime($row["startdate"]) > strtotime($startdate) || strtotime($row["enddate"]) < strtotime($enddate))
-        throw new Exception('these dates are not in the range of the hotels opening');
+
+      biggerThenTimeDate($row["startdate"], $startdate, "The starting date that you have entered is currenlty after the ending date. Go back and retry.");
+      biggerThenTimeDate($enddate, $row["enddate"], "The starting date that you have entered is currenlty after the ending date. Go back and retry.");
+      
     } else if ((isset($startdate) && !isset($enddate)) || (!isset($startdate) && isset($enddate)))
-      throw new Exception('both dates have to be either set or not set, not one or the other');
-    if (isset($max) && $max < 0) 
-      throw new Exception('your timeslot must not be below 0');
+      header("location: ../error.php?error=".urlencode('<p>You need to have both dates specified not just one. Go back and retry.</p>'));
+      die();
+    if (isset($max) && $max < 0) {
+      header("location: ../error.php?error=".urlencode('<p>Your timeslot is below zero. Go back and retry.</p>'));
+      die();
+    }
 
     //INSERTING INTO rooms
-    echo "<p>parameters correct</p><p>adding room to database</p>";
+    //echo "<p>parameters correct</p><p>adding room to database</p>";
     $sql = "INSERT INTO rooms
     (belongstohotel, name, description, cost, startdate, enddate, timeslotmax, long, lat)
     VALUES
@@ -65,7 +71,7 @@
     $sth->bindParam( ':lat', $lat, PDO::PARAM_STR, strlen($lat));
     if (!$sth->execute())
       throw new PDOException('An error occurred');
-    echo "<p>added room to database</p>";
+    //echo "<p>added room to database</p>";
 
     //UPLOADING IMAGES
     for ($i = 0; $i < count($_FILES["imagesToUpload"]["name"]); $i++) {
@@ -81,10 +87,10 @@
     header("location: $url ");
 
   } catch (PDOException $e) {
-    print "Error! " . $e->getMessage() . "\n";
+    header("location: ../error.php?error=".urlencode('<p>An error occurred. Go back and retry.</p>'));
     die();
   } catch (Exception $e) {
-    print "Error! " . $e->getMessage() . "\n";
+    header("location: ../error.php?error=".urlencode('<p>An error occurred. Go back and retry.</p>'));
     die();
   }
   

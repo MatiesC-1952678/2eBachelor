@@ -13,8 +13,8 @@
                 uploadNotification($row[0], $description, $row[1], $row[2], date('Y-m-d H:i:s'));
             }
         } catch (PDOException $e) {
-            print "Error! " . $e->getMessage() . "\n";
-            die(); 
+            header("location: ../error.php?error=".urlencode('<p>An error occurred. Go back and retry.</p>'));
+            die();
         }
     }
 
@@ -31,11 +31,11 @@
                 echo "succesfully added notification";
             }
         } catch (PDOException $e) {
-        print "Error! " . $e->getMessage() . "\n";
-        die();
+            header("location: ../error.php?error=".urlencode('<p>An error occurred. Go back and retry.</p>'));
+            die();
         } catch (Exception $e) {
-        print "Error! " . $e->getMessage() . "\n";
-        die();
+            header("location: ../error.php?error=".urlencode('<p>An error occurred. Go back and retry.</p>'));
+            die();
         }
     }
 ?>

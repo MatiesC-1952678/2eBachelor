@@ -11,7 +11,7 @@
     <label for="enterprisePhone">Your enterprise's phonenumber (numbers only):</label>
     <input type="tel" id="enterprisePhone" name="enterprisePhone" value="" onblur="checkEditEnterprise()">
     <label for="enterprisePassword">Password: (must be between 5 and 50 char)</label>
-    <input id="enterprisePassword" type="text" name="enterprisePassword" value="" onblur="checkEditEnterprise()">
+    <input id="enterprisePassword" type="password" name="enterprisePassword" value="" onblur="checkEditEnterprise()">
     <input id="loginButton" type="submit" value="register/login" onmouseover="checkEditEnterprise()">
 </form>
 <script src="javascript/login.js"></script>

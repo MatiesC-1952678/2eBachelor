@@ -15,11 +15,11 @@
     $password = $_POST["enterprisePassword"];
 
 
-    checkMinMax(strlen($name), 5, 30, "Name is not between 5 and 30 characters.");
-    checkMinMax(strlen($email), 1, 50, "Email is over 50 characters.");
-    checkMinMax(strlen($description), 0, 200, "Description is longer than 200 characters.");
-    checkMinMax(strlen($password), 5, 50, "Password is not between 5 and 50 characters.");
-    checkMinMax(strlen($phone), 0, 50, "Phone number is longer than 200 characters.");
+    checkMinMax(strlen($name), 5, 30, "The name is not between 5 and 30 characters. Go back and retry.");
+    checkMinMax(strlen($email), 1, 50, "The email is over 50 characters. Go back and retry.");
+    checkMinMax(strlen($description), 0, 200, "The description is longer than 200 characters. Go back and retry.");
+    checkMinMax(strlen($password), 5, 50, "The password is not between 5 and 50 characters. Go back and retry.");
+    checkMinMax(strlen($phone), 0, 50, "The phone number is longer than 200 characters. Go back and retry.");
     checkEmail($email);
     if (strlen($phone) > 0)
       checkPhone($phone);
@@ -33,22 +33,24 @@
     if ($sth->rowCount() > 0) {
       $row = $sth->fetch( PDO::FETCH_ASSOC );
       if ($email != $row["email"]) {
-        echo '<p>email incorrect to log in to the account '.$username.'</p><a href="../login.php">Go back</a>';
+        header("location: ../error.php?error=".urlencode('<p>The email you entered is incorrect to log in to this account. Go back and retry.</p>'));
         die();
       }
       if (!password_verify($password, $row["password"])) {
         //FAILING TO LOG IN INTO EXISTING ACCOUNT
-        echo '<p>password incorrect</p><a href="../login.php">Go back</a>';
+        header("location: ../error.php?error=".urlencode('<p>The password you entered is incorrect to log in to this account. Go back and retry.</p>'));
         die();
       } else {
         //LOGGING IN TO AN ACCOUNT
-        echo "<p>logged in</p>";
+        //echo "<p>logged in</p>";
         $_SESSION["typeLogged"] = "enterprise";
         $_SESSION["name"] = $name;
       }
     } else {
         //INSERTING ENTERPRISE
-        echo "<p>$name, $description, $email, $phone</p>";
+        //echo "<p>$name, $description, $email, $phone</p>";
+
+        $hash = password_hash($password, PASSWORD_DEFAULT);
         $sql =  "INSERT INTO enterprises
         (name, description, email, phone, password)
         VALUES
@@ -58,10 +60,9 @@
         $sth->bindParam( ':description', $description, PDO::PARAM_STR, strlen($description));
         $sth->bindParam( ':email', $email, PDO::PARAM_STR, strlen($email));
         $sth->bindParam( ':phone', $phone, PDO::PARAM_STR, strlen($phone));
-        $sth->bindParam( ':password', $password, PDO::PARAM_STR, strlen($password));
+        $sth->bindParam( ':password', $hash, PDO::PARAM_STR, strlen($hash));
         if (!$sth->execute())
           throw new PDOException('An error occurred');
-        echo "<p>succesfully inserted enterprise</p>";
 
         /*
         $sth = $conn->prepare( "SELECT * FROM enterprises;");
@@ -79,12 +80,10 @@
     header("location: $url ");
 
   } catch (PDOException $e) {
-    print "Error! You can't make an account using these parameters.";
-    echo '<p><a href="../login.php"> go back </a></p>';
+    header("location: ../error.php?error=".urlencode('<p>An error occurred. Go back and retry.</p>'));
     die();
   } catch (Exception $e) {
-    print "Error!" . $e->getMessage() . "\n";
-    echo '<p><a href="../login.php"> go back </a></p>';
+    header("location: ../error.php?error=".urlencode('<p>An error occurred. Go back and retry.</p>'));
     die();
   }
  ?>

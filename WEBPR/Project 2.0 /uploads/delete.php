@@ -3,7 +3,7 @@
     require '../php/globals.php';
     require '../php/reusables.php';
     require 'uploadNotification.php';
-    checkSession($_SESSION["typeLogged"], "", true, "../php/logOut.php");
+    checkSession($_SESSION["typeLogged"], "", true, "../error.php");
 
     function delete($sql, $key1, $key2) {
         try {
@@ -37,24 +37,24 @@
     echo "$key2 $key3";
     switch ($type) {
         case "room":
-            notifyBookings("SELECT * FROM bookings WHERE roomname = :key2 AND hotelname = :key1", $key2, $key3, "this room you had booked is no longer available.");
+            notifyBookings("SELECT * FROM bookings WHERE roomname = :key2 AND hotelname = :key1", $key2, $key3, "This room you had booked is no longer available.");
             delete("DELETE FROM rooms WHERE rooms.belongstohotel = :key1 AND rooms.name = :key2", $key2, $key3);
             echo "<p> succesfully deleted room</p>";
             $url = "../management.php";
             break;
         case "hotel";
-            notifyBookings("SELECT * FROM bookings,rooms WHERE bookings.roomname = rooms.name AND bookings.hotelname = rooms.belongstohotel AND bookings.hotelname = :key1", $key2, "", "all the rooms from this hotel are deleted because it is no longer available.");
+            notifyBookings("SELECT * FROM bookings,rooms WHERE bookings.roomname = rooms.name AND bookings.hotelname = rooms.belongstohotel AND bookings.hotelname = :key1", $key2, "", "All the rooms from this hotel are deleted because it is no longer available.");
             delete("DELETE FROM hotels WHERE hotels.name = :key1", $key2, "");
             echo "<p> succesfully deleted hotel</p>";
             $url = "../management.php";
             break;
         case "user";
-            notifyBookings("SELECT likedby,room,hotel FROM likes,bookings WHERE likes.room = bookings.roomname AND likes.hotel = bookings.hotelname AND bookings.bookedby = :key1", $key1, "", "all the booked rooms from this user are now available because this user no longer exists.");
+            notifyBookings("SELECT likedby,room,hotel FROM likes,bookings WHERE likes.room = bookings.roomname AND likes.hotel = bookings.hotelname AND bookings.bookedby = :key1", $key1, "", "All the booked rooms from this user are now available because this user no longer exists.");
             delete("DELETE FROM users WHERE users.username = :key1", $key1, "");
             $url = "../php/logOut.php";
             break;
         case "enterprise";
-            notifyBookings("SELECT bookedby,roomname,hotelname FROM bookings,hotels,rooms WHERE hotels.belongstoenterprise = :key1 AND hotels.name = rooms.belongstohotel AND bookings.roomname = rooms.name AND bookings.hotelname = hotels.name", $key1, "", "everything this hotel owned is no longer available because this enterprise no longer exists.");
+            notifyBookings("SELECT bookedby,roomname,hotelname FROM bookings,hotels,rooms WHERE hotels.belongstoenterprise = :key1 AND hotels.name = rooms.belongstohotel AND bookings.roomname = rooms.name AND bookings.hotelname = hotels.name", $key1, "", "Everything this hotel owned is no longer available because this enterprise no longer exists.");
             delete("DELETE FROM enterprises WHERE enterprises.name = :key1", $key1, "");
             $url = "../php/logOut.php";
             break;

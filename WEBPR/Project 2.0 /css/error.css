@@ -1,14 +1,22 @@
 .ErrorPage {
     color: red;
+    margin: auto;
     margin-top: 10%;
-    margin-right: 5%;
-    margin-left: 5%;
+    margin-bottom: 10%;
+    width: 70%;
     display: flex;
     flex-direction: column;
     border-radius: 15px;
+    padding: 3%;
     -webkit-box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
     -moz-box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
     box-shadow: 3px 3px 20px 2px rgba(23,50,92,0.5);
+}
+
+#backButton {
+    color: red;
+    margin: 10%;
+    width: 70%;
 }
 
 #formS {

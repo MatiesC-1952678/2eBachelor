@@ -15,8 +15,8 @@
                 uploadNotification($row[0], $newDes, $row[1], $row[2], date('Y-m-d H:i:s'));
             }
         } catch (PDOException $e) {
-            print "Error! " . $e->getMessage() . "\n";
-            die(); 
+          header("location: error.php?error=".urlencode('<p>An error occurred. Go back and retry.</p>'));
+          die();
         }
     }
 
@@ -35,11 +35,11 @@
             //echo "$name $description $date $time $room $hotel";
             //header("location: notifications.php");
         } catch (PDOException $e) {
-        print "Error! " . $e->getMessage() . "\n";
-        die();
+          header("location: error.php?error=".urlencode('<p>An error occurred. Go back and retry.</p>'));
+          die();
         } catch (Exception $e) {
-        print "Error! " . $e->getMessage() . "\n";
-        die();
+          header("location: error.php?error=".urlencode('<p>An error occurred. Go back and retry.</p>'));
+          die();
         }
     }
   checkSession($_SESSION["typeLogged"], "user", false);
@@ -50,7 +50,6 @@
 <head>
   <title>Suite Dreams - Notifications</title>
   <meta charset="utf-8">
-  <meta http-equiv="Content-Type" content="text/html"/>
   <meta name="description" content="A platform for hotels and customers to easily meet">
   <meta name="keywords" content="Room,Country,Hotel,Book">
   <meta name="author" content="Maties Claesen">

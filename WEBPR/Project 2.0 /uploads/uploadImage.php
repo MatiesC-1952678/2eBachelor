@@ -1,7 +1,7 @@
 <?php
   session_start();
   require "../php/reusables.php";
-  checkSession($_SESSION["typeLogged"], "", true, "../php/logOut.php");
+  checkSession($_SESSION["typeLogged"], "", true, "../error.php");
   
   //echo count($_FILES["imagesToUpload"]["name"]);
   $name = $_POST["name"];

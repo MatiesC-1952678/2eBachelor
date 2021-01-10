@@ -3,14 +3,14 @@
   require "../php/globals.php";
   require "../php/reusables.php";
   require 'uploadNotification.php';
-  checkSession($_SESSION["typeLogged"], "enterprise", false, "../php/logOut.php");
+  checkSession($_SESSION["typeLogged"], "enterprise", false, "../error.php");
 
   try {
-    echo "<p>connecting to server</p>";
+    //echo "<p>connecting to server</p>";
     $conn = new PDO( "pgsql:host=" . DB_HOST . ";port=5432;dbname=" . DB_NAME , DB_USER, DB_PASSWORD);
     $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
     
-    echo "<p>succesfully connected</p>";
+    //echo "<p>succesfully connected</p>";
     $enterpriseName = $_POST["enterprise"];
     $originalname = $_POST["original"];
     $newname = $_POST["hotelName"];
@@ -21,8 +21,7 @@
     $endTime = $_POST["endTime"];
     $country = $_POST["hotelCountry"];
 
-    echo "<p> $enterpriseName _ $originalname _ $newname _ $description _ $startDate _ $endDate _ $startTime _ $endTime _ $country";
-
+    //echo "<p> $enterpriseName _ $originalname _ $newname _ $description _ $startDate _ $endDate _ $startTime _ $endTime _ $country";
     $sth = $conn->prepare("SELECT * FROM hotels WHERE belongstoenterprise = :enterprise AND name = :name");
     $sth->bindParam(':enterprise', $enterpriseName, PDO::PARAM_STR, strlen($enterpriseName));
     $sth->bindParam(':name', $originalname, PDO::PARAM_STR, strlen($originalname));
@@ -44,24 +43,21 @@
     if (empty($country))
         $country = $row["country"];
 
-    echo "<p> $enterpriseName _ $originalname _ $newname _ $description _ $startDate _ $endDate _ $startTime _ $endTime _ $country";
-
-    notifyBookings("SELECT * FROM bookings,rooms WHERE bookings.roomname = rooms.name AND bookings.hotelname = rooms.belongstohotel AND bookings.hotelname = :key1", $originalname, "", "the hotel $originalname has undergone some changes. Look it up to make sure you aren't missing anything");
+    //echo "<p> $enterpriseName _ $originalname _ $newname _ $description _ $startDate _ $endDate _ $startTime _ $endTime _ $country";
+    notifyBookings("SELECT * FROM bookings,rooms WHERE bookings.roomname = rooms.name AND bookings.hotelname = rooms.belongstohotel AND bookings.hotelname = :key1", $originalname, "", "This hotel has undergone some changes. Look it up to make sure you aren't missing anything.");
     
-    echo "<p>checking parameters</p>";
-    if(strtotime($startDate) > strtotime($endDate)){
-        throw new Exception("starting date is behind ending date");
-    }
-    if(strtotime($startTime) > strtotime($endTime)) {
-        throw new Exception("starting time is behind ending time");
-    }
-    if (strlen($newname) > 30 || strlen($description) > 200 || !isset($country)) {
-        throw new Exception('parameters entered are incorrect');
-    }
+    //echo "<p>checking parameters</p>";
+    dateFormatted($startDate, "Your start date is not formatted correctly. Go back and retry.");
+    dateFormatted($endDate, "Your end date is not formatted correctly. Go back retry.");
+    timeFormatted($startTime, "Your start time is not formatted correctly. Go back and retry.");
+    timeFormatted($endTime, "Your end time is not formatted correctly. Go back and retry.");
+    biggerThenTimeDate($startDate, $endDate, "The starting date that you have entered is currenlty after the ending date. Go back and retry.");
+    biggerThenTimeDate($startTime, $endTime, "The starting time that you have entered is currenlty after the ending date. Go back and retry.");
+    checkMinMax(strlen($newname), 5, 30, "The Name is not between 5 and 30 characters. Go back and retry.");
+    checkMinMax(strlen($description), 0, 200, "Description is longer than 200 characters. Go back and retry.");
+    issetCorrect($country, "You did not select a country from the options given. Go back and retry.");
 
-    
-
-    echo "<p>parameters correct</p><p>updating hotel in database</p>";
+    //echo "<p>parameters correct</p><p>updating hotel in database</p>";
     $sql = "UPDATE hotels SET
     name = :newname, description = :description, startdate = :startdate, enddate = :enddate, starttime = :starttime, endtime = :endtime, country = :country
     WHERE
@@ -78,7 +74,7 @@
     $sth->bindParam( ':country', $country, PDO::PARAM_STR, strlen($country));
     if (!$sth->execute())
       throw new PDOException('An error occurred');
-    echo "<p>updated hotel in database + CASCADE</p>";
+    //echo "<p>updated hotel in database + CASCADE</p>";
     if ($_SESSION["admin"] == true)
       $url = "../admin.php";
     else 
@@ -86,10 +82,10 @@
     header("location: $url ");
 
   } catch (PDOException $e) {
-    print "Error! " . $e->getMessage() . "\n";
+    header("location: ../error.php?error=".urlencode('<p>An error occurred. Go back and retry.</p>'));
     die();
   } catch (Exception $e) {
-    print "Error! " . $e->getMessage() . "\n";
+    header("location: ../error.php?error=".urlencode('<p>An error occurred. Go back and retry.</p>'));
     die();
   }
   

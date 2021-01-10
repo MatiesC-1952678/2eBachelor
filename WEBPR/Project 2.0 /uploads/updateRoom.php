@@ -4,14 +4,14 @@
   require "../php/reusables.php";
   require "../php/inputChecks.php";
   require 'uploadNotification.php';
-  checkSession($_SESSION["typeLogged"], "enterprise", false, "../php/logOut.php");
+  checkSession($_SESSION["typeLogged"], "enterprise", false, "../error.php");
   
   try {
-    echo "<p>connecting to server</p>";
+    //echo "<p>connecting to server</p>";
     $conn = new PDO( "pgsql:host=" . DB_HOST . ";port=5432;dbname=" . DB_NAME , DB_USER, DB_PASSWORD);
     $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
     
-    echo "<p>succesfully connected</p>";
+    //echo "<p>succesfully connected</p>";
     $originalHotel = $_POST["hotel"];
     $originalRoom = $_POST["original"];
     $hotelName = $_POST["hotelName"];
@@ -21,8 +21,7 @@
     $long = $_POST["long"];
     $lat = $_POST["lat"];
 
-    echo "<p> $originalHotel _ $originalRoom _ $hotelName _ $roomName _ $description _ $cost </p>";
-
+    //echo "<p> $originalHotel _ $originalRoom _ $hotelName _ $roomName _ $description _ $cost </p>";
     $sth = $conn->prepare("SELECT * FROM hotels,rooms WHERE rooms.belongstohotel = :originalhotel AND rooms.name = :originalroom");
     $sth->bindParam(':originalhotel', $originalHotel, PDO::PARAM_STR, strlen($originalHotel));
     $sth->bindParam(':originalroom', $originalRoom, PDO::PARAM_STR, strlen($originalRoom));
@@ -42,20 +41,18 @@
     if (empty($lat))
         $long = $row["lat"];
 
-    echo "<p> $originalHotel _ $originalRoom _ $hotelName _ $roomName _ $description _ $cost </p>";
-
+    //echo "<p> $originalHotel _ $originalRoom _ $hotelName _ $roomName _ $description _ $cost </p>";
     notifyBookings("SELECT * FROM bookings WHERE roomname = :key2 AND hotelname = :key1", $originalHotel, $originalRoom, "the room ".$originalRoom." from the hotel ".$originalHotel." you has undergone some changes. Look it up to make sure you aren't missing anything.");
 
-    echo "<p>checking parameters</p>";
-    if (strlen($roomName) > 30 || strlen($description) > 200 || !isset($hotelName)) 
-        throw new Exception('parameters entered are incorrect');
-    if ($cost < 0)
-      throw new Exception('cost entered falsely');
-    if (!isset($long) || !isset($lat)) 
-      throw new Exception('You need to give a location to your room');
+    //echo "<p>checking parameters</p>";
+    checkMinMax(strlen($roomName), 5, 30, "The Name is not between 5 and 30 characters. Go back and retry.");
+    checkMinMax(strlen($description), 0, 200, "Description is longer than 200 characters. Go back and retry.");
+    issetCorrect($hotelName, "You did not select a hotel from the options given. Go back and retry.");
+    checkMinMax($cost, 0, 9999999999, "Your cost must be 0 or higher. Go back and retry");
+    issetCorrect($long, "You need to give a location to your room. Go back and retry");
+    issetCorrect($lat, "You need to give a location to your room. Go back and retry");
     
-
-    echo "<p>parameters correct</p><p>adding room to database</p>";
+    //echo "<p>parameters correct</p><p>adding room to database</p>";
     $sql = "UPDATE rooms SET
     belongstohotel = :belongstohotel, name = :name, description = :description, cost = :cost, long = :long, lat = :lat
     WHERE
@@ -71,7 +68,7 @@
     $sth->bindParam( ':lat', $lat, PDO::PARAM_INT);
     if (!$sth->execute())
       throw new PDOException('An error occurred');
-    echo "<p>added room to database</p>";
+    //echo "<p>added room to database</p>";
     if ($_SESSION["admin"] == true) 
         $url = "../admin.php";
     else
@@ -79,10 +76,10 @@
     header("location: $url ");
 
   } catch (PDOException $e) {
-    print "Error! " . $e->getMessage() . "\n";
+    header("location: ../error.php?error=".urlencode('<p>An error occurred. Go back and retry.</p>'));
     die();
   } catch (Exception $e) {
-    print "Error! " . $e->getMessage() . "\n";
+    header("location: ../error.php?error=".urlencode('<p>An error occurred. Go back and retry.</p>'));
     die();
   }
   

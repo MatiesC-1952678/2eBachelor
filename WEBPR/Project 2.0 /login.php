@@ -7,7 +7,6 @@
 <head>
   <title>Suite Dreams - Login</title>
   <meta charset="utf-8">
-  <meta http-equiv="Content-Type" content="text/html"/>
   <meta name="description" content="A platform for enterprises and customers to easily meet">
   <meta name="keywords" content="Room,Country,enterprise,Book">
   <meta name="author" content="Maties Claesen">
@@ -33,7 +32,7 @@
         <input type="radio" id="enterprise" name="typeOfUser" value="enterprise" onclick="showElements()">
         <label for="enterprise">Enterprise</label>
       </div>
-      <p> if you want to log in using a previous account. Enter your name and password. (The other fields are not necessary for entering) </p>
+      <p> if you want to log in using a previous account. Only your name, email and password. </p>
         <!-- user login -->
       <form id="userS" class="userLogin" action="php/userLogin.php" method="post">
           <label for="username">Username: Your username (between 5 and 30 characters and not be taken)*:</label>

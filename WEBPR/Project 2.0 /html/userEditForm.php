@@ -7,7 +7,7 @@
     <label for="email">E-mail: (must be valid and between 5 and 50 characters):</label>
     <input id="email" type="email" name="email" value="" onblur="checkEditUser()">
     <label for="password">Password: (must be between 5 and 50 char)</label>
-    <input id="password" type="text" name="password" value="" onblur="checkEditUser()">
+    <input id="password" type="password" name="password" value="" onblur="checkEditUser()">
     <input id="loginButton" type="submit" value="register/login" onmouseover="checkEditUser()">
 </form>
 <link rel="stylesheet" href="css/login.css">

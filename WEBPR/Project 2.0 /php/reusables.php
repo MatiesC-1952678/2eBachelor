@@ -402,37 +402,34 @@
             $usersFileName = $tmp;
             $imageType = strtolower(pathinfo($img,PATHINFO_EXTENSION));
             $url = $_POST["url"];
-            echo "<p>$usersFileName + $imageType</p>";
+            //echo "<p>$usersFileName + $imageType</p>";
 
             //CHECKS BEFOREHAND
             if($imageType != "jpg" && $imageType != "png" && $imageType != "jpeg") {
-                echo '<p>png, jpg, jpeg files are only allowed.</p>
-                        <a href="'.$url.'"> go back </a>';
+                header("location: $url?error=".urlencode('<p>png, jpg, jpeg files are only allowed. Go back and retry.</p>'));
                 die();
             }
             $sizeInfo = getImageSize($usersFileName);
             if ($sizeInfo[0] > 1000 || $sizeInfo[1] > 1000) {
-                echo '<p>Your image is bigger than 500x500.</p>
-                        <a href="'.$url.'"> go back </a>';
+                header("location: $url?error=".urlencode('<p>Your image is bigger than 500x500. Go back and retry.</p>'));
                 die();
             }
             if ($size > 50000000) {
-                echo '<p>your file is larger than 50000kb.</p>
-                        <a href="'.$url.'"> go back </a>';
+                header("location: $url?error=".urlencode('<p>your file is larger than 50000000kb. Go back and retry.</p>'));
                 die();
             }
-
+            
             //GENERATING IMAGE NAME
             $i = 0;
             while (file_exists($target_dir.$name."_".$type."_".$i.".jpg")) {
                 $i = $i+1;
             }
             $newName = $name."_".$type."_".$i.".jpg";
-            echo "<p>choses as i: $i </p><p> $newName </p>";
+            //echo "<p>choses as i: $i </p><p> $newName </p>";
 
             //MAKING TARGET DIR
             $target_file=$target_dir.$newName;
-            echo "<p>chosen as target file: $target_file</p>";
+            //echo "<p>chosen as target file: $target_file</p>";
             if (isset($_POST["submit"])) {
                 if (!move_uploaded_file($usersFileName,$target_file)) {
                     echo "<p>file not added </p>";
@@ -460,13 +457,11 @@
 
             //CHECKS BEFOREHAND
             if($videoType != "mv4" && $videoType != "mp4") {
-                echo '<p>mv4, mp4 files are only allowed.</p>
-                        <a href="'.$url.'"> go back </a>';
+                header("location: $url?error=".urlencode('<p>mv4, mp4 files are only allowed. Go back and retry.</p>'));
                 die();
             }
             if ($size > 50000000000) {
-                echo '<p>your file is larger than 50000kb.</p>
-                        <a href="'.$url.'"> go back </a>';
+                header("location: $url?error=".urlencode('<p>your file is larger than 50000000000kb. Go back and retry.</p>'));
                 die();
             }
 
@@ -483,7 +478,8 @@
             //echo "<p>chosen as target file: $target_file</p>";
             if (isset($_POST["submit"])) {
                 if (!move_uploaded_file($usersFileName,$target_file)) {
-                    echo "<p>file not added </p>";
+                    header("location: $url?error=".urlencode('<p>File not uploaded because of an error. Go back and retry.</p>'));
+                    die();
                 }
             }
         }
@@ -528,29 +524,17 @@
     }
 
 
-    function checkSession($logged, $check, bool $type, $url = "php/logOut.php", $description = "Error! Session Expired") {
+    function checkSession($logged, $check, bool $type, $url = "error.php", $description = "Error! Session Expired") {
         //Session not expired and not ADMIN
         if ($_SESSION["admin"] != true) {
             if ($type) {
                 if ($logged == $check) {
-                    echo '<link rel="stylesheet" href="css/error.css">
-                        <div class="ErrorPage">
-                            <text>'.$description.'</text>
-                            <a id="Nav-a" href="'.$url.'">
-                                <text id="nav">Log back in</text>
-                            </a>
-                        </div>';
+                    header("location: $url?error=".urlencode($description));
                     die();
                 }
             } else {
                 if ($logged != $check) {
-                    echo '<link rel="stylesheet" href="css/error.css">
-                        <div class="ErrorPage">
-                            <text>'.$description.'</text>
-                            <a id="Nav-a" href="'.$url.'">
-                                <text id="nav">Log back in</text>
-                            </a>
-                        </div>';
+                    header("location: $url?error=".urlencode($description));
                     die();
                 }
             }

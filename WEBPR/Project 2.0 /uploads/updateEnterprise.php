@@ -2,11 +2,11 @@
   session_start();
   require '../php/globals.php';
   require '../php/reusables.php';
+  require '../php/inputChecks.php';
   require 'uploadNotification.php';
-  checkSession($_SESSION["typeLogged"], "enterprise", false, "../php/logOut.php");
-
+  checkSession($_SESSION["typeLogged"], "enterprise", false, "../error.php");
   try {
-    echo "<p>connecting to server</p>";
+    //echo "<p>connecting to server</p>";
     $conn = new PDO( "pgsql:host=" . DB_HOST . ";port=5432;dbname=" . DB_NAME , DB_USER, DB_PASSWORD);
     $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 
@@ -17,7 +17,7 @@
     $phone = $_POST["enterprisePhone"];
     $password = $_POST["enterprisePassword"];
 
-    echo "<p> $original _ $name _ $description _ $email _ $phone _ $password </p>";
+    //echo "<p> $original _ $name _ $description _ $email _ $phone _ $password </p>";
 
     $sth = $conn->prepare("SELECT * FROM enterprises WHERE enterprises.name = :original");
     $sth->bindParam( ':original', $original, PDO::PARAM_STR, strlen($original) );
@@ -35,23 +35,18 @@
     if (empty($password))
         $password = $row["password"];
 
-    echo "<p> $original _ $name _ $description _ $email _ $phone _ $password </p>";
+    //echo "<p> $original _ $name _ $description _ $email _ $phone _ $password </p>";
 
     notifyBookings("SELECT bookedby,roomname,hotelname FROM bookings,hotels,rooms WHERE hotels.belongstoenterprise = :key1 AND hotels.name = rooms.belongstohotel AND bookings.roomname = rooms.name AND bookings.hotelname = hotels.name", $original, "", "the enterprise $original has undergone some changes. Look it up to make sure you aren't missing anything.");
 
-    echo '<p> checking parameters </p>';
-    if (strlen($name) < 5 || strlen($name) > 30) {
-        throw new Exception('name is not between 5 and 30 char', 1);
-    }
-    if (strlen($description) > 200) {
-        throw new Exception('description is 200', 1);
-    }
-    if (strlen($email) > 50) {
-        throw new Exception('email is too long');
-    }
-    if (strlen($password) < 5 || strlen($password) > 50) {
-        throw new Exception("password is not correct", 1);
-    }
+    checkMinMax(strlen($name), 5, 30, "Name is not between 5 and 30 characters. Go back and retry.");
+    checkMinMax(strlen($email), 1, 50, "Email is over 50 characters. Go back and retry.");
+    checkMinMax(strlen($description), 0, 200, "Description is longer than 200 characters. Go back and retry.");
+    checkMinMax(strlen($password), 5, 50, "Password is not between 5 and 50 characters. Go back and retry.");
+    checkMinMax(strlen($phone), 0, 50, "Phone number is longer than 200 characters. Go back and retry.");
+    checkEmail($email);
+    if (strlen($phone) > 0)
+      checkPhone($phone);
 
     $hash = password_hash($password, PASSWORD_DEFAULT);
 
@@ -77,12 +72,10 @@
     header("location: $url ");
 
   } catch (PDOException $e) {
-    print "Error! " . $e->getMessage() . "\n";
-    echo '<p>go back!</p>';
+    header("location: ../error.php?error=".urlencode('<p>An error occurred. Go back and retry.</p>'));
     die();
   } catch (Exception $e) {
-    print "Error! " . $e->getMessage() . "\n";
-    echo '<p>go back!</p>';
+    header("location: ../error.php?error=".urlencode('<p>An error occurred. Go back and retry.</p>'));
     die();
   }
 ?>

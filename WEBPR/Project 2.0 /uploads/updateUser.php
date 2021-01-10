@@ -2,20 +2,20 @@
   session_start();
   require '../php/globals.php';
   require '../php/reusables.php';
-  checkSession($_SESSION["typeLogged"], "user", false, "../php/logOut.php");
+  require '../error.php';
+  checkSession($_SESSION["typeLogged"], "user", false, "../error.php");
   try {
-    echo "<p>connecting to server</p>";
+    //echo "<p>connecting to server</p>";
     $conn = new PDO( "pgsql:host=" . DB_HOST . ";port=5432;dbname=" . DB_NAME , DB_USER, DB_PASSWORD);
     $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 
-    echo "<p>succesfully connected</p>";
+    //echo "<p>succesfully connected</p>";
     $original = $_POST["original"];
     $username = $_POST["username"];
     $email = $_POST["email"];
     $password = $_POST["password"];
 
-    echo "<p> $original _ $username _ $email _ $password </p>";
-
+    //echo "<p> $original _ $username _ $email _ $password </p>";
     $sth = $conn->prepare("SELECT * FROM users WHERE users.username = :original");
     $sth->bindParam(':original', $original, PDO::PARAM_STR, strlen($original));
     if (!$sth->execute())
@@ -28,18 +28,12 @@
     if (empty($password))
         $password = $row["password"];
 
-    echo "<p> $original _ $username _ $email _ $password </p>";
-
+    //echo "<p> $original _ $username _ $email _ $password </p>";
     //double check for correct input
-    if (strlen($username) < 5 || strlen($username) > 30) {
-      throw new Exception("name is not between 5 and 30 char", 1);
-    }
-    if (strlen($email) > 50) {
-      throw new Exception('email is over 50', 1);
-    }
-    if (strlen($password) < 5 || strlen($password) > 50) {
-      throw new Exception("password is not correct", 1);
-    }
+    checkMinMax(strlen($username), 5, 30, "Your name is not between 5 and 30 characters. Go back and retry.");
+    checkMinMax(strlen($email), 1, 50, "Your email is not between 1 and 50 characters. Go back and retry.");
+    checkMinMax(strlen($password), 5, 50, "Your password is not between 5 and 50 characters. Go back and retry.");
+    checkEmail($email);
 
     $hash = password_hash($password, PASSWORD_DEFAULT);
 
@@ -63,12 +57,10 @@
     header("location: $url ");
 
   } catch (PDOException $e) {
-    print "Error! " . $e->getMessage() . "\n";
-    echo '<p>go back!</p>';
+    header("location: ../error.php?error=".urlencode('<p>An error occurred. Go back and retry.</p>'));
     die();
   } catch (Exception $e) {
-    print "Error! " . $e->getMessage() . "\n";
-    echo '<p>go back!</p>';
+    header("location: ../error.php?error=".urlencode('<p>An error occurred. Go back and retry.</p>'));
     die();
   }
 ?>

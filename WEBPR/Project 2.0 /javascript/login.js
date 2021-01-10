@@ -110,9 +110,9 @@ function checkName(id, before, after) {
 function checkEmail(id, before, after) {
   var email = document.getElementById(id).value;
   if (!(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)) ||
-      email.length > 50) {
+      email.length > 50 || email.length < 1) {
     changeenterpriseState(before, after);
-    document.getElementById(id).setCustomValidity("Your email is either longer than 50 characters or formatted incorrectly.");
+    document.getElementById(id).setCustomValidity("Your email is not between 1 and 50 characters or is formatted incorrectly.");
     return true;
   } else {
     return false;
