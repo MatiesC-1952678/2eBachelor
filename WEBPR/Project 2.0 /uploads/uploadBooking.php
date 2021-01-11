@@ -10,10 +10,10 @@
     //echo "<p>$roomName, $hotelName</p>";
 
     $conn = new PDO( "pgsql:host=" . DB_HOST . ";port=5432;dbname=" . DB_NAME , DB_USER, DB_PASSWORD);
-    $sth = $conn->prepare("SELECT hotels.startdate,hotels.enddate,rooms.startdate,rooms.enddate,rooms.timeslotmax FROM hotels,rooms WHERE hotels.name = :hotelName AND rooms.name = :roomName AND rooms.belongstohotel = hotels.name");
-    $sth->bindParam(':hotelName', $hotelName, PDO::PARAM_STR, strlen($hotelName));
-    $sth->bindParam(':roomName', $roomName, PDO::PARAM_STR, strlen($roomName));
-    if (!$sth->execute());
+    $sth = $conn->prepare("SELECT hotels.startdate,hotels.enddate,rooms.startdate,rooms.enddate,rooms.timeslotmax FROM hotels,rooms WHERE hotels.name = :hotel AND rooms.name = :room AND rooms.belongstohotel = hotels.name");
+    $sth->bindParam(':hotel', $hotelName, PDO::PARAM_STR, strlen($hotelName));
+    $sth->bindParam(':room', $roomName, PDO::PARAM_STR, strlen($roomName));
+    if (!$sth->execute())
       throw new Exception("An error occurred");
     $row = $sth->fetch( PDO::FETCH_NUM );
     
@@ -84,7 +84,7 @@
     header("location: ../error.php?error=".urlencode('<p>An error occurred. Go back and retry.</p>'));
     die();
   } catch (Exception $e) {
-    header("location: ../error.php?error=".urlencode('<p>An error occurred. Go back and retry.</p>'));
+    header("location: ../error.php?error=".urlencode($e->getMessage().'<p>An error occurred. Go back and retry.</p>'));
     die();
   }
   

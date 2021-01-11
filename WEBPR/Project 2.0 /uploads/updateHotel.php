@@ -2,6 +2,7 @@
   session_start();
   require "../php/globals.php";
   require "../php/reusables.php";
+  require "../php/inputChecks.php";
   require 'uploadNotification.php';
   checkSession($_SESSION["typeLogged"], "enterprise", false, "../error.php");
 
@@ -20,7 +21,6 @@
     $startTime = $_POST["startTime"];
     $endTime = $_POST["endTime"];
     $country = $_POST["hotelCountry"];
-
     //echo "<p> $enterpriseName _ $originalname _ $newname _ $description _ $startDate _ $endDate _ $startTime _ $endTime _ $country";
     $sth = $conn->prepare("SELECT * FROM hotels WHERE belongstoenterprise = :enterprise AND name = :name");
     $sth->bindParam(':enterprise', $enterpriseName, PDO::PARAM_STR, strlen($enterpriseName));
@@ -28,6 +28,7 @@
     if (!$sth->execute())
       throw new PDOException('An error occurred');
     $row = $sth->fetch(PDO::FETCH_ASSOC);
+
     if (empty($newname))
         $newname = $row["name"];
     if (empty($description))
@@ -42,10 +43,10 @@
         $endTime = $row["endtime"];
     if (empty($country))
         $country = $row["country"];
-
+    
     //echo "<p> $enterpriseName _ $originalname _ $newname _ $description _ $startDate _ $endDate _ $startTime _ $endTime _ $country";
     notifyBookings("SELECT * FROM bookings,rooms WHERE bookings.roomname = rooms.name AND bookings.hotelname = rooms.belongstohotel AND bookings.hotelname = :key1", $originalname, "", "This hotel has undergone some changes. Look it up to make sure you aren't missing anything.");
-    
+   
     //echo "<p>checking parameters</p>";
     dateFormatted($startDate, "Your start date is not formatted correctly. Go back and retry.");
     dateFormatted($endDate, "Your end date is not formatted correctly. Go back retry.");
@@ -56,7 +57,7 @@
     checkMinMax(strlen($newname), 5, 30, "The Name is not between 5 and 30 characters. Go back and retry.");
     checkMinMax(strlen($description), 0, 200, "Description is longer than 200 characters. Go back and retry.");
     issetCorrect($country, "You did not select a country from the options given. Go back and retry.");
-
+    
     //echo "<p>parameters correct</p><p>updating hotel in database</p>";
     $sql = "UPDATE hotels SET
     name = :newname, description = :description, startdate = :startdate, enddate = :enddate, starttime = :starttime, endtime = :endtime, country = :country
@@ -80,7 +81,6 @@
     else 
       $url = "../management.php";
     header("location: $url ");
-
   } catch (PDOException $e) {
     header("location: ../error.php?error=".urlencode('<p>An error occurred. Go back and retry.</p>'));
     die();

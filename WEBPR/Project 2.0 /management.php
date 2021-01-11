@@ -89,7 +89,7 @@
             <input id="timeslotmax" name="timeslotmax" type="number" min="0" max="9999999999" value="5" onblur="checkAllRoom()">
 
             <!-- Map get Long and Lat form -->
-            <label> the address of your room (either longitude and latidude or an address)*:</label>
+            <label> the address of your room (either longitude and latidude or an address):</label>
             <div id='map'></div>
             <p id='lnglat'></p>
             <input type="hidden" id="longInput" name="long" value="">

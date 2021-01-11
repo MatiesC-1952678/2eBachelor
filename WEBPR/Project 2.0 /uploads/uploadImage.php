@@ -11,5 +11,5 @@
   }
 
   $url = $_POST["url"];
-  header("location: $url ");
+  //header("location: $url ");
  ?>

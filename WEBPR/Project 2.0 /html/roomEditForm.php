@@ -11,7 +11,7 @@
     <label for="roomDescription">Description of your room (max 200 characters):</label>
     <input type="text" id="roomDescription" name="roomDescription" value="" onblur="checkEditRoom()">
     <label for="cost">the cost per day</label>
-    <input type="number" id="cost" name="cost" min="0" max="9999999999" value="100" onblur="checkEditRoom()">
+    <input type="number" id="cost" name="cost" min="0" max="9999999999" onblur="checkEditRoom()">
     <!-- Map get Long and Lat form -->
     <label> the address of your room (either longitude and latidude or an address):</label>
     <div id='map'></div>

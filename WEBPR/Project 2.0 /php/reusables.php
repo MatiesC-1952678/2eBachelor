@@ -411,14 +411,14 @@
             }
             $sizeInfo = getImageSize($usersFileName);
             if ($sizeInfo[0] > 1000 || $sizeInfo[1] > 1000) {
-                header("location: $url?error=".urlencode('<p>Your image is bigger than 500x500. Go back and retry.</p>'));
+                header("location: $url?error=".urlencode('<p>Your image is bigger than 1000x1000. Go back and retry.</p>'));
                 die();
             }
             if ($size > 50000000) {
                 header("location: $url?error=".urlencode('<p>your file is larger than 50000000kb. Go back and retry.</p>'));
                 die();
             }
-            
+
             //GENERATING IMAGE NAME
             $i = 0;
             while (file_exists($target_dir.$name."_".$type."_".$i.".jpg")) {

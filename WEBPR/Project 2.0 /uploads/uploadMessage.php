@@ -9,8 +9,7 @@
     $time = date('Y-m-d H:i:s');
     checkSession($_SESSION["typeLogged"], "user", false, "../error.php", "You need to be logged in as a user to send messages. Go log in as a user.");
     try {
-
-        checkMinMax($message, 1, 400, "Your message is longer than 400 characters. Go back and retry.");
+        checkMinMax(strlen($message), 1, 400, "Your message is longer than 400 characters. Go back and retry.");
         //echo $userone.$usertwo.$message.$time;
         $conn = new PDO( "pgsql:host=" . DB_HOST . ";port=5432;dbname=" . DB_NAME , DB_USER, DB_PASSWORD);
         $sth = $conn->prepare("INSERT INTO messages VALUES(:userone, :usertwo, :message, :time);");
@@ -18,8 +17,8 @@
         $sth->bindParam(':usertwo', $usertwo, PDO::PARAM_STR, strlen($usertwo));
         $sth->bindParam(':message', $message, PDO::PARAM_STR, strlen($message));
         $sth->bindParam(':time', $time, PDO::PARAM_STR, strlen($time));
-        if ($sth->execute()) {
-            echo "succesfully added message";
+        if (!$sth->execute()) {
+            throw new Exception('Error');
         }
         //echo $usertwo;
         //echo $userone;

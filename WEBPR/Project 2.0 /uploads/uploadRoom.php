@@ -33,19 +33,20 @@
     checkMinMax($cost, 0, 9999999999, "Your cost must be 0 or higher. Go back and retry.");
     issetCorrect($long, "You need to give a location to your room. Go back and retry.");
     issetCorrect($lat, "You need to give a location to your room. Go back and retry.");
-    if (isset($startdate) && isset($enddate)) {
+
+    if (!empty($startdate) && !empty($enddate)) {
       biggerThenTimeDate($startdate, $enddate, "The starting date that you have entered is currenlty after the ending date. Go back and retry.");
       
       $sth = $conn->prepare("SELECT * FROM hotels WHERE hotels.name = :name");
       $sth->bindParam(':name', $hotelName, PDO::PARAM_STR, strlen($hotelName));
       if (!$sth->execute())
-        throw new Exception();
+        throw new Exception('Test');
       $row = $sth->fetch(PDO::FETCH_ASSOC);
       
       biggerThenTimeDate($row["startdate"], $startdate, "The starting date that you have entered is currenlty after the ending date. Go back and retry.");
       biggerThenTimeDate($enddate, $row["enddate"], "The starting date that you have entered is currenlty after the ending date. Go back and retry.");
       
-    } else if ((isset($startdate) && !isset($enddate)) || (!isset($startdate) && isset($enddate))) {
+    } else if ((empty($startdate) && !empty($enddate)) || (!empty($startdate) && empty($enddate))) {
       header("location: ../error.php?error=".urlencode('<p>You need to have both dates specified not just one. Go back and retry.</p>'));
       die();
     }
@@ -59,7 +60,7 @@
     $sql = "INSERT INTO rooms
     (belongstohotel, name, description, cost, startdate, enddate, timeslotmax, long, lat)
     VALUES
-    (:belongstohotel, :name, :description, :cost, :startdate, :enddate, NULLIF(:timeslotmax::integer,'0'), :long, :lat);";
+    (:belongstohotel, :name, :description, :cost, NULLIF(:startdate, '')::DATE, NULLIF(:enddate, '')::DATE, NULLIF(:timeslotmax::integer,'0'), :long, :lat);";
     $sth = $conn->prepare($sql);
     $sth->bindParam( ':belongstohotel', $hotelName, PDO::PARAM_STR, strlen($hotelName));
     $sth->bindParam( ':name', $roomName, PDO::PARAM_STR, strlen($roomName));
@@ -88,10 +89,10 @@
     header("location: $url ");
 
   } catch (PDOException $e) {
-    header("location: ../error.php?error=".urlencode('<p>An error occurred. Go back and retry.</p>'));
+    header("location: ../error.php?error=".urlencode($e->getMessage().'<p>An error occurred. Go back and retry.</p>'));
     die();
   } catch (Exception $e) {
-    header("location: ../error.php?error=".urlencode('<p>An error occurred. Go back and retry.</p>'));
+    header("location: ../error.php?error=".urlencode($e->getMessage().'<p>An error occurred. Go back and retry.</p>'));
     die();
   }
   

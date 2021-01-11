@@ -57,7 +57,7 @@ function dateFormatted($date, $error) {
  *  error = the error message that will be displayed
  */
 function timeFormatted($time, $error) {
-    if (!preg_match("/^(2[0-3]|[01]?[0-9]):([0-5]?[0-9])$/", $time)) {
+    if (!preg_match("/^([0-1]?\d|2[0-3])(?::([0-5]?\d))?(?::([0-5]?\d))?$/", $time)) {
         header("location: ../error.php?error=".urlencode($error));
         die();
     }
