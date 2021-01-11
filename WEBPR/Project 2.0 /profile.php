@@ -57,7 +57,7 @@
 
       <!-- Uploaded Images -->
       <div class="userImages List">
-        <?php showImages($_SESSION["name"], $_SESSION["typeLogged"]); ?>
+        <?php showImages($name, $type); ?>
       </div>
 
         <?php
@@ -86,10 +86,12 @@
       </div>
 
       <div class="List">
-      <p class="title">All user bookings</p>
-        <?php
-          showBookings("SELECT * FROM bookings,hotels WHERE hotels.belongstoenterprise = :room AND hotels.name = bookings.hotelname", $name, "");
-        ?>
+      <?php 
+      if ($type == "enterprise") {
+        echo '<p class="title">All user bookings</p>';
+        showBookings("SELECT * FROM bookings,hotels WHERE hotels.belongstoenterprise = :room AND hotels.name = bookings.hotelname", $name, "");
+      }
+      ?>
     </div>
 
     <?php include("php/footer.php"); ?>

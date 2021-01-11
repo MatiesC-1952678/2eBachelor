@@ -54,8 +54,6 @@
 
       <!-- Upload Image Form -->
       <form class="boxed" id="UploadImageForm" action="uploads/uploadImage.php" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="name" value="<?php echo $_SESSION["name"]?>">
-        <input type="hidden" name="type" value="<?php echo $_SESSION["typeLogged"]?>">
         <input type="hidden" name="url" value="../account.php">
         <label for="image">Select images that you want upload (you can add multiple): (jpg, jpeg, png)</label>
         <input id="image" type="file" name="imagesToUpload[]" accept="image/jpeg,image/jpg,image/png" multiple>
@@ -64,8 +62,6 @@
 
       <!-- Upload Video Form -->
       <form class="boxed" id="UploadVideoForm" action="uploads/uploadVideo.php" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="name" value="<?php echo $_SESSION["name"]?>">
-        <input type="hidden" name="type" value="<?php echo $_SESSION["typeLogged"]?>">
         <input type="hidden" name="url" value="../account.php">
         <label for="video">Select videos that you want upload (you can add multiple): (mv4, mp4)</label>
         <input id="video" type="file" name="videosToUpload[]" accept="video/mv4,video/mp4" multiple>

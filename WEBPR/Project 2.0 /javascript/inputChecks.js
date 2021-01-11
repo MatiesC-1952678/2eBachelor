@@ -14,7 +14,7 @@
 function checkMinMax(id, min, max, before, after, error, islength = true) {
   var check = document.getElementById(id).value;
   if (islength) 
-      check = check.length
+      check = check.length;
   if (check < min || check > max) {
     changeId(before, after);
     document.getElementById(id).setCustomValidity(error);
@@ -31,6 +31,6 @@ function checkMinMax(id, min, max, before, after, error, islength = true) {
  */
 function changeId(before, after) {
   var element = document.getElementById(before);
-  if (element != null)
+  if (element !== null)
     element.id = after;
 }

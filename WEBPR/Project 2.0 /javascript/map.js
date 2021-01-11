@@ -73,11 +73,11 @@ map.on('click', function (e) {
     var long = document.getElementById('longInput');
     var lat = document.getElementById('latInput');
     document.getElementById('lnglat').innerHTML = "Lat: "+e.lngLat.lat+" - Long: "+e.lngLat.lng;
-    if (long != null && lat != null) {
+    if (long !== null && lat !== null) {
         long.value = e.lngLat.lng;
         lat.value = e.lngLat.lat;
     }
-    if (document.getElementById('Searchbar') != null) 
+    if (document.getElementById('Searchbar') !== null) 
         getLongLatsFromDatabase(e.lngLat.lng, e.lngLat.lat);
 });
 
@@ -96,15 +96,15 @@ function showMarkers(xmlhttp, long, lat) {
     if ((xmlhttp) && (xmlhttp.readyState == 4) && (xmlhttp.status == 200)) {
         if (xmlhttp.responseText != "0") {
             var output = JSON.parse(xmlhttp.responseText);
-            if (long == 0 && lat == 0) {
+            if (long === 0 && lat === 0) {
                 output.forEach(room => {
-                    createMarker(room.long, room.lat, room.name, room.belongstohotel)
+                    createMarker(room.long, room.lat, room.name, room.belongstohotel);
                 });
             } else {
                 var distancePlusInfo = new Array();
                 var echo = "";
                 output.forEach(room => {
-                    if (room.long != 0 && room.lat != 0) {
+                    if (room.long !== 0 && room.lat !== 0) {
                         distancePlusInfo.push(new Array(calcDistance(lat, long, room.lat, room.long), room));
                     }
                 });
@@ -118,18 +118,18 @@ function showMarkers(xmlhttp, long, lat) {
                     if (a[1][5] < b[1][5]) 
                         return -1;
                     return 0; 
-                })
+                });
                 for (var i = 0; i < distancePlusInfo.length; i++) {
                     echo += '<article class="Room"><p class="Room-Title title">'+distancePlusInfo[i][1][1]+'</p><ul><li> Distance: '+distancePlusInfo[i][0]+'km </li><li> Hotel: '+distancePlusInfo[i][1][0]+'</li><li> Cost: €'+distancePlusInfo[i][1][3]+'</li>';
-                    if (distancePlusInfo[i][1][2] != "")
+                    if (distancePlusInfo[i][1][2] !== "")
                         echo += '<li> Description: '+distancePlusInfo[i][1][2]+'</li>';
-                    if (distancePlusInfo[i][1][4] != "" && distancePlusInfo[i][1][5] != "")
+                    if (distancePlusInfo[i][1][4] !== "" && distancePlusInfo[i][1][5] !== "")
                         echo += '<li> Availability:  '+distancePlusInfo[i][1][4]+' - '+distancePlusInfo[i][1][5]+' (overrides hotel) </li>';
-                    if (distancePlusInfo[i][1][6] != "")
+                    if (distancePlusInfo[i][1][6] !== "")
                         echo += '<li> Max Timeslot: '+distancePlusInfo[i][1][6]+'</li>';
                     echo += '<li><a href="booking.php?roomName='+encodeURI(distancePlusInfo[i][1][1])+'&hotelName='+encodeURI(distancePlusInfo[i][1][0])+'">Book This Room</a></li>';
                     echo += '<li><a href="rating.php?room='+encodeURI(distancePlusInfo[i][1][1])+'&hotel='+encodeURI(distancePlusInfo[i][1][0])+'">Ratings</a></li>';
-                    echo += '<li> Coordinates (long,lat): '+distancePlusInfo[i][1][7]+', '+distancePlusInfo[i][1][8]+'</li>'
+                    echo += '<li> Coordinates (long,lat): '+distancePlusInfo[i][1][7]+', '+distancePlusInfo[i][1][8]+'</li>';
                     echo += '</ul></article>';
                 }
                 document.getElementsByClassName("List")[0].innerHTML = echo;
@@ -144,8 +144,8 @@ function calcDistance(lat1, long1, lat2, long2) {
       var R = 6371; // km
       var dLat = toRad(lat2-lat1);
       var dLon = toRad(long2-long1);
-      var lat1 = toRad(lat1);
-      var lat2 = toRad(lat2);
+      lat1 = toRad(lat1);
+      lat2 = toRad(lat2);
 
       var first = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
       return (2 * Math.atan2(Math.sqrt(first), Math.sqrt(1-first))) * R;
@@ -157,7 +157,7 @@ function toRad(Value) {
 }
 
 function createMarker(long, lat, room, hotel) {
-    if (long != 0 && lat != 0) {
+    if (long !== 0 && lat !== 0) {
         var marker = new mapboxgl.Marker() 
             .setLngLat([long, lat]) 
             .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
@@ -170,7 +170,7 @@ function createMarker(long, lat, room, hotel) {
 
 /*
 var search = document.getElementById("address");
-if (search != null)
+if (search !== null)
     search.addEventListener("input", getLongLat, false);
 
 function getLongLat() {

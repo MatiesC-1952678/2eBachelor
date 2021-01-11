@@ -401,21 +401,19 @@
             $target_dir = "images/";
             $usersFileName = $tmp;
             $imageType = strtolower(pathinfo($img,PATHINFO_EXTENSION));
-            $url = $_POST["url"];
-            //echo "<p>$usersFileName + $imageType</p>";
-
+            
             //CHECKS BEFOREHAND
             if($imageType != "jpg" && $imageType != "png" && $imageType != "jpeg") {
-                header("location: $url?error=".urlencode('<p>png, jpg, jpeg files are only allowed. Go back and retry.</p>'));
+                header("location: ../error.php?error=".urlencode('<p>png, jpg, jpeg files are only allowed. Go back and retry.</p>'));
                 die();
             }
             $sizeInfo = getImageSize($usersFileName);
             if ($sizeInfo[0] > 1000 || $sizeInfo[1] > 1000) {
-                header("location: $url?error=".urlencode('<p>Your image is bigger than 1000x1000. Go back and retry.</p>'));
+                header("location: ../error.php?error=".urlencode('<p>Your image is bigger than 1000x1000. Go back and retry.</p>'));
                 die();
             }
             if ($size > 50000000) {
-                header("location: $url?error=".urlencode('<p>your file is larger than 50000000kb. Go back and retry.</p>'));
+                header("location: ../error.php?error=".urlencode('<p>your file is larger than 50000000kb. Go back and retry.</p>'));
                 die();
             }
 
@@ -452,16 +450,15 @@
             $target_dir = "videos/";
             $usersFileName = $tmp;
             $videoType = strtolower(pathinfo($img,PATHINFO_EXTENSION));
-            $url = $_POST["url"];
             //echo "<p>$usersFileName + $imageType</p>";
 
             //CHECKS BEFOREHAND
             if($videoType != "mv4" && $videoType != "mp4") {
-                header("location: $url?error=".urlencode('<p>mv4, mp4 files are only allowed. Go back and retry.</p>'));
+                header("location: ../error.php?error=".urlencode('<p>mv4, mp4 files are only allowed. Go back and retry.</p>'));
                 die();
             }
             if ($size > 50000000000) {
-                header("location: $url?error=".urlencode('<p>your file is larger than 50000000000kb. Go back and retry.</p>'));
+                header("location: ../error.php?error=".urlencode('<p>your file is larger than 50000000000kb. Go back and retry.</p>'));
                 die();
             }
 

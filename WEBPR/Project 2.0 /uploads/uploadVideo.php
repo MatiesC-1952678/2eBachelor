@@ -4,8 +4,8 @@
   checkSession($_SESSION["typeLogged"], "", true, "../error.php");
   
   //echo count($_FILES["imagesToUpload"]["name"]);
-  $name = $_POST["name"];
-  $type = $_POST["type"];
+  $name = $_SESSION["name"];
+  $type = $_SESSION["typeLogged"];
   for ($i = 0; $i < count($_FILES["videosToUpload"]["name"]); $i++) {
     uploadOneVideo($_FILES["videosToUpload"]["tmp_name"][$i], $_FILES["videosToUpload"]["name"][$i], $_FILES["videosToUpload"]["size"][$i], $name, $type);
   }

@@ -1,15 +1,15 @@
 
 function showElements() {
   if (document.getElementById("customer").checked) {
-    if (document.getElementById("userH") != null)
+    if (document.getElementById("userH") !== null)
       document.getElementById("userH").id = "userS";
-    if (document.getElementById("enterpriseS") != null)
-      document.getElementById("enterpriseS").id = "enterpriseH"
+    if (document.getElementById("enterpriseS") !== null)
+      document.getElementById("enterpriseS").id = "enterpriseH";
   }
   if (document.getElementById("enterprise").checked) {
-    if (document.getElementById("enterpriseH") != null)
+    if (document.getElementById("enterpriseH") !== null)
       document.getElementById("enterpriseH").id = "enterpriseS";
-    if (document.getElementById("userS") != null)
+    if (document.getElementById("userS") !== null)
       document.getElementById("userS").id = "userH";
   }
 }
@@ -38,11 +38,11 @@ function checkEditUser() {
   var a = false;
   var b = false;
   var c = false;
-  if (document.getElementById('username').value != "" )
+  if (document.getElementById('username').value !== "" )
     a = checkName('username', 'userS', 'userW');
-  if (document.getElementById('email').value != "")
+  if (document.getElementById('email').value !== "")
     b = checkEmail('email','userS','userW');
-  if (document.getElementById('password').value != "")
+  if (document.getElementById('password').value !== "")
     c = checkPassword('password','userS','userW');
 
   if (!(a || b || c)) {
@@ -76,16 +76,16 @@ function checkEditEnterprise() {
   var c = false;
   var d = false;
   var e = false;
-  if (document.getElementById('enterpriseName').value != "")
-    var a = checkName('enterpriseName','enterpriseS','enterpriseW');
-  if (document.getElementById('enterpriseDescription').value != "")
-    var b = checkDescription();
-  if (document.getElementById('enterpriseEmail').value != "")
-    var c = checkEmail('enterpriseEmail','enterpriseS','enterpriseW');
-  if (document.getElementById('enterprisePhone').value != "")
-    var d = checkPhone();
-  if (document.getElementById('enterprisePassword').value != "")
-    var e = checkPassword('enterprisePassword','enterpriseS','enterpriseW');
+  if (document.getElementById('enterpriseName').value !== "")
+    a = checkName('enterpriseName','enterpriseS','enterpriseW');
+  if (document.getElementById('enterpriseDescription').value !== "")
+    b = checkDescription();
+  if (document.getElementById('enterpriseEmail').value !== "")
+    c = checkEmail('enterpriseEmail','enterpriseS','enterpriseW');
+  if (document.getElementById('enterprisePhone').value !== "")
+    d = checkPhone();
+  if (document.getElementById('enterprisePassword').value !== "")
+    e = checkPassword('enterprisePassword','enterpriseS','enterpriseW');
   if (!(a || b || c || d || e)) {
     changeenterpriseState('enterpriseW', 'enterpriseS');
     document.getElementById('enterpriseName').setCustomValidity("");
@@ -155,6 +155,6 @@ function checkPassword(id, before, after) {
 
 function changeenterpriseState(before, after) {
   var element = document.getElementById(before);
-  if (element != null)
+  if (element !== null)
     element.id = after;
 }

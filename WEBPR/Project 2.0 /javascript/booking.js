@@ -2,8 +2,8 @@ function checkBooking(timeslot,start,end) {
     var a = checkDatePattern('startDate','formS','formW','Your starting date is formatted incorrectly');
     var b = checkDatePattern('endDate','formS','formW','Your ending date is formatted incorrectly');
     var c = checkIdBeforeId('startDate','endDate','formS','formW','Your start date is not before your end date');
-    var d = checkDateBeforeId(start, 'startDate', 'formS', 'formW', 'Your start date is before the first day that your room is available')
-    var e = checkIdBeforeDate('endDate', end, 'formS', 'formW', 'Your end date is after the last day that your room is available' )
+    var d = checkDateBeforeId(start, 'startDate', 'formS', 'formW', 'Your start date is before the first day that your room is available');
+    var e = checkIdBeforeDate('endDate', end, 'formS', 'formW', 'Your end date is after the last day that your room is available' );
     var f = checkTimeslot(timeslot,'startDate','endDate','formS','formW');
 
     if (!(a || b || c || d || e || f)) {
@@ -99,7 +99,7 @@ function checkTimeslot(timeslot, startDateId, endDateId, before, after) {
   var startDate = new Date(document.getElementById(startDateId).value);
   var endDate = new Date(document.getElementById(endDateId).value);
   var dayDiff = (endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24) + 1; 
-  if (timeslot != null && dayDiff > timeslot) {
+  if (timeslot !== null && dayDiff > timeslot) {
       changeId(before, after);
       document.getElementById(endDateId).setCustomValidity("The amount of days that you stay exceeds the maximum allowed of days (check timeslot). | Amount of days: "+dayDiff+" Max timeslot: "+timeslot);
       return true;
@@ -115,6 +115,6 @@ function checkTimeslot(timeslot, startDateId, endDateId, before, after) {
  */
 function changeId(before, after) {
   var element = document.getElementById(before);
-  if (element != null)
+  if (element !== null)
     element.id = after;
 }

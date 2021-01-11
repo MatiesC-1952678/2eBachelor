@@ -60,7 +60,7 @@
             <input id="videoHotel" type="file" name="videosToUpload[]" accept="video/mv4,video/mp4" multiple>
             <input type="submit" name="submit" value="Add Hotel" onmouseover="checkAllHotel()">
         </form>
-        <p> * zijn verplichte velden </p>
+        <p> * these fields are necessary when creating a hotel </p>
     </div>
 
     <div class="List">
@@ -103,7 +103,7 @@
             <input id="video" type="file" name="videosToUpload[]" accept="video/mv4,video/mp4" multiple>
             <input type="submit" name="submit" value="Add Room" onmouseover="checkAllRoom()">
         </form>
-        <p> * zijn verplichte velden </p>
+        <p> * these fields are necessary when creating a room </p>
     </div>
 
     <div class="List">
@@ -116,12 +116,13 @@
     <div class="boxed form">
         <p>Here you can add a new country</p>
         <form id="uploadCountryFormS" action="uploads/uploadCountry.php" method="post" enctype="multipart/form-data">
-            <label for="countryName">The name of your country:</label>
+            <label for="countryName">The name of your country:*</label>
             <input type="text" id="countryName" name="countryName" value="" onblur="checkCountry()">
             <label for="countryDescription">Description of your country (max 200 characters):</label>
             <input type="text" id="countryDescription" name="countryDescription" value="" onblur="checkCountry()">
             <input type="submit" name="submit" value="Add Country" onmouseover="checkCountry()">
         </form>
+        <p> * these fields are necessary when creating a country </p>
     </div>
 
     <?php include("php/footer.php") ?>

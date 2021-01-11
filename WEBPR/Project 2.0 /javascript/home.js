@@ -1,4 +1,4 @@
-if (document.getElementById("datepickerS") != null)
+if (document.getElementById("datepickerS") !== null)
     document.getElementById("datepickerS").id = "datepickerH";
 
 if (document.getElementById('mapH'))   
@@ -6,28 +6,28 @@ if (document.getElementById('mapH'))
 
 function switchElements() {
     if (document.getElementById("DateRadio").checked || document.getElementById("DateRoomRadio").checked) {
-        if (document.getElementById("searchS") != null)
+        if (document.getElementById("searchS") !== null)
             document.getElementById("searchS").id = "searchH";
-        if (document.getElementById("datepickerH") != null)
+        if (document.getElementById("datepickerH") !== null)
             document.getElementById("datepickerH").id = "datepickerS";
     } else {
-        if (document.getElementById("searchH") != null)
+        if (document.getElementById("searchH") !== null)
             document.getElementById("searchH").id = "searchS";
-        if (document.getElementById("datepickerS") != null)
+        if (document.getElementById("datepickerS") !== null)
             document.getElementById("datepickerS").id = "datepickerH";
     }
 }
 
 function checkMap() {
     var checkbox = document.getElementById("MapBox");
-    if (checkbox != null && !checkbox.checked) 
+    if (checkbox !== null && !checkbox.checked) 
         document.getElementById("map").id = "mapH";
     else 
         document.getElementById("mapH").id = "map";
 }
 
 var search = document.getElementById("searchbar");
-if (search != null)
+if (search !== null)
     search.addEventListener("input", xmlRequest, false);
 
 function xmlRequest() {

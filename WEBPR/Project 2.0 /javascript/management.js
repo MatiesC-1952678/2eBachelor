@@ -37,22 +37,22 @@ function checkEditHotel() {
     var g = false;
     var h = false;
 
-    if (document.getElementById('hotelName').value != "")
+    if (document.getElementById('hotelName').value !== "")
         a = checkMinMax('hotelName', 5, 30, 'uploadHotelFormS', 'uploadHotelFormW', 'Your hotel name is not between 5 and 30 characters.');
-    if (document.getElementById('hotelDescription').value != "")
-        var b = checkMinMax('hotelDescription', 0, 200, 'uploadHotelFormS', 'uploadHotelFormW', 'Your description is longer than 200 characters.');
-    if (document.getElementById('startDate').value != "") 
-        var e = checkDatePattern('startDate', 'uploadHotelFormS', 'uploadHotelFormW', 'Your end date is formatted incorrectly.');
-    if (document.getElementById('endDate').value != "")
-        var d = checkDatePattern('endDate', 'uploadHotelFormS', 'uploadHotelFormW', 'Your starting date is formatted incorrectly.'); 
-    if (document.getElementById('startDate').value != "" && document.getElementById('endDate').value != "")
-        var c = checkIdBeforeId('startDate','endDate', 'uploadHotelFormS','uploadHotelFormW','Your starting date is not before your ending date.');
-    if (document.getElementById('startTime').value != "")
-        var g = checkTimePattern('startTime', 'uploadHotelFormS', 'uploadHotelFormW', 'Your start time is not formatted correctly');
-    if (document.getElementById('endTime').value != "")
-        var h = checkTimePattern('endTime', 'uploadHotelFormS', 'uploadHotelFormW', 'Your end time is not formatted correctly');
-    if (document.getElementById('startTime').value != "" && document.getElementById('endTime').value != "") 
-        var f = checkTimeBeforeTime('startTime', 'endTime', 'uploadHotelFormS', 'uploadHotelFormW', 'Your start time is not before your end time.');
+    if (document.getElementById('hotelDescription').value !== "")
+        b = checkMinMax('hotelDescription', 0, 200, 'uploadHotelFormS', 'uploadHotelFormW', 'Your description is longer than 200 characters.');
+    if (document.getElementById('startDate').value !== "") 
+        e = checkDatePattern('startDate', 'uploadHotelFormS', 'uploadHotelFormW', 'Your end date is formatted incorrectly.');
+    if (document.getElementById('endDate').value !== "")
+        d = checkDatePattern('endDate', 'uploadHotelFormS', 'uploadHotelFormW', 'Your starting date is formatted incorrectly.'); 
+    if (document.getElementById('startDate').value !== "" && document.getElementById('endDate').value !== "")
+        c = checkIdBeforeId('startDate','endDate', 'uploadHotelFormS','uploadHotelFormW','Your starting date is not before your ending date.');
+    if (document.getElementById('startTime').value !== "")
+        g = checkTimePattern('startTime', 'uploadHotelFormS', 'uploadHotelFormW', 'Your start time is not formatted correctly');
+    if (document.getElementById('endTime').value !== "")
+        h = checkTimePattern('endTime', 'uploadHotelFormS', 'uploadHotelFormW', 'Your end time is not formatted correctly');
+    if (document.getElementById('startTime').value !== "" && document.getElementById('endTime').value !== "") 
+        f = checkTimeBeforeTime('startTime', 'endTime', 'uploadHotelFormS', 'uploadHotelFormW', 'Your start time is not before your end time.');
 
     if (!(a || b || c || d || e || f || g || h)) {
         changeId('uploadHotelFormW', 'uploadHotelFormS');
@@ -74,10 +74,10 @@ function checkAllRoom() {
     var c = checkMinMax('roomDescription', 0, 200, 'uploadRoomFormS','uploadRoomFormW','Your description is longer than 200 characters.');
     var d = checkMinMax('cost',0,9999999999,'uploadRoomFormS','uploadRoomFormW','Your cost must be 0 or above', false);
     var e = false; var f = false; var g = false;
-    if (document.getElementById('startdate').value != "" || document.getElementById('enddate').value != "") {
-      var e = checkDatePattern('startdate','uploadRoomFormS','uploadRoomFormW','Your start date is formatted incorrectly');
-      var f = checkDatePattern('enddate','uploadRoomFormS','uploadRoomFormW','Your end date is formatted incorrectly');
-      var g = checkIdBeforeId('startdate','enddate','uploadRoomFormS','uploadRoomFormW','Your start date is not before your end date.');
+    if (document.getElementById('startdate').value !== "" || document.getElementById('enddate').value !== "") {
+      e = checkDatePattern('startdate','uploadRoomFormS','uploadRoomFormW','Your start date is formatted incorrectly');
+      f = checkDatePattern('enddate','uploadRoomFormS','uploadRoomFormW','Your end date is formatted incorrectly');
+      g = checkIdBeforeId('startdate','enddate','uploadRoomFormS','uploadRoomFormW','Your start date is not before your end date.');
     }
     var j = checkMinMax('timeslotmax',0,9999999999,'uploadRoomFormS','uploadRoomFormW','Your timeslot that you gave is less than 1 day.', false);
     
@@ -100,11 +100,11 @@ function checkEditRoom() {
   var c = false;
   var d = false;
 
-  if (document.getElementById('roomName').value != "")
+  if (document.getElementById('roomName').value !== "")
     b = checkMinMax('roomName',5,30,'uploadRoomFormS','uploadRoomFormW','You room name has to be between 5 and 30 characters.');
-  if (document.getElementById('roomDescription').value != "")
+  if (document.getElementById('roomDescription').value !== "")
     c = checkMinMax('roomDescription', 0, 200, 'uploadRoomFormS','uploadRoomFormW','Your description is longer than 200 characters.');
-  if (document.getElementById('cost').value != "")
+  if (document.getElementById('cost').value !== "")
     d = checkMinMax('cost',0,9999999999,'uploadRoomFormS','uploadRoomFormW','Your cost must be above 0', false);
 
   if (!(b || c || d)) {
@@ -144,7 +144,7 @@ function checkCountry() {
 function checkMinMax(id, min, max, before, after, error, islength = true) {
     var check = document.getElementById(id).value;
     if (islength) 
-        check = check.length
+        check = check.length;
     if (check < min || check > max) {
       changeId(before, after);
       document.getElementById(id).setCustomValidity(error);
@@ -287,6 +287,6 @@ function checkRadioChecked(className, before, after, error) {
  */
 function changeId(before, after) {
     var element = document.getElementById(before);
-    if (element != null)
+    if (element !== null)
       element.id = after;
   }

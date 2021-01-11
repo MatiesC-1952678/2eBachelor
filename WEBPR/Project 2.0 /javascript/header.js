@@ -25,14 +25,14 @@ function resize() {
     }
     var arrayNavs = document.getElementsByClassName(currentNav);
     while (arrayNavs.length > 0) {
-        if (arrayNavs[0] != null)
+        if (arrayNavs[0] !== null)
             arrayNavs[0].className = changeNav;
     }
     var logo = document.getElementsByClassName(currentLogo);
     var title = document.getElementsByClassName(currentTitle);
-    if (title[0] != null)
+    if (title[0] !== null)
         title[0].className = changeTitle;
-    if (logo[0] != null)
+    if (logo[0] !== null)
         logo[0].className = changeLogo;
 
 }
