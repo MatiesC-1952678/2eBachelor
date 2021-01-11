@@ -27,6 +27,8 @@
       <!-- List -->
       <div class="List">
         <?php 
+        //shows all users if you don't search 
+        //if you do search -> does a query
         if (!isset($_POST["search"])) {
             showUsers("SELECT * FROM users", "", "Room", "Room-Title");      
         } else {

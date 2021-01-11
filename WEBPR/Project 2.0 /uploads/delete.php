@@ -5,25 +5,6 @@
     require 'uploadNotification.php';
     checkSession($_SESSION["typeLogged"], "", true, "../error.php");
 
-    function checkIsYours($sql, $enterprise, $hotel, $room) {
-        try {
-            $conn = new PDO("pgsql:host=" . DB_HOST . ";port=5432;dbname=" . DB_NAME , DB_USER, DB_PASSWORD);
-            $sth = $conn->prepare($sql);
-            $sth->bindParam( ':enterprise', $enterprise, PDO::PARAM_STR, strlen($enterprise));
-            $sth->bindParam( ':hotel', $hotel, PDO::PARAM_STR, strlen($hotel));
-            $sth->bindParam( ':room', $room, PDO::PARAM_STR, strlen($room));
-            if (!$sth->execute())
-                throw new PDOException('An error occurred');
-            if ($sth->rowCount() == 0) {
-                header("location: ../error.php?error=".urlencode('<p>An error occurred. Go back and retry.</p>'));
-                die();
-            }
-        } catch (PDOException $e) {
-            header("location: ../error.php?error=".urlencode('<p>An error occurred. Go back and retry.</p>'));
-            die();
-        }
-    }
-
     function delete($sql, $key1, $key2) {
         try {
             $conn = new PDO("pgsql:host=" . DB_HOST . ";port=5432;dbname=" . DB_NAME , DB_USER, DB_PASSWORD);
@@ -56,7 +37,7 @@
     echo "$key2 $key3";
     switch ($type) {
         case "room":
-            checkIsYours("SELECT * FROM hotels,rooms WHERE rooms.belongstohotel = hotels.name AND hotels.belongstoenterprise = :enterprise AND rooms.name = :room AND hotels.name = :hotel", $key1, $key2, $key3);
+            checkIsYours("SELECT * FROM hotels,rooms WHERE rooms.belongstohotel = hotels.name AND hotels.belongstoenterprise = :enterprise AND rooms.name = :room AND hotels.name = :hotel", $key1, $key2, $key3, "../");
             notifyBookings("SELECT * FROM bookings WHERE roomname = :key2 AND hotelname = :key1", $key2, $key3, "This room you had booked is no longer available.");
             delete("DELETE FROM rooms WHERE rooms.belongstohotel = :key1 AND rooms.name = :key2 AND ", $key2, $key3);
             deleteImages($key3, "room");
@@ -65,7 +46,7 @@
             $url = "../management.php";
             break;
         case "hotel";
-            checkIsYours("SELECT * FROM hotels WHERE hotels.belongstoenterprise = :enterprise AND hotels.name = :hotel", $key1, $key2, "");
+            checkIsYours("SELECT * FROM hotels WHERE hotels.belongstoenterprise = :enterprise AND hotels.name = :hotel", $key1, $key2, "../");
             notifyBookings("SELECT * FROM bookings,rooms WHERE bookings.roomname = rooms.name AND bookings.hotelname = rooms.belongstohotel AND bookings.hotelname = :key1", $key2, "", "All the rooms from this hotel are deleted because it is no longer available.");
             delete("DELETE FROM hotels WHERE hotels.name = :key1", $key2, "");
             deleteImages($key2, "hotel");

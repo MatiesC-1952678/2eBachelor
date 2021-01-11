@@ -41,6 +41,7 @@
       <!-- AccountInfo -->
       <div class="boxed" id="AccountInfo">
         <?php
+        //shows data depending on which type you are
           if ($isUser) {
             echo "<p class='title'> USER: </p>";
             showUsers("SELECT * FROM users WHERE username = :search", $_SESSION["name"], "Room", "Room-Title", true, true);
@@ -55,6 +56,7 @@
       <!-- Uploaded Images -->
       <div class="userImages List">
         <?php 
+        //shows images and videos
         showImages($_SESSION["name"], $_SESSION["typeLogged"]);
         showVideos($_SESSION["name"], $_SESSION["typeLogged"]); 
         ?>

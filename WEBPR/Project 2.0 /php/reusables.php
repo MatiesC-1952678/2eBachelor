@@ -555,6 +555,25 @@
         }
     }
 
+    function checkIsYours($sql, $enterprise, $hotel, $room, $prefix = "../") {
+        try {
+            $conn = new PDO("pgsql:host=" . DB_HOST . ";port=5432;dbname=" . DB_NAME , DB_USER, DB_PASSWORD);
+            $sth = $conn->prepare($sql);
+            $sth->bindParam( ':enterprise', $enterprise, PDO::PARAM_STR, strlen($enterprise));
+            $sth->bindParam( ':hotel', $hotel, PDO::PARAM_STR, strlen($hotel));
+            $sth->bindParam( ':room', $room, PDO::PARAM_STR, strlen($room));
+            if (!$sth->execute())
+                throw new PDOException('An error occurred');
+            if ($sth->rowCount() == 0) {
+                header("location: ".$prefix."error.php?error=".urlencode('<p>An error occurred. Go back and retry.</p>'));
+                die();
+            }
+        } catch (PDOException $e) {
+            header("location: ".$prefix."error.php?error=".urlencode('<p>An error occurred. Go back and retry.</p>'));
+            die();
+        }
+    }
+
     /*
     function stayLoggedIn($name, $type) {
         try {

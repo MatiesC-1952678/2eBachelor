@@ -42,12 +42,14 @@
             switch ($type) {
                 case "hotel":
                     echo '<div class="List">';
+                    checkIsYours("SELECT * FROM hotels WHERE hotels.belongstoenterprise = :enterprise AND hotels.name = :hotel", $key1, $key2, "");
                     showHotels("SELECT * FROM hotels WHERE hotels.name = :enterprise", $key2, "Booking", "Booking-Title");
                     echo '</div>';
                     include('html/hotelEditForm.php');
                     break;
                 case "room":
                     echo '<div class="List">';
+                    checkIsYours("SELECT * FROM hotels,rooms WHERE rooms.belongstohotel = hotels.name AND hotels.belongstoenterprise = :enterprise AND rooms.name = :room AND hotels.name = :hotel", $key1, $key2, $key3);
                     showSingleRoomAndHotel($key3, $key2);
                     echo '</div>';
                     include('html/roomEditForm.php');

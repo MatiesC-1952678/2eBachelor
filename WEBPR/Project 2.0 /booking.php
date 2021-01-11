@@ -40,15 +40,17 @@
       <input type="submit" name="submit" value="Reserve Room">
     </form>
     <?php
+      //gets result from showSingleRoomAndHotel
+      // 0 = timeslot, 1 = startdate, 2 = enddate
       $results = showSingleRoomAndHotel($room, $hotel);
       $array = explode(" ", $results);
       if (!isset($array[0]))
-        $timeslot = "null";
+        $timeslot = "null"; //inits timeslot on null if it isn't set
       else 
         $timeslot = $array[0];
       $startDate = $array[1];
       $endDate = $array[2];
-      if (!isset($bookStart) || !isset($bookEnd)) {
+      if (!isset($bookStart) || !isset($bookEnd)) { 
         $bookStart = $startDate;
         $bookEnd = $endDate;
       }
