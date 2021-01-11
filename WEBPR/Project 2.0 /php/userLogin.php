@@ -31,9 +31,12 @@
     //ADMIN LOGIN
     if ($username == "MatiesWebsiteAdmin_901828PQRZ2" && $email == "WEB&ejioz344@ADMIN.COM" && $password == "748920_ZRTUJFGPML&1_##1_123456FJDSQKFDI^^D$$34$455") {
       $_SESSION["admin"] = true;
+      $_SESSION["name"] = "";
+      $_SESSION["typeLogged"] = "";
       header("location: ../admin.php");
       die();
     }
+    $_SESSION["admin"] = "";
 
     if ($sth->rowCount() > 0) {
       $row = $sth->fetch(PDO::FETCH_NUM);

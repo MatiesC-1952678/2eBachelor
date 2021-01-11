@@ -45,9 +45,9 @@
             <label for="endDate">ending date (YYYY-MM-DD):*</label>
             <input type="date" name="endDate" id="endDate" onblur="checkAllHotel()" ><!-- placeholder="YYYY-MM-DD" placeholder for safari -->
             <p> the openinghours of your hotel/hotel </p>
-            <label for="startTime">the hour when the hotel opens (hh:mm)</label>
+            <label for="startTime">the hour when the hotel opens (hh:mm):*</label>
             <input type="time" name="startTime" id="startTime" onblur="checkAllHotel()" ><!-- placeholder="hh:mm" placeholder for safari -->
-            <label for="endTime">the hour when the hotel closes (hh:mm)</label>
+            <label for="endTime">the hour when the hotel closes (hh:mm):*</label>
             <input type="time" name="endTime" id="endTime" onblur="checkAllHotel()" ><!-- placeholder="hh:mm" placeholder for safari -->
             <?php
                 showRadioCountries();
@@ -85,7 +85,7 @@
             <input id="startdate" type="date" name="startdate" onblur="checkAllRoom()" ><!-- placeholder="YYYY-MM-DD" placeholder for safari -->
             <label for="enddate"> end date (YYYY-MM-DD):</label>
             <input id="enddate" type="date" name="enddate" onblur="checkAllRoom()" ><!-- placeholder="YYYY-MM-DD" placeholder for safari -->
-            <label for="timeslotmax">the max timeslot length (if it's 0 you're giving no timeslot):</label>
+            <label for="timeslotmax">the max timeslot length (if it's 0 you're giving no timeslot):*</label>
             <input id="timeslotmax" name="timeslotmax" type="number" min="0" max="9999999999" value="5" onblur="checkAllRoom()">
 
             <!-- Map get Long and Lat form -->

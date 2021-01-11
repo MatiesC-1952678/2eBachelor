@@ -8,6 +8,14 @@
     return $type == "user";
   }
   checkSession($_SESSION["typeLogged"], "", true, "error.php");
+
+  if ($_POST["delete"] == "Delete All Images") 
+    deleteImages($_SESSION["name"], $_SESSION["typeLogged"], "uploads/");
+  
+
+  if ($_POST["delete"] == "Delete All Videos")
+    deleteVideos($_SESSION["name"], $_SESSION["typeLogged"], "uploads/");
+
 ?>
 
 <!DOCTYPE html>
@@ -60,12 +68,20 @@
         <input type="submit" name="submit" value="Upload Image">
       </form>
 
+      <form class="boxed" action="account.php" method="post">
+          <input type="submit" value="Delete All Images" name="delete" >
+      </form>
+
       <!-- Upload Video Form -->
       <form class="boxed" id="UploadVideoForm" action="uploads/uploadVideo.php" method="post" enctype="multipart/form-data">
         <input type="hidden" name="url" value="../account.php">
         <label for="video">Select videos that you want upload (you can add multiple): (mv4, mp4)</label>
         <input id="video" type="file" name="videosToUpload[]" accept="video/mv4,video/mp4" multiple>
         <input type="submit" name="submit" value="Upload Video">
+      </form>
+
+      <form class="boxed" action="account.php" method="post">
+          <input type="submit" value="Delete All Videos" name="delete" >
       </form>
 
       <?php include("php/footer.php"); ?>

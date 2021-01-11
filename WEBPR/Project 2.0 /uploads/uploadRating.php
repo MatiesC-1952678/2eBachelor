@@ -10,7 +10,7 @@
     $rating = $_POST["rating"];
 
     checkSession($_SESSION["typeLogged"], "user", false, "../error.php", "You need to be logged in as a user to upload ratings");
-
+    
     try {
         checkMinMax(strlen($review), 0, 200, "<p>Your review is longer than 200 characters. Go back and retry.</p>");
         checkMinMax($rating, 0, 5, "<p>Your rating is not between 0 and 5 stars. Go back and retry.</p>");

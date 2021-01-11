@@ -503,6 +503,24 @@
         }
     }
 
+    function deleteImages($name, $type, $prefix = "") {
+        $name = md5($name);
+        $i = 0;
+        while(file_exists($prefix."images/".$name."_".$type."_".$i.".jpg")) {
+            unlink($prefix."images/".$name."_".$type."_".$i.".jpg");
+            $i += 1;
+        }
+    }
+
+    function deleteVideos($name, $type, $prefix = "") {
+        $name = md5($name);
+        $i = 0;
+        while(file_exists($prefix."videos/".$name."_".$type."_".$i.".mp4")) {
+            unlink($prefix."videos/".$name."_".$type."_".$i.".mp4");
+            $i += 1;
+        }
+    }
+
     function pdo($sql, $key1 = "", $key2 = "", $key3 = "") {
         try {
             $conn = new PDO( "pgsql:host=" . DB_HOST . ";port=5432;dbname=" . DB_NAME , DB_USER, DB_PASSWORD);
@@ -519,7 +537,6 @@
             die();
         }
     }
-
 
     function checkSession($logged, $check, bool $type, $url = "error.php", $description = "Error! Session Expired") {
         //Session not expired and not ADMIN

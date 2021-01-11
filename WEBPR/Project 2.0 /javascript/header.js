@@ -30,9 +30,9 @@ function resize() {
     }
     var logo = document.getElementsByClassName(currentLogo);
     var title = document.getElementsByClassName(currentTitle);
-    if (title[0] !== null)
+    if (title[0] != undefined)
         title[0].className = changeTitle;
-    if (logo[0] !== null)
+    if (logo[0] != undefined)
         logo[0].className = changeLogo;
 
 }

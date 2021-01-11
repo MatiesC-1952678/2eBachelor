@@ -26,6 +26,10 @@
     $row = $sth->fetch(PDO::FETCH_ASSOC);
     if (empty($name))
         $name = $row["name"];
+    else {
+        deleteImages($name, "enterprise");
+        deleteVideos($name, "enterprise");
+    }
     if (empty($description))
         $description = $row["description"];
     if (empty($email))
@@ -33,7 +37,12 @@
     if (empty($phone))
         $phone = $row["phone"];
     if (empty($password))
-        $password = $row["password"];
+      $hash = $row["password"];
+    else {
+      checkMinMax(strlen($password), 5, 50, "Password is not between 5 and 50 characters. Go back and retry.");
+      $hash = password_hash($password, PASSWORD_DEFAULT);
+    }
+
 
     //echo "<p> $original _ $name _ $description _ $email _ $phone _ $password </p>";
 
@@ -42,14 +51,11 @@
     checkMinMax(strlen($name), 5, 30, "Name is not between 5 and 30 characters. Go back and retry.");
     checkMinMax(strlen($email), 1, 50, "Email is over 50 characters. Go back and retry.");
     checkMinMax(strlen($description), 0, 200, "Description is longer than 200 characters. Go back and retry.");
-    checkMinMax(strlen($password), 5, 50, "Password is not between 5 and 50 characters. Go back and retry.");
     checkMinMax(strlen($phone), 0, 50, "Phone number is longer than 200 characters. Go back and retry.");
     checkEmail($email);
     if (strlen($phone) > 0)
       checkPhone($phone);
-
-    $hash = password_hash($password, PASSWORD_DEFAULT);
-
+    
     $sql =  "UPDATE enterprises SET 
     name = :name, description = :description, email = :email, phone = :phone, password = :password
     WHERE name = :original";

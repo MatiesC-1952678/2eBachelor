@@ -2,7 +2,7 @@
   session_start();
   require '../php/globals.php';
   require '../php/reusables.php';
-  require '../error.php';
+  require '../php/inputChecks.php';
   checkSession($_SESSION["typeLogged"], "user", false, "../error.php");
   try {
     //echo "<p>connecting to server</p>";
@@ -23,19 +23,24 @@
     $row = $sth->fetch(PDO::FETCH_ASSOC);
     if (empty($username))
         $username = $row["username"];
+    else {
+        deleteImages($username, "user");
+        deleteVideos($username, "user");
+    }
     if (empty($email))
         $email = $row["email"];
-    if (empty($password))
-        $password = $row["password"];
+    if (empty($password)) 
+        $hash = $row["password"];
+    else {
+        checkMinMax(strlen($password), 5, 50, "Password is not between 5 and 50 characters. Go back and retry.");
+        $hash = password_hash($password, PASSWORD_DEFAULT);
+    }
 
     //echo "<p> $original _ $username _ $email _ $password </p>";
     //double check for correct input
     checkMinMax(strlen($username), 5, 30, "Your name is not between 5 and 30 characters. Go back and retry.");
     checkMinMax(strlen($email), 1, 50, "Your email is not between 1 and 50 characters. Go back and retry.");
-    checkMinMax(strlen($password), 5, 50, "Your password is not between 5 and 50 characters. Go back and retry.");
     checkEmail($email);
-
-    $hash = password_hash($password, PASSWORD_DEFAULT);
 
     $sql =  "UPDATE users SET 
     username = :username, email = :email, password = :password

@@ -5,6 +5,25 @@
     require 'uploadNotification.php';
     checkSession($_SESSION["typeLogged"], "", true, "../error.php");
 
+    function checkIsYours($sql, $enterprise, $hotel, $room) {
+        try {
+            $conn = new PDO("pgsql:host=" . DB_HOST . ";port=5432;dbname=" . DB_NAME , DB_USER, DB_PASSWORD);
+            $sth = $conn->prepare($sql);
+            $sth->bindParam( ':enterprise', $enterprise, PDO::PARAM_STR, strlen($enterprise));
+            $sth->bindParam( ':hotel', $hotel, PDO::PARAM_STR, strlen($hotel));
+            $sth->bindParam( ':room', $room, PDO::PARAM_STR, strlen($room));
+            if (!$sth->execute())
+                throw new PDOException('An error occurred');
+            if ($sth->rowCount() == 0) {
+                header("location: ../error.php?error=".urlencode('<p>An error occurred. Go back and retry.</p>'));
+                die();
+            }
+        } catch (PDOException $e) {
+            header("location: ../error.php?error=".urlencode('<p>An error occurred. Go back and retry.</p>'));
+            die();
+        }
+    }
+
     function delete($sql, $key1, $key2) {
         try {
             $conn = new PDO("pgsql:host=" . DB_HOST . ";port=5432;dbname=" . DB_NAME , DB_USER, DB_PASSWORD);
@@ -14,8 +33,8 @@
             if (!$sth->execute())
                 throw new PDOException('An error occurred');
         } catch (PDOException $e) {
-            print "Error! " . $e->getMessage() . "\n";
-            die(); 
+            header("location: ../error.php?error=".urlencode('<p>An error occurred. Go back and retry.</p>'));
+            die();
         }
     }
 
@@ -37,25 +56,35 @@
     echo "$key2 $key3";
     switch ($type) {
         case "room":
+            checkIsYours("SELECT * FROM hotels,rooms WHERE rooms.belongstohotel = hotels.name AND hotels.belongstoenterprise = :enterprise AND rooms.name = :room AND hotels.name = :hotel", $key1, $key2, $key3);
             notifyBookings("SELECT * FROM bookings WHERE roomname = :key2 AND hotelname = :key1", $key2, $key3, "This room you had booked is no longer available.");
-            delete("DELETE FROM rooms WHERE rooms.belongstohotel = :key1 AND rooms.name = :key2", $key2, $key3);
+            delete("DELETE FROM rooms WHERE rooms.belongstohotel = :key1 AND rooms.name = :key2 AND ", $key2, $key3);
+            deleteImages($key3, "room");
+            deleteVideos($key3, "room");
             echo "<p> succesfully deleted room</p>";
             $url = "../management.php";
             break;
         case "hotel";
+            checkIsYours("SELECT * FROM hotels WHERE hotels.belongstoenterprise = :enterprise AND hotels.name = :hotel", $key1, $key2, "");
             notifyBookings("SELECT * FROM bookings,rooms WHERE bookings.roomname = rooms.name AND bookings.hotelname = rooms.belongstohotel AND bookings.hotelname = :key1", $key2, "", "All the rooms from this hotel are deleted because it is no longer available.");
             delete("DELETE FROM hotels WHERE hotels.name = :key1", $key2, "");
+            deleteImages($key2, "hotel");
+            deleteVideos($key2, "hotel");
             echo "<p> succesfully deleted hotel</p>";
             $url = "../management.php";
             break;
         case "user";
             notifyBookings("SELECT likedby,room,hotel FROM likes,bookings WHERE likes.room = bookings.roomname AND likes.hotel = bookings.hotelname AND bookings.bookedby = :key1", $key1, "", "All the booked rooms from this user are now available because this user no longer exists.");
             delete("DELETE FROM users WHERE users.username = :key1", $key1, "");
+            deleteImages($key1, "user");
+            deleteVideos($key1, "user");
             $url = "../php/logOut.php";
             break;
         case "enterprise";
             notifyBookings("SELECT bookedby,roomname,hotelname FROM bookings,hotels,rooms WHERE hotels.belongstoenterprise = :key1 AND hotels.name = rooms.belongstohotel AND bookings.roomname = rooms.name AND bookings.hotelname = hotels.name", $key1, "", "Everything this hotel owned is no longer available because this enterprise no longer exists.");
             delete("DELETE FROM enterprises WHERE enterprises.name = :key1", $key1, "");
+            deleteImages($key1, "enterprise");
+            deleteVideos($key1, "enterprise");
             $url = "../php/logOut.php";
             break;
         default;

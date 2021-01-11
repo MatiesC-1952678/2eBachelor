@@ -120,7 +120,7 @@ function showMarkers(xmlhttp, long, lat) {
                     return 0; 
                 });
                 for (var i = 0; i < distancePlusInfo.length; i++) {
-                    echo += '<article class="Room"><p class="Room-Title title">'+distancePlusInfo[i][1][1]+'</p><ul><li> Distance: '+distancePlusInfo[i][0]+'km </li><li> Hotel: '+distancePlusInfo[i][1][0]+'</li><li> Cost: €'+distancePlusInfo[i][1][3]+'</li>';
+                    echo += '<article class="Room"><p class="Room-Title title">'+distancePlusInfo[i][1][1]+'</p><ul><li> Distance: '+distancePlusInfo[i][0].toFixed(3)+'km </li><li> Hotel: '+distancePlusInfo[i][1][0]+'</li><li> Cost: €'+distancePlusInfo[i][1][3]+'</li>';
                     if (distancePlusInfo[i][1][2] !== "")
                         echo += '<li> Description: '+distancePlusInfo[i][1][2]+'</li>';
                     if (distancePlusInfo[i][1][4] !== "" && distancePlusInfo[i][1][5] !== "")

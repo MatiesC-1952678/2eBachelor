@@ -4,6 +4,7 @@
   require 'globals.php';
   require 'inputChecks.php';
   try {
+    $_SESSION["admin"] = "";
     echo "<p>connecting to server</p>";
     $conn = new PDO( "pgsql:host=" . DB_HOST . ";port=5432;dbname=" . DB_NAME , DB_USER, DB_PASSWORD);
     $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
