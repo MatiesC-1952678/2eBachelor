@@ -127,8 +127,8 @@ function showMarkers(xmlhttp, long, lat) {
                         echo += '<li> Availability:  '+distancePlusInfo[i][1][4]+' - '+distancePlusInfo[i][1][5]+' (overrides hotel) </li>';
                     if (distancePlusInfo[i][1][6] !== "")
                         echo += '<li> Max Timeslot: '+distancePlusInfo[i][1][6]+'</li>';
-                    echo += '<li><a href="booking.php?roomName='+encodeURI(distancePlusInfo[i][1][1])+'&hotelName='+encodeURI(distancePlusInfo[i][1][0])+'">Book This Room</a></li>';
-                    echo += '<li><a href="rating.php?room='+encodeURI(distancePlusInfo[i][1][1])+'&hotel='+encodeURI(distancePlusInfo[i][1][0])+'">Ratings</a></li>';
+                    echo += '<li><a href="booking.php?roomName='+encodeURIComponent(distancePlusInfo[i][1][1])+'&hotelName='+encodeURIComponent(distancePlusInfo[i][1][0])+'">Book This Room</a></li>';
+                    echo += '<li><a href="rating.php?room='+encodeURIComponent(distancePlusInfo[i][1][1])+'&hotel='+encodeURIComponent(distancePlusInfo[i][1][0])+'">Ratings</a></li>';
                     echo += '<li> Coordinates (long,lat): '+distancePlusInfo[i][1][7]+', '+distancePlusInfo[i][1][8]+'</li>';
                     echo += '</ul></article>';
                 }
