@@ -57,7 +57,10 @@
 
       <!-- Uploaded Images -->
       <div class="userImages List">
-        <?php showImages($name, $type); ?>
+        <?php 
+          showImages($name, $type); 
+          showVideos($name, $type);
+        ?>
       </div>
 
         <?php

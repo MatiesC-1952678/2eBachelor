@@ -38,12 +38,13 @@
             <input type="hidden" name="hotel" value="<?php echo $hotel?>">
             <label for="review">review (max 200 characters):</label>
             <input id="review" name="review" type="text" value="" placeholder="review comes here" onblur="checkMinMax('review',0,200,'formS','formW','Your description is too long')">
-            <label for="rating">how many stars (min = 0 and max = 5):</label>
+            <label for="rating">how many stars (min = 0 and max = 5):*</label>
             <input id="rating" name="rating" type="number" min="0" max="5" value="1" onblur="checkMinMax('rating',0,5,'formS','formW','Your star count is not in the range',false)">
             <input type="submit" value="upload rating">
           </form>
         </div>
         <?php echo '<p class="title"> Ratings </p>'; showRatings($room, $hotel); ?>
+        <p> * these fields are necessary when creating a country </p>
     </div>
 
     <?php include("php/footer.php") ?>

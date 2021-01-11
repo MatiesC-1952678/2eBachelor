@@ -35,7 +35,7 @@
 
       <div class="boxed form"><p>Here you can add a new hotel (linked to this hotel)</p>
         <form id="uploadHotelFormS" action="uploads/uploadHotel.php" method="post" enctype="multipart/form-data">
-            <label for="hotelName">The name of your hotel (between 5 and 30 characters):</label>
+            <label for="hotelName">The name of your hotel (between 5 and 30 characters):*</label>
             <input type="text" id="hotelName" name="hotelName" value="" onblur="checkAllHotel()">
             <label for="hotelDescription">Description of your hotel (max 200 characters):</label>
             <input type="text" id="hotelDescription" name="hotelDescription" value="" onblur="checkAllHotel()">
