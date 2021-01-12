@@ -43,8 +43,8 @@
             <input type="submit" value="upload rating">
           </form>
         </div>
+        <p> * these fields are necessary </p>
         <?php echo '<p class="title"> Ratings </p>'; showRatings($room, $hotel); ?>
-        <p> * these fields are necessary when creating a country </p>
     </div>
 
     <?php include("php/footer.php") ?>

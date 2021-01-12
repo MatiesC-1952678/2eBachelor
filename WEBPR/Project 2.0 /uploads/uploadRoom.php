@@ -43,8 +43,8 @@
         throw new Exception('Test');
       $row = $sth->fetch(PDO::FETCH_ASSOC);
       
-      biggerThenTimeDate($row["startdate"], $startdate, "The starting date that you have entered is currenlty after the ending date. Go back and retry.");
-      biggerThenTimeDate($enddate, $row["enddate"], "The starting date that you have entered is currenlty after the ending date. Go back and retry.");
+      biggerThenTimeDate($row["startdate"], $startdate, "The starting date that you have entered is currenlty before first available date. Go back and retry.");
+      biggerThenTimeDate($enddate, $row["enddate"], "The ending date that you have entered is currenlty after the last available date Go back and retry.");
       
     } else if ((empty($startdate) && !empty($enddate)) || (!empty($startdate) && empty($enddate))) {
       header("location: ../error.php?error=".urlencode('<p>You need to have both dates specified not just one. Go back and retry.</p>'));

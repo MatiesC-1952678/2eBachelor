@@ -39,7 +39,7 @@
         case "room":
             checkIsYours("SELECT * FROM hotels,rooms WHERE rooms.belongstohotel = hotels.name AND hotels.belongstoenterprise = :enterprise AND rooms.name = :room AND hotels.name = :hotel", $key1, $key2, $key3, "../");
             notifyBookings("SELECT * FROM bookings WHERE roomname = :key2 AND hotelname = :key1", $key2, $key3, "This room you had booked is no longer available.");
-            delete("DELETE FROM rooms WHERE rooms.belongstohotel = :key1 AND rooms.name = :key2 AND ", $key2, $key3);
+            delete("DELETE FROM rooms WHERE rooms.belongstohotel = :key1 AND rooms.name = :key2", $key2, $key3);
             deleteImages($key3, "room");
             deleteVideos($key3, "room");
             echo "<p> succesfully deleted room</p>";
