@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">IOU</string>
+    <string name="cost_key">0.0</string>
+    <string name="name_key">person</string>
+    <string name="name_hint_key">Andrew Jackery Jacked</string>
+    <string name="add_a_person">Add a person</string>
+    <string name="naam_for_label_key">Naam:</string>
+    <string name="schuld_for_label_key">Schuld: €</string>
+    <string name="opslaan_key">Opslaan</string>
+    <string name="totale_schuld">Totale Schuld: €</string>
+</resources>

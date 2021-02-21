@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">CookieClicker</string>
+    <string name="button">Button</string>
+    <string name="click_me">click me</string>
+</resources>
