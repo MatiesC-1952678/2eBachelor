@@ -12,11 +12,12 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements deleteButtonInterface {
     public final static String PERSON_NAME = "person_name";
     public final static String PERSON_COST = "person_cost";
-    private ArrayList<String> persons = new ArrayList<>(Arrays.asList("jane", "margret", "john"));
-    private ArrayList<Float> costs =  new ArrayList<>(Arrays.asList(40.2f, 20.30f, 77.50f));
+    private final ArrayList<String> persons = new ArrayList<>(Arrays.asList("jane", "margret", "john"));
+    private final ArrayList<Float> costs =  new ArrayList<>(Arrays.asList(40.20f, 20.30f, 77.50f));
+    private CustomDataAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,13 +29,41 @@ public class MainActivity extends AppCompatActivity {
         calculateTotal();
     }
 
+    /**
+     * Initialize the listview & adapter
+     */
     private void initListView() {
         ListView list = findViewById(R.id.listView);
-        CustomDataAdapter cda = new CustomDataAdapter(this, persons, costs);
-        list.setAdapter(cda);
+        adapter = new CustomDataAdapter(this, persons, costs);
+        adapter.setListener(this);
+        list.setAdapter(adapter);
+
+        // The itemclicklistener that is called when an item is pressed from the listview
+        AdapterView.OnItemClickListener messageClickedHandler = (parent, v, i, id) -> {
+            Intent intent = new Intent(MainActivity.this, ShowItem.class);
+            intent.putExtra(PERSON_NAME, persons.get(i));
+            intent.putExtra(PERSON_COST, costs.get(i));
+            startActivity(intent);
+        };
 
         list.setOnItemClickListener(messageClickedHandler);
     }
+
+    /**
+     * The button click listener from the delete button interface that will be called when
+     * a delete button from an item is pressed
+     */
+    @Override
+    public void deleteButtonMethod(int i, String person, Float cost) {
+        persons.remove(i);
+        costs.remove(i);
+        calculateTotal();
+        adapter.notifyDataSetChanged();
+    }
+
+    /**
+     * inserts the last intent that is added
+     */
     private void insertAdded() {
         Intent intent = getIntent();
         String name_last_added = intent.getStringExtra(AddItem.ADD_PERSON_NAME);
@@ -44,6 +73,10 @@ public class MainActivity extends AppCompatActivity {
             costs.add(cost_last_added);
         }
     }
+
+    /**
+     * calculates the total amount cost from the items in listview
+     */
     private void calculateTotal() {
         Float total = 0f;
         for (int i = 0; i < costs.size(); i++) {
@@ -54,15 +87,14 @@ public class MainActivity extends AppCompatActivity {
         totalText.setText(String.format("%s%s", pre, total.toString()));
     }
 
-    private AdapterView.OnItemClickListener messageClickedHandler = (parent, v, position, id) -> {
-        Intent intent = new Intent(MainActivity.this, ShowItem.class);
-        intent.putExtra(PERSON_NAME, persons.get(position));
-        intent.putExtra(PERSON_COST, costs.get(position));
-        startActivity(intent);
-    };
-
+    /**
+     * the function that is called when the fab is pressed
+     * this will result in opening the addItem activity
+     * @param view
+     */
     public void goToAddItemActivity(View view) {
         Intent intent = new Intent(MainActivity.this, AddItem.class);
         startActivity(intent);
     }
+
 }
