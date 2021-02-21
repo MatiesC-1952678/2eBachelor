@@ -13,12 +13,12 @@ import java.util.ArrayList;
 public class CustomDataAdapter extends BaseAdapter {
     private final ArrayList<String> persons;
     private ArrayList<Float> costs;
-    private LayoutInflater inflter;
+    private LayoutInflater inflater;
 
     public CustomDataAdapter(Context applicationContext, ArrayList<String> persons, ArrayList<Float> costs) {
         this.persons = persons;
         this.costs = costs;
-        inflter = (LayoutInflater.from(applicationContext));
+        inflater = (LayoutInflater.from(applicationContext));
     }
 
     @Override
@@ -38,7 +38,9 @@ public class CustomDataAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        view = inflter.inflate(R.layout.listview_activity, null);
+        if (view == null)
+            view = inflater.inflate(R.layout.listview_activity, viewGroup, false);
+
         TextView person = view.findViewById(R.id.name);
         person.setText(persons.get(i));
         TextView cost = view.findViewById(R.id.cost);
