@@ -8,17 +8,14 @@ import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 
 public class CustomDataAdapter extends BaseAdapter {
-    private final ArrayList<String> persons; //init data
-    private final ArrayList<Float> costs; //init data
+    private FriendDao dao;
     private final LayoutInflater inflater;
     private deleteButtonInterface listener;
 
-    public CustomDataAdapter(Context applicationContext, ArrayList<String> persons, ArrayList<Float> costs) {
-        this.persons = persons;
-        this.costs = costs;
+    public CustomDataAdapter(Context applicationContext, FriendDao dao) {
+        this.dao = dao;
         inflater = (LayoutInflater.from(applicationContext));
     }
 
@@ -28,7 +25,7 @@ public class CustomDataAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return persons.size();
+        return dao.getAll().size();
     }
 
     @Override
@@ -43,14 +40,16 @@ public class CustomDataAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
+        Friend f = dao.getAll().get(i);
+
         if (view == null) {
             view = initView(i, viewGroup);
         }
 
         TextView person = view.findViewById(R.id.name);
-        person.setText(persons.get(i));
+        person.setText(f.name);
         TextView cost = view.findViewById(R.id.cost);
-        cost.setText(String.format("€%s", costs.get(i).toString()));
+        cost.setText(String.format("€%s", f.cost.toString()));
 
         return view;
     }
@@ -65,12 +64,12 @@ public class CustomDataAdapter extends BaseAdapter {
      * @return
      */
     private View initView(int i, ViewGroup viewGroup) {
-        View view = inflater.inflate(R.layout.listview_activity, viewGroup, false);
+        View view = inflater.inflate(R.layout.activity_listviewitem, viewGroup, false);
         ImageButton button = view.findViewById(R.id.delete);
         button.setOnClickListener(v -> {
             if (listener != null)
             {
-                listener.deleteButtonMethod(i, persons.get(i), costs.get(i));
+                listener.deleteButtonMethod(i);
             }
         });
         return view;

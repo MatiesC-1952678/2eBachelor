@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
@@ -29,9 +28,11 @@
         android:contentDescription="@string/add_a_person"
         android:focusable="true"
         android:onClick="goToAddItemActivity"
+        app:backgroundTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/plus_fab" />
+        app:maxImageSize="45dp"
+        app:srcCompat="@android:drawable/ic_input_add" />
 
     <TextView
         android:id="@+id/total"

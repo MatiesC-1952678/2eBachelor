@@ -50,8 +50,8 @@
             android:ems="10"
             android:hint="@string/cost_key"
             android:importantForAutofill="no"
-            android:inputType="number|textPersonName"
-            android:padding="40dp" />
+            android:padding="40dp"
+            android:inputType="numberDecimal"/>
 
     </GridLayout>
 
