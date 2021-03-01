@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="40dp"
-            android:text="@string/naam_for_label_key"
+            android:text="@string/naam_showitem"
             android:textSize="20sp" />
 
         <EditText
@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/name_hint_key"
+            android:hint="@string/name_hint"
             android:importantForAutofill="no"
             android:inputType="textPersonName"
             android:padding="40dp" />
@@ -40,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="40dp"
-            android:text="@string/schuld_for_label_key"
+            android:text="@string/schuld_showitem"
             android:textSize="20sp" />
 
         <EditText
@@ -48,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/cost_key"
+            android:hint="@string/cost_placeholder"
             android:importantForAutofill="no"
             android:padding="40dp"
             android:inputType="numberDecimal"/>
@@ -60,7 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="77dp"
-        android:text="@string/opslaan_key"
+        android:text="@string/opslaan_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

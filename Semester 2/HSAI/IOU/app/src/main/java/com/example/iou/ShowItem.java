@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class ShowItem extends AppCompatActivity {
 
@@ -17,8 +20,8 @@ public class ShowItem extends AppCompatActivity {
         String name = intent.getStringExtra(MainActivity.PERSON_NAME);
         Float cost = intent.getFloatExtra(MainActivity.PERSON_COST, 0.0f);
 
-        EditText nameText = findViewById(R.id.showItemName);
-        EditText costText = findViewById(R.id.showItemCost);
+        TextView nameText = findViewById(R.id.showItemName);
+        TextView costText = findViewById(R.id.showItemCost);
         nameText.setText(name);
         costText.setText(cost.toString());
     }

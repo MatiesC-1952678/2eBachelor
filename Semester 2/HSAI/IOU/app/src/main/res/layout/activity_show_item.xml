@@ -22,36 +22,43 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="40dp"
-            android:text="@string/naam_for_label_key"
+            android:text="@string/naam_showitem"
             android:textSize="20sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/showItemName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/name_key"
+            android:hint="@string/name_placeholder"
             android:importantForAutofill="no"
-            android:inputType="textPersonName"
             android:padding="40dp"
-            android:text="@string/name_key" />
+            android:text="@string/name_placeholder"
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="40dp"
-            android:text="@string/schuld_for_label_key"
+            android:text="@string/schuld_showitem"
             android:textSize="20sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/showItemCost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/cost_key"
+            android:hint="@string/cost_placeholder"
             android:importantForAutofill="no"
-            android:inputType="number|textPersonName"
             android:padding="40dp"
-            android:text="@string/cost_key" />
+            android:text="@string/cost_placeholder"
+            android:textSize="20sp" />
     </GridLayout>
+
+<!--
+        Toen de TextViews nog EditTexts waren
+        android:inputType="textPersonName"
+        android:inputType="number|textPersonName"
+-->
+
 </androidx.constraintlayout.widget.ConstraintLayout>
