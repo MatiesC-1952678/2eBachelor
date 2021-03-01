@@ -15,6 +15,9 @@ public interface FriendDao {
     @Query("SELECT * FROM Friend WHERE name LIKE :name LIMIT 1")
     Friend findByName(String name);
 
+    @Query("SELECT * FROM Friend WHERE uid = :id")
+    Friend findById(String id);
+
     @Query("INSERT INTO Friend (name, cost) VALUES (:name, :cost)")
     void insert(String name, Float cost);
 

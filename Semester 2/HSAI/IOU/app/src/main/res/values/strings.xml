@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">IOU</string>
-    <string name="cost_placeholder">0.0</string>
+    <string name="cost_placeholder">0.00</string>
     <string name="name_placeholder">person</string>
     <string name="name_hint">Andrew Jackery Jacked</string>
     <string name="add_a_person_description">Add a person</string>
     <string name="naam_showitem">Naam:</string>
-    <string name="schuld_showitem">Schuld:</string>
+    <string name="schuld_showitem">Schuld: €</string>
     <string name="opslaan_button">Opslaan</string>
     <string name="totale_schuld">Totale Schuld: €</string>
 </resources>

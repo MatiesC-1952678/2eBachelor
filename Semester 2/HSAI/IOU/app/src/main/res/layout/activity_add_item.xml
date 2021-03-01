@@ -7,8 +7,9 @@
     tools:context=".AddItem">
 
     <GridLayout
+        android:id="@+id/gridLayout"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="214dp"
         android:layout_marginTop="100dp"
         android:columnCount="2"
         android:rowCount="2"
@@ -50,8 +51,8 @@
             android:ems="10"
             android:hint="@string/cost_placeholder"
             android:importantForAutofill="no"
-            android:padding="40dp"
-            android:inputType="numberDecimal"/>
+            android:inputType="numberDecimal"
+            android:padding="40dp" />
 
     </GridLayout>
 
@@ -59,12 +60,12 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="77dp"
+        android:layout_marginTop="100dp"
+        android:onClick="addPersonCost"
         android:text="@string/opslaan_button"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        android:onClick="addPersonCost" />
+        app:layout_constraintTop_toBottomOf="@+id/gridLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

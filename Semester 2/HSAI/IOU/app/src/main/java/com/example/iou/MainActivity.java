@@ -15,6 +15,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements deleteButtonInterface {
     public final static String PERSON_NAME = "person_name";
     public final static String PERSON_COST = "person_cost";
+    public final static String PERSON_ID = "person_id";
     //private final ArrayList<String> persons = new ArrayList<>(Arrays.asList("jane", "margret", "john"));
     //private final ArrayList<Float> costs =  new ArrayList<>(Arrays.asList(40.20f, 20.30f, 77.50f));
     private FriendDao dao;
@@ -28,12 +29,23 @@ public class MainActivity extends AppCompatActivity implements deleteButtonInter
         initDatabase();
         initListView();
         insertAdded();
+        doEdit();
         calculateTotal();
     }
 
     private void initDatabase() {
         friendDatabase db = Room.databaseBuilder(getApplicationContext(), friendDatabase.class, "database-name").allowMainThreadQueries().build();
         dao = db.friendDao();
+
+        Friend Lisa = dao.findByName("Lisa");
+        Friend Jan = dao.findByName("Jan");
+        Friend Els = dao.findByName("Els");
+
+        if (!(Lisa != null && Jan != null && Els != null)) {
+            dao.insert("Lisa", 5.6f);
+            dao.insert("Jan", 55.36f);
+            dao.insert("Els", 15.20f);
+        }
     }
 
     /**
@@ -49,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements deleteButtonInter
         AdapterView.OnItemClickListener messageClickedHandler = (parent, v, i, id) -> {
             Intent intent = new Intent(MainActivity.this, ShowItem.class);
             Friend f = dao.getAll().get(i);
+            intent.putExtra(PERSON_ID, Integer.toString(f.getUid()));
             intent.putExtra(PERSON_NAME, f.name);
             intent.putExtra(PERSON_COST, f.cost);
             startActivity(intent);
@@ -80,6 +93,17 @@ public class MainActivity extends AppCompatActivity implements deleteButtonInter
         }
     }
 
+    private void doEdit() {
+        Intent intent = getIntent();
+        String id = intent.getStringExtra(ShowItem.EDIT_PERSON_ID);
+        String name_edited = intent.getStringExtra(ShowItem.EDIT_PERSON_NAME);
+        Float cost_edited = intent.getFloatExtra(ShowItem.EDIT_PERSON_COST, 0.0f);
+        if (id != null) {
+            dao.delete(dao.findById(id));
+            dao.insert(name_edited, cost_edited);
+        }
+    }
+
     /**
      * calculates the total amount cost from the items in listview
      */
@@ -91,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements deleteButtonInter
         }
         final String pre = "Totale Schuld: €";
         TextView totalText = findViewById(R.id.total);
-        totalText.setText(String.format("%s%s", pre, total.toString()));
+        totalText.setText(String.format("%s%.2f", pre, total));
     }
 
     /**

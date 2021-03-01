@@ -49,7 +49,7 @@ public class CustomDataAdapter extends BaseAdapter {
         TextView person = view.findViewById(R.id.name);
         person.setText(f.name);
         TextView cost = view.findViewById(R.id.cost);
-        cost.setText(String.format("€%s", f.cost.toString()));
+        cost.setText(String.format("€%.2f", f.cost));
 
         return view;
     }

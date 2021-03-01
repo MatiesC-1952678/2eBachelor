@@ -7,13 +7,15 @@
     tools:context=".ShowItem">
 
     <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/gridLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
         android:columnCount="2"
         android:rowCount="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
@@ -25,13 +27,14 @@
             android:text="@string/naam_showitem"
             android:textSize="20sp" />
 
-        <TextView
+        <EditText
             android:id="@+id/showItemName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/name_placeholder"
             android:importantForAutofill="no"
+            android:inputType="textPersonName"
             android:padding="40dp"
             android:text="@string/name_placeholder"
             android:textSize="20sp" />
@@ -43,22 +46,35 @@
             android:text="@string/schuld_showitem"
             android:textSize="20sp" />
 
-        <TextView
+        <EditText
             android:id="@+id/showItemCost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/cost_placeholder"
             android:importantForAutofill="no"
+            android:inputType="numberDecimal"
             android:padding="40dp"
             android:text="@string/cost_placeholder"
             android:textSize="20sp" />
+
     </GridLayout>
 
-<!--
-        Toen de TextViews nog EditTexts waren
-        android:inputType="textPersonName"
-        android:inputType="number|textPersonName"
--->
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:onClick="editPersonCost"
+        android:text="@string/opslaan_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gridLayout2" />
+
+    <!--
+            Toen de TextViews nog EditTexts waren
+            android:inputType="textPersonName"
+            android:inputType="number|textPersonName"
+    -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
