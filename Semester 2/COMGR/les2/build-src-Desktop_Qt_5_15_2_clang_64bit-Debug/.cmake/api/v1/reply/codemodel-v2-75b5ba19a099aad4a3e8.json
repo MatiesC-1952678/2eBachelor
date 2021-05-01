@@ -1,0 +1,77 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.7"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "les2",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "les2::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-les2-Debug-eca41cdb31e2a90eb2a3.json",
+					"name" : "les2",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "les2_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-les2_autogen-Debug-ef84082f85c249e3fd5e.json",
+					"name" : "les2_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "les2_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-les2_autogen_timestamp_deps-Debug-331b274bd7957438b084.json",
+					"name" : "les2_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/build-src-Desktop_Qt_5_15_2_clang_64bit-Debug",
+		"source" : "/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/src"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 2
+	}
+}

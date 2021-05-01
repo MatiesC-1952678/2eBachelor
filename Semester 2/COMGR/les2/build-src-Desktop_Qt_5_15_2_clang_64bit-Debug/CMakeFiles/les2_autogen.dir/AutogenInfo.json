@@ -1,0 +1,358 @@
+{
+	"BUILD_DIR" : "/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/build-src-Desktop_Qt_5_15_2_clang_64bit-Debug/les2_autogen",
+	"CMAKE_BINARY_DIR" : "/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/build-src-Desktop_Qt_5_15_2_clang_64bit-Debug",
+	"CMAKE_CURRENT_BINARY_DIR" : "/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/build-src-Desktop_Qt_5_15_2_clang_64bit-Debug",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/src",
+	"CMAKE_EXECUTABLE" : "/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/bin/cmake",
+	"CMAKE_LIST_FILES" : 
+	[
+		"/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/src/CMakeLists.txt",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeDetermineSystem.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeSystem.cmake.in",
+		"/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/build-src-Desktop_Qt_5_15_2_clang_64bit-Debug/CMakeFiles/3.19.2/CMakeSystem.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeNinjaFindMake.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeSystemSpecificInitialize.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Platform/Darwin-Initialize.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeDetermineCCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeDetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeDetermineCompilerId.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeCompilerIdDetection.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/ADSP-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/ARMCC-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/ARMClang-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/AppleClang-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/Clang-DetermineCompilerInternal.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/Borland-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/Bruce-C-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/Clang-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/Clang-DetermineCompilerInternal.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/Compaq-C-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/Cray-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/Embarcadero-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/Fujitsu-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/GHS-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/GNU-C-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/HP-C-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/IAR-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/Intel-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/MSVC-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/NVIDIA-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/PGI-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/PathScale-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/SCO-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/SDCC-C-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/SunPro-C-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/TI-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/Watcom-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/XL-C-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/XLClang-C-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/zOS-C-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeFindBinUtils.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeCCompiler.cmake.in",
+		"/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/build-src-Desktop_Qt_5_15_2_clang_64bit-Debug/CMakeFiles/3.19.2/CMakeCCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeDetermineCXXCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeDetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Platform/Darwin-Determine-CXX.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeDetermineCompilerId.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeCompilerIdDetection.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/ADSP-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/ARMCC-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/ARMClang-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/AppleClang-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/Clang-DetermineCompilerInternal.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/Borland-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/Clang-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/Clang-DetermineCompilerInternal.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/Comeau-CXX-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/Cray-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/Embarcadero-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/Fujitsu-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/GHS-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/HP-CXX-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/IAR-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/Intel-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/MSVC-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/NVIDIA-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/PGI-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/PathScale-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/SCO-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/TI-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/Watcom-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/XL-CXX-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeFindBinUtils.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeCXXCompiler.cmake.in",
+		"/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/build-src-Desktop_Qt_5_15_2_clang_64bit-Debug/CMakeFiles/3.19.2/CMakeCXXCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeSystemSpecificInformation.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeGenericSystem.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeInitializeConfigs.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Platform/Darwin.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Platform/UnixPaths.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeCInformation.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeLanguageInformation.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/AppleClang-C.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/Clang.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/CMakeCommonCompilerMacros.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/GNU.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/CMakeCommonCompilerMacros.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Platform/Apple-AppleClang-C.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Platform/Apple-Clang-C.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Platform/Apple-Clang.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeCommonLanguageInclude.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeTestCCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeTestCompilerCommon.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeDetermineCompilerABI.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeParseImplicitIncludeInfo.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeParseImplicitLinkInfo.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeTestCompilerCommon.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeCCompilerABI.c",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeDetermineCompileFeatures.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Internal/FeatureTesting.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeCCompiler.cmake.in",
+		"/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/build-src-Desktop_Qt_5_15_2_clang_64bit-Debug/CMakeFiles/3.19.2/CMakeCCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeCXXInformation.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeLanguageInformation.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/AppleClang-CXX.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Compiler/Clang.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Platform/Apple-AppleClang-CXX.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Platform/Apple-Clang-CXX.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Platform/Apple-Clang.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeCommonLanguageInclude.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeTestCXXCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeTestCompilerCommon.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeDetermineCompilerABI.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeParseImplicitIncludeInfo.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeParseImplicitLinkInfo.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeTestCompilerCommon.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeCXXCompilerABI.cpp",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeDetermineCompileFeatures.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/Internal/FeatureTesting.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeCXXCompiler.cmake.in",
+		"/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/build-src-Desktop_Qt_5_15_2_clang_64bit-Debug/CMakeFiles/3.19.2/CMakeCXXCompiler.cmake",
+		"/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/lib/cmake/Qt5Widgets/Qt5WidgetsConfigVersion.cmake",
+		"/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/lib/cmake/Qt5Widgets/Qt5WidgetsConfig.cmake",
+		"/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/lib/cmake/Qt5Gui/Qt5GuiConfigVersion.cmake",
+		"/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/lib/cmake/Qt5Gui/Qt5GuiConfig.cmake",
+		"/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/lib/cmake/Qt5Core/Qt5CoreConfigVersion.cmake",
+		"/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/lib/cmake/Qt5Core/Qt5CoreConfig.cmake",
+		"/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/lib/cmake/Qt5Core/Qt5CoreConfigExtras.cmake",
+		"/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/lib/cmake/Qt5Core/Qt5CoreConfigExtrasMkspecDir.cmake",
+		"/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/lib/cmake/Qt5Core/Qt5CoreMacros.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeParseArguments.cmake",
+		"/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QCocoaIntegrationPlugin.cmake",
+		"/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QGifPlugin.cmake",
+		"/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QICNSPlugin.cmake",
+		"/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QICOPlugin.cmake",
+		"/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QJpegPlugin.cmake",
+		"/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QMacHeifPlugin.cmake",
+		"/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QMacJp2Plugin.cmake",
+		"/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QMinimalIntegrationPlugin.cmake",
+		"/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QOffscreenIntegrationPlugin.cmake",
+		"/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QSvgIconPlugin.cmake",
+		"/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QSvgPlugin.cmake",
+		"/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QTgaPlugin.cmake",
+		"/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QTiffPlugin.cmake",
+		"/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QTuioTouchPlugin.cmake",
+		"/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QWbmpPlugin.cmake",
+		"/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QWebpPlugin.cmake",
+		"/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QXdgDesktopPortalThemePlugin.cmake",
+		"/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/lib/cmake/Qt5Gui/Qt5GuiConfigExtras.cmake",
+		"/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/lib/cmake/Qt5Widgets/Qt5Widgets_QMacStylePlugin.cmake",
+		"/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/lib/cmake/Qt5Widgets/Qt5WidgetsConfigExtras.cmake",
+		"/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/lib/cmake/Qt5Widgets/Qt5WidgetsMacros.cmake",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeParseArguments.cmake",
+		"/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/lib/cmake/Qt5Gui/Qt5GuiConfigVersion.cmake",
+		"/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/lib/cmake/Qt5Gui/Qt5GuiConfig.cmake"
+	],
+	"CMAKE_SOURCE_DIR" : "/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/src",
+	"DEP_FILE" : "/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/build-src-Desktop_Qt_5_15_2_clang_64bit-Debug/les2_autogen/deps",
+	"DEP_FILE_RULE_NAME" : "les2_autogen/timestamp",
+	"HEADERS" : 
+	[
+		[
+			"/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/src/CG1_2DPolygon.h",
+			"MU",
+			"EWIEGA46WW/moc_CG1_2DPolygon.cpp"
+		],
+		[
+			"/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/src/CG1_2DVector.h",
+			"MU",
+			"EWIEGA46WW/moc_CG1_2DVector.cpp"
+		],
+		[
+			"/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/src/CG1_ActiveEdgeTable.h",
+			"MU",
+			"EWIEGA46WW/moc_CG1_ActiveEdgeTable.cpp"
+		],
+		[
+			"/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/src/CG1_Drawtool.h",
+			"MU",
+			"EWIEGA46WW/moc_CG1_Drawtool.cpp"
+		],
+		[
+			"/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/src/CG1_Edge.h",
+			"MU",
+			"EWIEGA46WW/moc_CG1_Edge.cpp"
+		],
+		[
+			"/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/src/CG1_EdgeTable.h",
+			"MU",
+			"EWIEGA46WW/moc_CG1_EdgeTable.cpp"
+		],
+		[
+			"/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/src/CG1_EdgeTableRow.h",
+			"MU",
+			"EWIEGA46WW/moc_CG1_EdgeTableRow.cpp"
+		],
+		[
+			"/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/src/CG1_Line.h",
+			"MU",
+			"EWIEGA46WW/moc_CG1_Line.cpp"
+		],
+		[
+			"/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/src/CG1_Polygon.h",
+			"MU",
+			"EWIEGA46WW/moc_CG1_Polygon.cpp"
+		],
+		[
+			"/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/src/RGB_Color.h",
+			"MU",
+			"EWIEGA46WW/moc_RGB_Color.cpp"
+		],
+		[
+			"/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/src/cg_Canvas.h",
+			"MU",
+			"EWIEGA46WW/moc_cg_Canvas.cpp"
+		],
+		[
+			"/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/src/cg_MainWindow.h",
+			"MU",
+			"EWIEGA46WW/moc_cg_MainWindow.cpp"
+		]
+	],
+	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
+	"INCLUDE_DIR" : "/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/build-src-Desktop_Qt_5_15_2_clang_64bit-Debug/les2_autogen/include",
+	"MOC_COMPILATION_FILE" : "/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/build-src-Desktop_Qt_5_15_2_clang_64bit-Debug/les2_autogen/mocs_compilation.cpp",
+	"MOC_DEFINITIONS" : [ "QT_CORE_LIB", "QT_GUI_LIB", "QT_WIDGETS_LIB" ],
+	"MOC_DEPEND_FILTERS" : 
+	[
+		[
+			"Q_PLUGIN_METADATA",
+			"[\n][ \t]*Q_PLUGIN_METADATA[ \t]*\\([^\\)]*FILE[ \t]*\"([^\"]+)\""
+		]
+	],
+	"MOC_INCLUDES" : 
+	[
+		"/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/build-src-Desktop_Qt_5_15_2_clang_64bit-Debug",
+		"/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/src",
+		"/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/lib/QtWidgets.framework",
+		"/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/lib/QtWidgets.framework/Headers",
+		"/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/lib/QtGui.framework",
+		"/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/lib/QtGui.framework/Headers",
+		"/Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk/System/Library/Frameworks/OpenGL.framework/Headers",
+		"/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/lib/QtCore.framework",
+		"/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/lib/QtCore.framework/Headers",
+		"/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/mkspecs/macx-clang",
+		"/Library/Developer/CommandLineTools/usr/include/c++/v1",
+		"/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include",
+		"/Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk/usr/include",
+		"/Library/Developer/CommandLineTools/usr/include"
+	],
+	"MOC_MACRO_NAMES" : [ "Q_OBJECT", "Q_GADGET", "Q_NAMESPACE", "Q_NAMESPACE_EXPORT" ],
+	"MOC_OPTIONS" : [],
+	"MOC_PATH_PREFIX" : false,
+	"MOC_PREDEFS_CMD" : 
+	[
+		"/usr/bin/clang++",
+		"-dM",
+		"-E",
+		"-c",
+		"/Users/matiesclaesen/Documents/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.19/Modules/CMakeCXXCompilerABI.cpp"
+	],
+	"MOC_PREDEFS_FILE" : "/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/build-src-Desktop_Qt_5_15_2_clang_64bit-Debug/les2_autogen/moc_predefs.h",
+	"MOC_RELAXED_MODE" : false,
+	"MOC_SKIP" : [],
+	"MULTI_CONFIG" : false,
+	"PARALLEL" : 4,
+	"PARSE_CACHE_FILE" : "/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/build-src-Desktop_Qt_5_15_2_clang_64bit-Debug/CMakeFiles/les2_autogen.dir/ParseCache.txt",
+	"QT_MOC_EXECUTABLE" : "/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/bin/moc",
+	"QT_UIC_EXECUTABLE" : "/Users/matiesclaesen/Documents/Qt/5.15.2/clang_64/bin/uic",
+	"QT_VERSION_MAJOR" : 5,
+	"QT_VERSION_MINOR" : 15,
+	"SETTINGS_FILE" : "/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/build-src-Desktop_Qt_5_15_2_clang_64bit-Debug/CMakeFiles/les2_autogen.dir/AutogenUsed.txt",
+	"SOURCES" : 
+	[
+		[
+			"/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/src/CG1_2DPolygon.cpp",
+			"MU"
+		],
+		[
+			"/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/src/CG1_2DVector.cpp",
+			"MU"
+		],
+		[
+			"/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/src/CG1_ActiveEdgeTable.cpp",
+			"MU"
+		],
+		[
+			"/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/src/CG1_Drawtool.cpp",
+			"MU"
+		],
+		[
+			"/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/src/CG1_Edge.cpp",
+			"MU"
+		],
+		[
+			"/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/src/CG1_EdgeTable.cpp",
+			"MU"
+		],
+		[
+			"/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/src/CG1_EdgeTableRow.cpp",
+			"MU"
+		],
+		[
+			"/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/src/CG1_Line.cpp",
+			"MU"
+		],
+		[
+			"/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/src/CG1_Polygon.cpp",
+			"MU"
+		],
+		[
+			"/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/src/RGB_Color.cpp",
+			"MU"
+		],
+		[
+			"/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/src/cg_Canvas.cpp",
+			"MU"
+		],
+		[
+			"/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/src/cg_MainWindow.cpp",
+			"MU"
+		],
+		[
+			"/Users/matiesclaesen/Documents/Universiteit/2eBachelor/Semester 2/COMGR/les2/src/main.cpp",
+			"MU"
+		]
+	],
+	"UIC_OPTIONS" : [],
+	"UIC_SEARCH_PATHS" : [],
+	"UIC_SKIP" : [],
+	"UIC_UI_FILES" : [],
+	"VERBOSITY" : 0
+}
